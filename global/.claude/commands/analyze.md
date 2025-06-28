@@ -1,25 +1,19 @@
-# Command: Comprehensive Code Analysis
+Analyzes the codebase or specific changes for correctness, architecture, quality, security, and performance, providing a prioritized list of issues.
 
-Analyze the codebase focusing on:
+**Usage**: `/analyze [path]`
 
-1. **Architecture Assessment**
-   - Current structure and patterns
-   - Coupling and cohesion analysis
-   - Scalability considerations
+## Process:
+1.  Analyze code for correctness (logic errors, bugs, edge cases).
+2.  Assess architecture for conformance to patterns, coupling, and scalability.
+3.  Review code quality for conventions, readability, and technical debt.
+4.  Conduct a security review for common vulnerabilities (e.g., OWASP Top 10).
+5.  Analyze performance to identify bottlenecks and inefficient resource usage.
+6.  Output a prioritized list of issues with severity levels (Critical/Major/Minor) and recommended fixes.
 
-2. **Code Quality**
-   - Identify technical debt
-   - Find code smells
-   - Suggest refactoring opportunities
+## Examples:
+- `/analyze src/core/auth.js`
+- `/analyze` (to analyze staged changes)
 
-3. **Security Review**
-   - Check for common vulnerabilities
-   - Review input validation
-   - Assess authentication/authorization
-
-4. **Performance Analysis**
-   - Identify bottlenecks
-   - Review database queries
-   - Check for memory leaks
-
-Output a prioritized list of issues with recommended fixes.
+## Notes:
+- This command provides a comprehensive health check for your code.
+- It helps in identifying critical issues before they become major problems.

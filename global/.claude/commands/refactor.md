@@ -1,74 +1,22 @@
-# Command: Refactor Code
+Guides a structured refactoring process for a given code block, from analyzing code smells to planning and executing changes safely.
 
-**1. Analyse** target code for smells:
-   - Long functions (> 50 lines)
-   - Duplicate logic
-   - Complex conditionals
-   - Poor naming
-   - Tight coupling
+**Usage**: `/refactor <code block or file path>`
 
-**2. Plan** suggested changes:
-   - Map old → new structure
-   - Identify extraction opportunities
-   - Plan test modifications
-
-**3. Wait for approval**
-   - Present refactoring plan
-   - Explain benefits
-   - Estimate effort
-
-**4. Execute** refactor in small, verifiable steps:
-   - Extract methods/functions
-   - Rename for clarity
-   - Simplify logic
-   - Run tests after each change
-   - Commit incrementally
+## Process:
+1.  **Analyze**: Identify code smells in the target code (e.g., long functions, duplicate logic, poor naming).
+2.  **Plan**: Map the old structure to a new, improved one and plan any necessary test modifications.
+3.  **Wait for Approval**: Present the refactoring plan, benefits, and effort estimate to the user.
+4.  **Execute**: Apply the refactoring in small, verifiable steps, running tests after each change.
 
 ## Common Refactoring Patterns
+- **Extract Method**: Breaking down long functions into smaller, well-named ones.
+- **Replace Conditional with Polymorphism**: Using objects and inheritance to handle complex conditional logic.
+- **Extract Variable**: Improving readability by giving a complex expression a clear name.
 
-### Extract Method
-```javascript
-// Before
-function processOrder(order) {
-  // validation logic (20 lines)
-  // pricing calculation (15 lines)
-  // inventory update (10 lines)
-}
+## Examples:
+- `/refactor path/to/long_function.js`
+- `/refactor "function process(order) { ... }"`
 
-// After
-function processOrder(order) {
-  validateOrder(order);
-  const price = calculatePrice(order);
-  updateInventory(order);
-}
-```
-
-### Replace Conditional with Polymorphism
-```javascript
-// Before
-if (user.type === 'premium') {
-  // premium logic
-} else if (user.type === 'basic') {
-  // basic logic
-}
-
-// After
-user.getStrategy().process();
-```
-
-### Extract Variable
-```javascript
-// Before
-if (user.age > 18 && user.hasLicense && !user.hasViolations) {
-
-// After
-const isEligibleDriver = user.age > 18 && user.hasLicense && !user.hasViolations;
-if (isEligibleDriver) {
-```
-
-## Refactoring Checklist
-- [ ] All tests still pass
-- [ ] No functionality changed
-- [ ] Code is more readable
-- [ ] Reduced duplication
-- [ ] Better separation of concerns
+## Notes:
+- This command ensures that refactoring is done systematically and safely, without changing functionality.
+- It emphasizes incremental changes and continuous testing.

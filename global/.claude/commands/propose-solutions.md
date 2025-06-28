@@ -1,50 +1,17 @@
-# Command: Propose Solutions
+Generates and compares three distinct, viable solutions for a given problem, each with pros and cons, and provides a final recommendation.
 
-**Task**: Generate **three** distinct, viable solutions to `$ARGUMENTS`.
+**Usage**: `/propose-solutions "<problem statement>"`
 
-For each solution produce:
-* Approach summary (≤ 2 sentences)
-* Pros (bullets)
-* Cons (bullets)
+## Process:
+1.  Analyze the given problem statement.
+2.  Generate three distinct and viable solutions.
+3.  For each solution, provide a brief approach summary, a list of pros, and a list of cons.
+4.  Conclude with a one-line recommendation for the best solution.
 
-Finish with a one-line recommendation selecting the best candidate.
+## Examples:
+- `/propose-solutions "Select a backend architecture for a new social media application"`
+- The command will output a comparison of Monolithic, Microservices, and Serverless architectures with a final recommendation.
 
-## Example Output:
-
-### Solution 1: Monolithic Architecture
-Single deployable unit with all features integrated. Simple deployment and debugging.
-**Pros:**
-- Easy to develop and test
-- Single codebase to maintain
-- No network latency between components
-
-**Cons:**
-- Difficult to scale individual components
-- Technology lock-in
-- Large deployment size
-
-### Solution 2: Microservices Architecture
-Separate services for each domain. Independent deployment and scaling.
-**Pros:**
-- Independent scaling
-- Technology flexibility
-- Fault isolation
-
-**Cons:**
-- Complex deployment
-- Network overhead
-- Distributed system challenges
-
-### Solution 3: Serverless Functions
-Event-driven compute with pay-per-use pricing. Auto-scaling built-in.
-**Pros:**
-- No infrastructure management
-- Automatic scaling
-- Cost-effective for variable loads
-
-**Cons:**
-- Vendor lock-in
-- Cold start latency
-- Limited execution time
-
-**Recommendation:** Choose Solution 2 (Microservices) for long-term scalability and team autonomy.
+## Notes:
+- This command is useful for making informed architectural or technical decisions.
+- It provides a structured way to evaluate trade-offs between different approaches.

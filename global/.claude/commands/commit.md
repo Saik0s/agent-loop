@@ -1,19 +1,18 @@
-# Command: Generate Commit Message
+Analyzes staged changes and generates a commit message that follows the Conventional Commits specification.
 
-Analyze staged changes and generate commit message following conventional format:
+**Usage**: `/commit`
 
-```
-<type>(<scope>): <subject>
+## Process:
+1.  Analyze the staged changes to understand their nature (e.g., new feature, bug fix, refactor).
+2.  Determine the appropriate type (feat, fix, docs, etc.) and scope.
+3.  Write a concise subject line in the imperative mood.
+4.  Compose a body explaining the "what" and "why" of the change, if necessary.
+5.  Add any breaking changes or issue references to the footer.
+6.  Generate the final commit message.
 
-<body>
+## Examples:
+- `/commit` (after staging files with `git add`)
 
-<footer>
-```
-
-Types: feat, fix, docs, style, refactor, perf, test, chore
-Scope: affected module/component
-Subject: concise description (imperative mood)
-Body: what and why (if needed)
-Footer: breaking changes, issue references
-
-Keep subject under 50 chars, body lines under 72.
+## Notes:
+- The generated message adheres to the Conventional Commits standard (`<type>(<scope>): <subject>`).
+- This helps maintain a clean and semantic commit history.

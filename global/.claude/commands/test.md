@@ -1,24 +1,17 @@
-# Command: Generate Tests
+Generates a comprehensive test suite (unit, integration, and E2E) for a given code component, function, or feature.
 
-Create comprehensive tests for: $ARGUMENTS
+**Usage**: `/test "<code component or feature description>"`
 
-## Test Types to Generate:
+## Process:
+1.  **Generate Unit Tests**: Create tests for individual functions/methods, mocking external dependencies and covering edge cases.
+2.  **Generate Integration Tests**: Create tests for component interactions, using real services (like a test database) and verifying API contracts.
+3.  **Generate E2E Tests**: If applicable, create tests for complete user workflows from the UI to the backend.
+4.  **Include Fixtures**: Create necessary test data fixtures.
 
-1. **Unit Tests**
-   - Test individual functions/methods
-   - Mock external dependencies
-   - Cover happy path and edge cases
-   - Aim for >80% coverage
+## Examples:
+- `/test "the user authentication service in 'src/services/auth.js'"`
+- `/test "the checkout feature"`
 
-2. **Integration Tests**
-   - Test component interactions
-   - Use real database (test instance)
-   - Verify API contracts
-   - Test error propagation
-
-3. **E2E Tests** (if applicable)
-   - Test complete user workflows
-   - Verify UI behavior
-   - Check performance under load
-
-Include test data fixtures and clear test descriptions.
+## Notes:
+- Aims for high test coverage (>80% for unit tests).
+- Helps ensure code is robust, reliable, and regression-free.
