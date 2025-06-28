@@ -25,7 +25,7 @@
 mkdir -p ~/.claude/commands ~/.claude/docs/personas ~/.claude/docs/patterns
 
 # Copy all global files
-cp -r ultimate/global/.claude/* ~/.claude/
+cp -r global/.claude/* ~/.claude/
 
 # Verify structure
 tree ~/.claude
@@ -37,7 +37,7 @@ tree ~/.claude
 mkdir -p .claude/commands .claude/docs
 
 # Copy and customize project templates
-cp -r ultimate/project/.claude/* .claude/
+cp -r project/.claude/* .claude/
 
 # Edit project-specific values in .claude/CLAUDE.md
 ```
@@ -377,16 +377,17 @@ gemini -p "@variant-*/ Which implementation is best?"
 
 ## 📋 Command Quick Reference
 
-### Global Commands
-- `/spec` - Create specifications
-- `/analyze` - Code analysis
-- `/build` - Build features
-- `/debug` - Debug issues
-- `/test` - Generate tests
-- `/review` - Code review
-- `/commit` - Git commits
-- `/refactor` - Refactor code
-- `/research` - Research topics
+### Command Execution
+Commands can be executed in two ways:
+
+1.  **Direct Execution**: Call the command directly. The engine will execute it.
+    ```bash
+    /analyze
+    ```
+2.  **Orchestrated Execution**: Use the `/orchestrate <command>` command. This method involves loading the `orchestrator` persona, which then instructs a sub-agent to execute the provided `<command>`. The orchestrator also selects the most relevant specialist persona (e.g., `builder`, `architect`) for the sub-agent to use for the task.
+    ```bash
+    /orchestrate analyze
+    ```
 
 ### Project Commands
 - `/project:setup` - Environment setup

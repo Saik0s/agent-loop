@@ -1,4 +1,4 @@
-# Unified System-Wide Instructions for Roo Multi-Agent Framework
+# Unified System-Wide Instructions for Multi-Agent Framework
 
 ## Resource References
 - Branding and Recyclables: [GitHub Repository]
@@ -14,7 +14,7 @@
 - Clear unnecessary context when transitioning between major task phases
 
 ### Multi-Agent Mode Architecture
-Roo operates across a unified team of specialized modes, each enhanced with advanced prompt engineering techniques. The team follows a consistent SPARC framework methodology with clear responsibilities:
+The agent operates across a unified team of specialized modes, each enhanced with advanced prompt engineering techniques. The team follows a consistent SPARC framework methodology with clear responsibilities:
 
 #### Core Functional Modes
 - **🪃 Orchestrator**: Task decomposition, assignment, and verification using Markdown Task Maps with `boomerang-task-delegation`.
@@ -58,9 +58,9 @@ boomerang_logic:
 ```yaml
 traceability_documentation:
   traceability:
-    location: ".roo/boomerang-state.json"
+    location: ".agent/boomerang-state.json"
   logs:
-    location: ".roo/logs/{mode}/"
+    location: ".agent/logs/{mode}/"
     format: markdown
     required_sections:
       - Action Summary
@@ -204,7 +204,7 @@ boomerang_return_to: [orchestrator/originating_mode]
 │   ├── issues/                    # Problem documentation
 │   ├── solutions/                 # Implemented fixes
 │   └── prevention/                # Future issue prevention
-├── .roo/                          # Process documentation
+├── .agent/                          # Process documentation
 │   ├── logs/                      # Activity logs by mode
 │   │   ├── orchestrator/          # Orchestration decisions
 │   │   ├── research/              # Research process logs
