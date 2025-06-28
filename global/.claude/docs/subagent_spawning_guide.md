@@ -1,87 +1,96 @@
-# Claude Code Subagent Rules
+# Claude Subagent Spawning Guide
 
-## Basic Spawning
+This guide provides patterns for spawning `claude` subagents for various development tasks, from simple execution to complex parallel workflows.
+
+## Basic Spawning & Session Management
+
+**Simple execution:**
 ```bash
 # Simple execution
 claude -p "Your prompt here"
+```
 
+**JSON output for parsing:**
+```bash
 # With JSON output for parsing
 claude -p "Build feature" --output-format json
+```
 
+**Streaming for long tasks:**
+```bash
 # With streaming for long tasks
 claude -p "Complex task" --output-format stream-json --verbose
 ```
 
-## Session Management
+**Start and resume a session:**
 ```bash
-# Capture session ID
+# Capture session ID and continue
 SESSION_ID=$(claude -p "Start task" --output-format json | jq -r '.session_id')
-
-# Continue session
 claude -p --resume "$SESSION_ID" "Next step"
+```
 
-# Continue most recent
+**Continue most recent session:**
+```bash
+# Continue the most recently active session
 claude -p --continue "Add more features"
 ```
 
-## Essential Options
+## Core Command Options
+
+**Limit turns to control cost:**
 ```bash
-# Limit turns to control cost
 claude -p "Task" --max-turns 3
-
-# Custom system prompt
-claude -p "Task" --system-prompt "You are an expert in X"
-
-# Allow/disallow specific tools
-claude -p "Task" --allowedTools "Read,Write,Bash"
-claude -p "Task" --disallowedTools "Bash(rm)"
-
-# Permission modes for autonomous operation
-claude -p "Task" --permission-mode acceptEdits    # Auto-accept file edits
-claude -p "Task" --permission-mode bypassPermissions  # Skip all permission prompts
-claude -p "Task" --permission-mode plan          # Plan mode only
 ```
-## Autonomous Subagents
+
+**Use a custom system prompt:**
 ```bash
-# Fully autonomous - bypasses ALL permission prompts
+claude -p "Task" --system-prompt "You are an expert in X"
+```
+
+**Allow specific tools:**
+```bash
+claude -p "Task" --allowedTools "Read,Write,Bash"
+```
+
+**Disallow specific tools for safety:**
+```bash
+claude -p "Task" --disallowedTools "Bash(rm)"
+```
+
+## Autonomous Operation
+
+**Fully autonomous (auto-accept all):**
+```bash
+# Bypasses ALL permission prompts
 claude -p "Build complete app" --permission-mode bypassPermissions --max-turns 10
+```
 
-# Auto-accept edits but prompt for dangerous operations
+**Auto-accept file edits only:**
+```bash
+# Auto-accept edits but prompt for dangerous operations like shell commands
 claude -p "Refactor codebase" --permission-mode acceptEdits --max-turns 5
+```
 
-# Combine with tool restrictions for safety
+**Plan mode only:**
+```bash
+# Agent will only create a plan, not execute it
+claude -p "Task" --permission-mode plan
+```
+
+**Combine with tool restrictions for safety:**
+```bash
+# Run autonomously with guardrails
 claude -p "Safe autonomous task" \
   --permission-mode bypassPermissions \
   --disallowedTools "Bash(rm),Bash(git push)" \
   --max-turns 3
 ```
 
-## Monitoring & Error Handling
-```bash
-# Check success and extract data
-if RESULT=$(claude -p "$prompt" --output-format json); then
-    COST=$(echo "$RESULT" | jq -r '.total_cost_usd')
-    echo "Success! Cost: $COST USD"
-else
-    echo "Failed with exit code $?"
-fi
+## Parallel Agentic Workflows
 
-# Timeout for long tasks
-timeout 300 claude -p "$prompt" || echo "Timed out"
-```
+This pattern involves spawning multiple agents in isolated environments to generate diverse solutions to a single problem.
 
-## Advanced Pattern: Parallel Agentic Workflows
-
-This pattern, inspired by "Midjourney for Code," involves spawning multiple agents in isolated environments to generate diverse solutions to a single problem. This is useful for prototyping, A/B testing features, or exploring different implementations.
-
-### Core Principle: Keep It Simple
-
-The claude CLI is already well-designed for autonomous operation. Don't over-engineer with complex monitoring or JSON parsing unless you specifically need it.
-
-### Pattern 1: Simple Parallel Variations
-
-The most effective pattern for generating multiple variations:
-
+**Generate multiple variations of a new feature:**
 ```bash
 #!/bin/bash
 # spawn_variations.sh - Dead simple parallel execution
@@ -101,12 +110,7 @@ wait
 echo "✅ All variations complete. Check variant-*/ directories"
 ```
 
-That's it. The claude CLI handles progress display, error reporting, and retries automatically.
-
-### Pattern 2: Parallel Features on Existing Codebase
-
-For working on an existing project with git:
-
+**Develop features in parallel on an existing git codebase:**
 ```bash
 #!/bin/bash
 # spawn_features.sh - Parallel feature development
@@ -128,10 +132,7 @@ wait
 echo "✅ Features ready on branches: feature-*"
 ```
 
-### Pattern 3: Quick A/B Testing
-
-For comparing different implementations:
-
+**A/B test different implementations:**
 ```bash
 #!/bin/bash
 # ab_test.sh - Compare two approaches
@@ -148,30 +149,24 @@ wait
 echo "✅ Both options ready for comparison"
 ```
 
-### When to Add Complexity
+## Monitoring and Safety
 
-Only add monitoring/logging when you need:
-- **Automated selection** - Parsing results to pick best variant
-- **CI/CD integration** - Running in non-interactive environments
-- **Cost tracking** - Analyzing spend across many runs
-- **Bulk operations** - Managing 10+ parallel agents
-
-For interactive development, the simple patterns above are optimal.
-
-### Monitoring (When Needed)
-
-If you need to monitor progress:
-
+**Check success and extract data from JSON output:**
 ```bash
-# In another terminal
-watch -n 2 'find . -name "*.html" -o -name "*.js" | wc -l'
-
-# Or check completion
-ls -d variant-*/index.html 2>/dev/null | wc -l
+if RESULT=$(claude -p "$prompt" --output-format json); then
+    COST=$(echo "$RESULT" | jq -r '.total_cost_usd')
+    echo "Success! Cost: $COST USD"
+else
+    echo "Failed with exit code $?"
+fi
 ```
 
-### Cost Awareness
+**Set a timeout for long-running tasks:**
+```bash
+timeout 300 claude -p "$prompt" || echo "Timed out"
+```
 
+**Set turn limits to manage cost:**
 ```bash
 # Set turn limits based on task complexity
 SIMPLE_TASK_TURNS=5
@@ -181,9 +176,9 @@ COMPLEX_TASK_TURNS=20
 claude -p "Simple task" --max-turns $SIMPLE_TASK_TURNS
 ```
 
-## Key Tips
-- **Keep it simple** - Basic bash patterns work best
-- **Trust the tool** - Claude CLI already handles errors, retries, and progress
-- **Set `--max-turns`** to control costs
-- **Use `--permission-mode bypassPermissions`** for fully autonomous operation
-- **Don't capture output you won't use** - Let the CLI display progress naturally
+## Key Principles
+
+- **Keep it simple**: Basic bash patterns are most effective. The `claude` CLI handles progress, errors, and retries automatically. Don't over-engineer with complex monitoring unless you need it for automation.
+- **Use `--permission-mode`**: Use `bypassPermissions` for full autonomy or `acceptEdits` for safer automation where shell commands will still require confirmation.
+- **Set `--max-turns`**: Always set a turn limit to control costs and prevent infinite loops.
+- **Don't capture output you won't use**: Let the CLI display progress naturally. Only capture JSON output when you need to parse it for automation.

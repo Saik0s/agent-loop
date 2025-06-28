@@ -3,15 +3,20 @@ Guides the Test-Driven Development (TDD) of a new feature, from requirements ana
 **Usage**: `/build "<feature description>"`
 
 ## Process:
-1.  **Analyze Requirements**: Break down the feature into testable components, identify edge cases, and define success criteria.
-2.  **Write Tests First**: Create unit tests for core logic, integration tests for APIs, and E2E tests for user flows.
-3.  **Implement Incrementally**: Build the minimal working version required to pass the tests.
-4.  **Refactor**: Improve code clarity and structure while keeping tests green.
-5.  **Validate**: Run all tests, check code coverage, and verify that all acceptance criteria are met.
+1.  **Analyze Requirements**: Deconstruct the feature description into specific, testable user stories and acceptance criteria. Identify core logic, potential edge cases, and clear success criteria.
+2.  **Write Failing Tests First**: Based on the requirements, write a comprehensive suite of failing tests. Start with a single, small failing test.
+    *   **Unit Tests**: For core logic and individual functions.
+    *   **Integration Tests**: For API endpoints or component interactions.
+    *   **E2E Tests**: For critical user flows.
+3.  **Implement Minimally**: Write the simplest possible code required to make the failing test pass. Do not add any extra functionality.
+4.  **Refactor**: With the tests passing, improve the code's structure, clarity, and efficiency without changing its external behavior. Ensure all tests remain green.
+5.  **Repeat**: Select the next requirement, write a new failing test, and repeat the implementation and refactoring cycle (Red-Green-Refactor).
+6.  **Final Validation**: Once all requirements are implemented, run the entire test suite. Verify that all acceptance criteria are met and check for sufficient test coverage.
 
 ## Examples:
 - `/build "a user login page with two-factor authentication"`
 
 ## Notes:
 - This command enforces a strict TDD workflow to ensure high-quality, well-tested code.
-- It's ideal for building new features from scratch.
+- The core principle is to let the tests drive the development process.
+- Each cycle of Red-Green-Refactor should be small and incremental.

@@ -129,3 +129,39 @@ engineering:
 - Generate immediately runnable code
 - Verify no syntax errors before submission
 - Complete all required verification steps
+
+**Quick Zen MCP Tool Selection Guide:**
+- **Need a thinking partner?** → `chat` (brainstorm ideas, get second opinions, validate approaches)
+- **Need deeper thinking?** → `thinkdeep` (extends analysis, finds edge cases)
+- **Need to break down complex projects?** → `planner` (step-by-step planning, project structure, breaking down complex ideas)
+- **Need multiple perspectives?** → `consensus` (get diverse expert opinions on proposals and decisions)
+- **Code needs review?** → `codereview` (bugs, security, performance issues)
+- **Pre-commit validation?** → `precommit` (validate git changes before committing)
+- **Something's broken?** → `debug` (systematic investigation, step-by-step root cause analysis)
+- **Want to understand code?** → `analyze` (architecture, patterns, dependencies)
+- **Code needs refactoring?** → `refactor` (intelligent refactoring with decomposition focus)
+- **Need call-flow analysis?** → `tracer` (generates prompts for execution tracing and dependency mapping)
+- **Need comprehensive tests?** → `testgen` (generates test suites with edge cases)
+- **Security concerns?** → `secaudit` (OWASP analysis, compliance evaluation, vulnerability assessment)
+- **Code needs documentation?** → `docgen` (generates comprehensive documentation with complexity analysis)
+
+**🚨 MANDATORY: BEFORE ANY WORK (INCLUDING PLANNING), you MUST use Context7 MCP:**
+
+**ALWAYS START WITH CONTEXT7 - BEFORE PLANNING, BEFORE ANALYSIS, BEFORE EVERYTHING**
+
+**Context7 & Exa MCP – Mandatory Pre-Work Checklist**
+
+- `mcp__context7__resolve-library-id <technology-name>` – resolve the library ID for any technology you intend to use
+- `mcp__context7__get-library-docs <library-id> --topic "<feature>" --tokens 8000-10000` – fetch comprehensive docs for the feature you will implement
+- `mcp__exa__web_search_exa <query>` – search the web using Exa AI – performs real-time web searches and can scrape content from specific URLs. Supports configurable result counts and returns the content from the most relevant websites.
+- Context7 is your FIRST step - before planning, before thinking, before anything
+- Follow Context7 documentation EXACTLY - NO DEVIATIONS
+- ZERO assumptions or memory-based coding
+- Update ALL existing code if Context7 shows different patterns
+- Context7 docs override ALL other sources
+- NO planning without Context7 docs in hand
+- Read these docs before any planning or coding. Follow them exactly; zero assumptions, zero deviations. Update existing code to match
+- Apply this process for every external technology: libraries, frameworks, databases, APIs, authentication, file uploads, streaming, React/Next.js patterns, TypeScript configs, SDKs, etc
+
+
+@docs/repoprompt_workflows.md

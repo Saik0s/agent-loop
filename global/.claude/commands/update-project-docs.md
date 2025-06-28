@@ -1,18 +1,21 @@
-Comprehensive project documentation updater that analyzes the actual codebase and updates all documentation files to reflect reality.
+Analyzes the codebase to update all project documentation, ensuring it accurately reflects the current state of the project.
 
-**Usage**: `/project:update-project-docs`
+**Usage**: `/update-project-docs`
 
 ## Process:
-1.  **Analyze Current Project State**: Scans all source/config files to extract the actual technologies, project structure, dependencies, and build tools in use.
-2.  **Verify Documentation Accuracy**: Compares the findings against all documentation files (`.claude/CLAUDE.md`, `README.md`, `docs/*.md`, etc.).
-3.  **Update Incorrect Information**: Identifies and replaces outdated information with the accurate current state, preserving document structure. This includes tech stack, build commands, and architecture descriptions.
-4.  **Validate**: Ensures all commands in the updated docs work, file paths are correct, and example code snippets are valid.
+1.  **Scan Codebase**: Systematically scan all source code and configuration files (e.g., `package.json`, `requirements.txt`, `docker-compose.yml`) to build an accurate picture of the current project. This includes:
+    *   Technology stack and dependencies.
+    *   Project structure and key directories.
+    *   Build, install, and run commands.
+    *   Environment variables.
+2.  **Audit Documentation**: Read all documentation files (e.g., `README.md`, `CONTRIBUTING.md`, files in `docs/`) and compare their contents against the actual state discovered in step 1.
+3.  **Identify and Correct Discrepancies**: Identify all outdated information. Propose specific changes to replace incorrect content with accurate, up-to-date information, while preserving the document's original structure and tone.
+4.  **Validate Commands and Snippets**: Ensure all shell commands, code examples, and file paths in the updated documentation are correct and functional.
+5.  **Summarize Changes**: Output a summary of all proposed modifications for user review before applying them.
 
 ## Examples:
-- If `README.md` lists the tech stack as `React` and `Node/Express`, but the project now uses `FastAPI/Python`, the command will update it.
-- If build commands are documented as `just install` but the project uses `pip install`, the command will correct them.
+- Running `/update-project-docs` in a project that migrated from Node/Express to Python/FastAPI would update the `README.md` to reflect the new stack and setup commands.
 
 ## Notes:
-- The command outputs a summary of all changes made.
-- It should be run whenever the project's structure or dependencies change significantly.
-- It focuses on factual accuracy and preserves existing document organization.
+- This command focuses on factual accuracy (tech stack, commands, file paths) and preserves the existing organization of the documentation.
+- It should be run periodically or whenever the project's structure or dependencies change significantly.

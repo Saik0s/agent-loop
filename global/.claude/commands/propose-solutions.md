@@ -3,15 +3,18 @@ Generates and compares three distinct, viable solutions for a given problem, eac
 **Usage**: `/propose-solutions "<problem statement>"`
 
 ## Process:
-1.  Analyze the given problem statement.
-2.  Generate three distinct and viable solutions.
-3.  For each solution, provide a brief approach summary, a list of pros, and a list of cons.
-4.  Conclude with a one-line recommendation for the best solution.
+1.  **Analyze Problem Statement**: Deconstruct the problem to understand its core constraints, goals, and context.
+2.  **Generate Three Distinct Solutions**: Brainstorm and outline three genuinely different approaches to solving the problem. The solutions should represent a meaningful trade-off (e.g., speed vs. cost, simplicity vs. scalability).
+3.  **Detail Each Solution**: For each of the three solutions, provide:
+    *   **Approach**: A brief summary of the implementation strategy.
+    *   **Pros**: A bulleted list of 2-3 key advantages.
+    *   **Cons**: A bulleted list of 2-3 key disadvantages or trade-offs.
+4.  **Provide Recommendation**: After presenting the options, conclude with a single, clear recommendation, and briefly justify why it's the best choice for the given context.
 
 ## Examples:
-- `/propose-solutions "Select a backend architecture for a new social media application"`
-- The command will output a comparison of Monolithic, Microservices, and Serverless architectures with a final recommendation.
+- `/propose-solutions "Select a backend architecture for a new social media application"` (Might compare Monolithic, Microservices, and Serverless)
 
 ## Notes:
-- This command is useful for making informed architectural or technical decisions.
-- It provides a structured way to evaluate trade-offs between different approaches.
+- This command is for making informed architectural or technical decisions.
+- The key is to provide a balanced and objective comparison to facilitate a good decision.
+- Avoid straw-man options; all three solutions should be viable contenders.
