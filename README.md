@@ -142,6 +142,28 @@ You have a team of specialists at your command. Here are the main players:
 
 ---
 
+## 🚀 Under the Hood: Advanced Operations with Repoprompt
+
+While you interact with high-level commands like `/build` and `/plan`, the agents use a powerful underlying tool called **Repoprompt** to interact with your codebase with surgical precision. Repoprompt allows agents to be "code-aware" without consuming massive context windows.
+
+### Key Capabilities:
+
+*   **Codemaps**: Agents can view the structure of your files (classes, functions, imports) without reading the full content. This is like skimming a table of contents before reading a chapter, saving time and tokens.
+*   **Targeted Search**: Find specific code patterns, function calls, or symbols across the entire repository almost instantly.
+*   **Smart Selection**: Agents can select only the files relevant to a task, keeping their focus narrow and efficient.
+
+### What This Enables:
+
+This deep integration with the codebase allows for sophisticated workflows that are orchestrated behind the scenes, such as:
+
+*   **Targeted Refactoring**: Find every instance of a deprecated pattern and systematically refactor it.
+*   **Automated Security Audits**: Scan only relevant files for specific vulnerability patterns (e.g., searching for `innerHTML` to prevent XSS).
+*   **Efficient Bug Fixes**: Start from a stack trace, pinpoint the exact file and line, and generate a patch with minimal context.
+
+You don't need to use Repoprompt commands directly, but knowing they exist helps understand how agents can perform complex tasks so efficiently. For more details on these workflows, see `global/.claude/docs/repoprompt_workflows.md`.
+
+---
+
 ## ✅ The Golden Rules of Orchestration
 
 1.  **Delegate, Don't Do**: Your primary role is to delegate. Let the specialist agents handle the "how".
