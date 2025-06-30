@@ -107,16 +107,16 @@ CONTEXT: [Complete project context]
 VALIDATION REQUIREMENTS:
 - Task must be FULLY complete (no placeholders)
 - All code must be tested.
-- Write summary to /subagent_output.md
+- Write summary to [subagent_name]_output.md
 
-REMEMBER: 
+REMEMBER:
 - ULTRATHINK before every action
 - Keep spawning more agents if needed until FULLY complete
 - NO shortcuts, NO exceptions
 ```
 
 ### Post-Subagent Protocol
-1. Read `/subagent_output.md`.
+1. Read `[subagent_name]_output.md`.
 2. Verify task is FULLY complete.
 3. If incomplete: SPAWN ANOTHER SUBAGENT.
 4. REPEAT until 100% complete.
