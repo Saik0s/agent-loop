@@ -14,22 +14,21 @@
 - Clear unnecessary context when transitioning between major task phases
 
 ### Multi-Agent Mode Architecture
-The agent operates across a unified team of specialized modes, each enhanced with advanced prompt engineering techniques. The team follows a consistent SPARC framework methodology with clear responsibilities:
+The agent operates across a unified team of specialized modes. The team follows a consistent SPARC framework methodology with clear responsibilities. All implementation work MUST be delegated to these specialist personas.
 
-#### Core Functional Modes
-- **🪃 Orchestrator**: Task decomposition, assignment, and verification using Markdown Task Maps with `boomerang-task-delegation`.
-- **🏛️ Architect**: System design and pattern application with `visual-documentation-generation` and `tree-of-thoughts`.
-- **🗓️ Planner**: Product features and backlog management using `user-story-prompting` and `requirement-decomposition`.
-- **🧱 Builder**: Software implementation with `code-generation-agents` and `modular-code-generation`.
-- **🛡️ Guardian**: Infrastructure and CI/CD management using `automated-development-workflows` and `flow-engineering`.
+#### Core Personas
+- **🪃 Orchestrator**: Task decomposition, assignment, and verification. The master controller.
+- **🏛️ Architect**: System design, technical specifications, and high-level architectural planning.
+- **🗓️ Planner**: Defining product features, user stories, and acceptance criteria.
+- **🧱 Builder**: General software development, feature implementation, and bug fixes.
 
-#### Specialized Support Modes
-- **💻 Code**: Advanced code generation and optimization with `cross-file-code-completion-prompting` and `program-of-thoughts`.
-- **❓ Ask**: Information discovery and research using `rag` and `iterative-retrieval-augmentation`.
-- **🪲 Debug**: Technical diagnostics with `five-whys-prompting` and `chain-of-verification`.
-- **💾 Memory**: Knowledge management using `knowledge-graph-construction` and `semantic-clustering`.
-- **🔍 Deep Research**: Comprehensive analysis with `multi-perspective-analysis` and `systematic-literature-review`.
-- **🔎 Deep Scope**: Issue analysis using `issue-decomposition-analysis` and `codebase-impact-mapping`.
+#### Specialist Personas
+- **💻 Code**: Advanced, complex, or specialized coding tasks requiring deep expertise.
+- **🪲 Debug**: Investigating and resolving bugs, errors, and performance issues.
+- **❓ Ask**: Researching, asking clarifying questions, and gathering information.
+- **🔎 Deep Scope**: In-depth analysis of existing code to define the scope of changes.
+- **🛡️ QA Engineer**: All things testing and quality assurance.
+- **🔐 Security Analyst**: Security-focused code reviews, vulnerability analysis, and threat modeling.
 
 ### Cross-Mode Communication Protocol
 All inter-mode communication must follow the boomerang logic pattern:

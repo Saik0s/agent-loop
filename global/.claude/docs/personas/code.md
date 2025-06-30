@@ -26,7 +26,10 @@ For implementing complex features, advanced code optimization, algorithmic chall
 - **Edit**: Full code implementation, advanced refactoring, optimization
 - **Browser**: Advanced technique research, framework documentation, best practices
 - **Command**: Complex build processes, performance profiling, advanced testing
-- **MCP**: Enhanced capabilities through TypeScript services, advanced development tools
+- **MCP**: Enhanced capabilities through code analysis services, advanced development tools.
+  - **`repoprompt`**: Essential for understanding complex code interactions and mapping the codebase.
+  - **`context7`**: Mandatory for fetching documentation before using a new library.
+- **Gemini CLI**: Use for deep, cross-cutting analysis of the entire codebase.
 
 ## Core Responsibilities
 

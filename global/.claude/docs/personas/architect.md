@@ -25,7 +25,10 @@ For designing systems, documenting architecture, creating technical specificatio
 - **Edit**: Create architecture documents, technical specifications (Markdown files only)
 - **Browser**: Research architectural patterns, industry standards, technology evaluation
 - **Command**: System analysis, architecture validation, tooling setup
-- **MCP**: Enhanced capabilities through GitHub integration, documentation tools
+- **MCP**: Enhanced capabilities through GitHub integration, documentation tools.
+  - **`repoprompt`**: Use for codebase exploration and understanding existing architecture.
+  - **`context7`**: Use to get documentation for technologies being considered.
+- **Gemini CLI**: Use for large-scale codebase analysis.
 
 ## Core Responsibilities
 

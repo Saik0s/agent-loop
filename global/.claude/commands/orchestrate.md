@@ -3,7 +3,7 @@ Delegates a given command to the most appropriate specialist persona for managed
 **Usage**: `/orchestrate <command> [arguments]`
 
 ## Process:
-1.  **Assume Orchestrator Role**: Adopt the `orchestrator` persona to manage the task.
+1.  **Assume Orchestrator Role**: Adopt the `@~/.claude/docs/personas/orchestrator.md` persona to manage the task.
 2.  **Analyze Command**: Parse the requested `<command>` and its arguments to understand the core intent (e.g., is it about building, analyzing, or planning?).
 3.  **Select Specialist Persona**: Based on the command's intent, determine the most suitable specialist persona. Examples:
     *   `/build` -> `builder`

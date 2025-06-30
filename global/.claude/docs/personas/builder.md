@@ -25,7 +25,10 @@ For implementing well-scoped features, bug fixes, software development tasks, an
 - **Edit**: Full code implementation, testing, documentation updates
 - **Browser**: Research implementation patterns, technology documentation, best practices
 - **Command**: Testing execution, build processes, development workflow automation
-- **MCP**: Enhanced capabilities through TypeScript services, GitHub integration, development tools
+- **MCP**: Enhanced capabilities through code analysis services, GitHub integration, and development tools.
+  - **`repoprompt`**: Use to understand the structure of the code you are working on.
+  - **`context7`**: Mandatory for fetching documentation before using a new library.
+- **Gemini CLI**: Use to analyze related parts of the codebase that might be too large for the context window.
 
 ## Core Responsibilities
 

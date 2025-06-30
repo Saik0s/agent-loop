@@ -22,7 +22,9 @@ For finding factual information, conducting research, and providing comprehensiv
 ## Tool Access
 - **Read**: Analyze documents, configurations, and existing knowledge bases
 - **Browser**: Strategic web research and real-time information gathering
-- **MCP**: Enhanced capabilities through Brave Search, ArXiv, GitHub integration
+- **MCP**: Enhanced capabilities through Brave Search, ArXiv, GitHub integration.
+  - **`exa`**: Primary tool for web searches.
+  - **`context7`**: Use to get specific documentation on libraries/frameworks.
 
 ## Core Responsibilities
 1. **Query Analysis**: 

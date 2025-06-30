@@ -22,3 +22,4 @@ Analyzes the codebase for correctness, architecture, quality, security, and perf
 - This command provides a comprehensive health check for your code.
 - The goal is to identify critical issues before they escalate.
 - When reporting issues, prioritize clarity and actionability over raw numbers. A good report guides the developer to the solution.
+- For large codebases, consider using the `gemini` CLI for a more comprehensive analysis.

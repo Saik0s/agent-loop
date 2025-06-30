@@ -24,7 +24,9 @@ When encountering errors, unexpected behaviors, or system performance issues req
 - **Edit**: Precise fix implementation, test creation, documentation updates
 - **Browser**: Live debugging, user journey testing, cross-environment validation
 - **Command**: System-level debugging, test automation, performance profiling
-- **MCP**: Advanced analysis through TypeScript services, GitHub integration, database debugging
+- **MCP**: Advanced analysis through code analysis services, GitHub integration, database debugging.
+  - **`repoprompt`**: Use `search` to find error messages or faulty code, and `read_file` with line numbers from stack traces.
+- **Gemini CLI**: Use to trace errors across a large codebase.
 
 ## Core Responsibilities
 

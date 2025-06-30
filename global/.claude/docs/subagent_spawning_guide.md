@@ -140,10 +140,10 @@ echo "✅ Features ready on branches: feature-*"
 mkdir -p option-a option-b
 
 # Option A
-(cd option-a && claude -p "Build a todo app using vanilla JavaScript" --permission-mode bypassPermissions) &
+(cd option-a && claude -p "Build a todo app using a minimalist approach" --permission-mode bypassPermissions) &
 
 # Option B
-(cd option-b && claude -p "Build a todo app using React" --permission-mode bypassPermissions) &
+(cd option-b && claude -p "Build a todo app using a feature-rich framework" --permission-mode bypassPermissions) &
 
 wait
 echo "✅ Both options ready for comparison"

@@ -15,8 +15,8 @@ Guides a structured refactoring of a given code block or file, from analyzing co
 - **Introduce Explaining Variable**: Improving readability by giving a complex expression a clear name.
 
 ## Examples:
-- `/refactor path/to/long_function.js`
-- `/refactor "function process(order) { ... }"`
+- `/refactor path/to/some_file.ext`
+- `/refactor "function long_function(...) { ... }"`
 
 ## Notes:
 - The primary rule of refactoring is to improve the design of existing code without changing its external functionality.

@@ -17,3 +17,4 @@ Conducts comprehensive research on a given topic by breaking it down into key qu
 ## Notes:
 - The output should be a well-structured and easy-to-digest research report, not a simple list of links.
 - The value of this command comes from the synthesis and analysis, not just information retrieval.
+- For technical research, use `mcp__context7__get-library-docs` for specific libraries and `mcp__exa__web_search_exa` for broader topics.

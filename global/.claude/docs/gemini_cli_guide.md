@@ -12,12 +12,12 @@ Use the `@` syntax to include files and directories in your Gemini prompts. The 
 
 **Single file analysis:**
 ```bash
-gemini -p "@src/main.py Explain this file's purpose and structure"
+gemini -p "@src/main.ext Explain this file's purpose and structure"
 ```
 
 **Multiple files:**
 ```bash
-gemini -p "@package.json @src/index.js Analyze the dependencies used in the code"
+gemini -p "@package.json @src/index.ext Analyze the dependencies used in the code"
 ```
 
 **Entire directory:**
@@ -52,7 +52,7 @@ gemini -p "@src/ @middleware/ Is JWT authentication implemented? List all auth-r
 
 **Check for specific patterns:**
 ```bash
-gemini -p "@src/ Are there any React hooks that handle WebSocket connections? List them with file paths"
+gemini -p "@src/ Are there any functions that handle WebSocket connections? List them with file paths"
 ```
 
 **Verify error handling:**
@@ -67,7 +67,7 @@ gemini -p "@backend/ @middleware/ Is rate limiting implemented for the API? Show
 
 **Verify caching strategy:**
 ```bash
-gemini -p "@src/ @lib/ @services/ Is Redis caching implemented? List all cache-related functions and their usage"
+gemini -p "@src/ @lib/ @services/ Is a caching layer implemented? List all cache-related functions and their usage"
 ```
 
 **Check for specific security measures:**

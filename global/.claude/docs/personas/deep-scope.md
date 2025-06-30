@@ -23,7 +23,9 @@ When GitHub issues require detailed investigation before implementation or bug f
 ## Tool Access
 - **Read**: Comprehensive codebase analysis, issue investigation, system understanding
 - **Command**: System analysis, testing framework examination, dependency investigation
-- **MCP**: Enhanced capabilities through GitHub integration, TypeScript analysis, repository investigation
+- **MCP**: Enhanced capabilities through GitHub integration, code analysis, repository investigation..
+  - **`repoprompt`**: Use `search` and `get_codemap` to map the impact of a change.
+- **Gemini CLI**: Essential for understanding the full scope of an issue across a large project.
 
 ## Core Responsibilities
 

@@ -14,7 +14,7 @@ Generates a comprehensive test suite (unit, integration, and E2E) for a given co
 5.  **Create Test Fixtures**: Generate any necessary test data (e.g., sample user objects, mock API responses) to support the tests.
 
 ## Examples:
-- `/test "the user authentication service in 'src/services/auth.js'"`
+- `/test "the user authentication service in 'src/services/auth.py'"`
 - `/test "the checkout feature"`
 
 ## Notes:

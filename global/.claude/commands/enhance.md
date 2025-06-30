@@ -16,7 +16,6 @@ If the input is a project idea (e.g., "build a chat app"), generate a comprehens
 
 ## Phase 1: [Descriptive Phase Name]
 - [ ] **Task 1.1**: [Unique and descriptive task description]
-  - **Agent**: [Most Appropriate Specialist Persona]
   - **Dependencies**: [List of task IDs this task depends on]
   - **Outputs**: [Expected artifacts, e.g., `src/api/auth.js`]
   - **Validation**: [Clear, measurable success criterion, e.g., "All auth tests pass"]
@@ -31,18 +30,17 @@ If the input is a vague question (e.g., "how to optimize my database?"), rewrite
 
 ### 3. For Code Snippets: Improve the Code
 If the input is a code snippet, refactor it for clarity, efficiency, and best practices. Add explanatory comments.
-- **Original**: `function(a, b){for(let i=0;i<b.length;i++){if(b[i]==a)return true;}return false;}`
+- **Original**: A difficult-to-read one-liner function.
 - **Enhanced**:
-```javascript
+```
 /**
- * Checks if an element exists in an array.
- * @param {*} element - The element to search for.
- * @param {Array} array - The array to search within.
- * @returns {boolean} - True if the element is found, otherwise false.
+ * A clear, well-documented function.
+ * @param {param_type} param_name - The description of the parameter.
+ * @returns {return_type} - The description of the return value.
  */
-function includes(element, array) {
-  // Use the built-in Array.prototype.includes() method for efficiency and readability.
-  return array.includes(element);
+function well_named_function(param_name) {
+  // Clear, readable code with comments explaining complex parts.
+  return result;
 }
 ```
 

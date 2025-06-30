@@ -14,8 +14,9 @@ Analyzes the codebase to update all project documentation, ensuring it accuratel
 5.  **Summarize Changes**: Output a summary of all proposed modifications for user review before applying them.
 
 ## Examples:
-- Running `/update-project-docs` in a project that migrated from Node/Express to Python/FastAPI would update the `README.md` to reflect the new stack and setup commands.
+- Running `/update-project-docs` in a project that migrated from one framework to another would update the `README.md` to reflect the new stack and setup commands.
 
 ## Notes:
 - This command focuses on factual accuracy (tech stack, commands, file paths) and preserves the existing organization of the documentation.
 - It should be run periodically or whenever the project's structure or dependencies change significantly.
+- For large projects, consider using the `gemini` CLI to ensure all files are analyzed.
