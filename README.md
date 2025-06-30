@@ -1,173 +1,104 @@
-# 🚀 Agentic Engineering: An Orchestration Guide
+# Agent Loop: An Orchestration Framework
 
-This guide demonstrates a powerful workflow for software development by orchestrating a team of specialized AI agents. Your role is the **human orchestrator**, guiding the project, while AI agents handle the detailed execution.
+This project is a framework for orchestrating AI agents to handle software development. You don't write the code; you direct an **Orchestrator** agent, which in turn delegates tasks to a team of specialized AI **Personas**.
 
-## The Core Idea: You Direct, Agents Build
+This README provides a practical guide to installing and using the system.
 
-Instead of writing code directly, you will:
-1.  **Define the Goal**: State what you want to build in plain English.
-2.  **Orchestrate Agents**: Use commands to delegate tasks to specialist AI personas.
-3.  **Review and Guide**: Provide feedback and make high-level decisions.
+## Installation
 
-This project is configured with a global `~/.claude/` directory containing personas and command documentation. This `README.md` provides a practical guide to using them.
+The core configuration for the global agents, personas, and commands lives in the `global/.claude` directory. The `install.sh` script copies this configuration to `~/.claude`, making it available to your agent.
 
----
+To install, run the script from the root of this repository:
 
-## 💡 Sample Workflow: Building a "Magic Link" Login
+```bash
+./install.sh
+```
 
-Let's walk through building a new feature with a conversational, orchestrated approach.
+The script will back up any existing `~/.claude` directory before installing the new configuration.
 
-### 1. The Spark of an Idea (Human to Agent)
+## The Core Model: Delegate, Don't Do
 
-**You:**
-> `/plan "I want to add a 'magic link' login feature. Users should be able to enter their email, get a link, and click it to log in without a password."`
+The fundamental workflow is based on delegation. Your role is to provide high-level direction.
 
-The `/plan` command is a great starting point for any new feature. It asks the agent to think through the requirements and create a high-level plan.
+1.  **You** issue a command, like `/plan` or `/build`, describing your goal.
+2.  The primary **Orchestrator** agent receives your request.
+3.  The **Orchestrator** analyzes the task and spawns a sub-agent with the most appropriate **Persona** (e.g., `builder`, `planner`, `security_analyst`).
+4.  The specialist sub-agent executes the task and returns the results.
+5.  You review the work and provide feedback, guiding the process iteratively.
 
-### 2. The Plan Emerges (Agent Response)
+This entire process is governed by the rules and persona definitions found in the `~/.claude/` directory you installed.
 
-**Orchestrator Agent:**
-> Excellent idea. A magic link system enhances user experience. I've created an initial implementation plan.
->
-> **Plan: Magic Link Authentication**
->
-> 1.  **Specification**: Define user stories, acceptance criteria, and technical requirements.
-> 2.  **Architecture**: Design the data models, API endpoints, and email service integration.
-> 3.  **Implementation**:
->     -   Build the API endpoint to request a magic link.
->     -   Integrate an email sending service.
->     -   Create a validation endpoint to handle the magic link token.
->     -   Implement session management upon successful login.
-> 4.  **Testing**: Write unit and integration tests to ensure security and reliability.
-> 5.  **Security Review**: Audit the implementation for potential vulnerabilities.
->
-> Does this plan look correct? I can start with the detailed specification.
+## The Agent Team: Personas
 
-### 3. Delegating to Specialists (Human to Agent)
+You have a team of specialist agents at your disposal. The Orchestrator selects the right one for the job based on your commands.
 
-**You:**
-> The plan looks great. Go ahead and create the detailed specification. Then, have the architect design the system.
+| Persona | Role | When It's Used |
+|---|---|---|
+| **Orchestrator** | **Project Manager** | The default agent that manages the workflow and delegates tasks. |
+| **Planner** | **Product Manager** | For defining features, user stories, and acceptance criteria (`/spec`). |
+| **Architect** | **System Designer** | For high-level design and technical choices (`/propose-solutions`). |
+| **Builder** | **Developer** | For writing code, implementing features, and fixing bugs (`/build`). |
+| **QA Engineer** | **Tester** | For writing and running tests of all kinds (`/test`). |
+| **Security Analyst**| **Security Expert** | For reviewing code for vulnerabilities (`/analyze` with security context). |
 
-**Orchestrator Agent:**
-> Understood. I will now delegate these tasks.
->
-> `/orchestrate /spec "Magic link login feature as per our plan"`
->
-> *(A sub-agent with the **Planner** persona is spawned. It analyzes the request and creates `docs/features/magic-link-login.md` with user stories and acceptance criteria.)*
->
-> **Orchestrator Agent:**
-> The specification is complete. I will now have the system designed.
->
-> `/orchestrate /analyze "Review the magic link spec and design the architecture"`
->
-> *(A sub-agent with the **Architect** persona is spawned. It creates architecture diagrams and technical design documents, choosing tools and patterns.)*
+*For full details on each persona's capabilities and instructions, see the files in `~/.claude/docs/personas/`.*
 
-The `/orchestrate` command is key. It tells the main agent to delegate a task to the most appropriate specialist.
+## The Toolkit: Key Commands
 
-### 4. Implementation Kick-off (Human to Agent)
+These are the primary commands you will use to direct the Orchestrator.
 
-**You:**
-> The architecture looks solid. Let's start building. Have a `builder` agent implement the API endpoint for requesting the link.
+| Command | Description |
+|---|---|
+| `/plan "<desc>"` | Create a high-level plan for a new feature. |
+| `/spec "<desc>"` | Create a detailed technical specification. |
+| `/build "<desc>"`| Implement a feature based on a specification. |
+| `/test "<component>"`| Generate a test suite for a component. |
+| `/analyze [path]` | Analyze code for quality, security, or architecture. |
+| `/refactor [path]`| Restructure existing code without changing its behavior. |
+| `/commit` | Generate a conventional commit message for staged changes. |
+| `/orchestrate <cmd>`| Explicitly tell the orchestrator to delegate a command. |
 
-**Orchestrator Agent:**
-> Roger that. Spawning a builder for the API endpoint.
->
-> `/orchestrate /build "Implement the API endpoint to request a magic link as per the architecture docs"`
->
-> *(A sub-agent with the **Builder** persona is spawned. It reads the spec and architecture docs, writes the code, and creates unit tests.)*
+*For the detailed process behind each command, see the files in `~/.claude/commands/`.*
 
-### 5. Review and Testing (Human & Agent)
+## Example Workflow: Building a "Magic Link" Feature
 
-Once the builder is done, you review the code.
+Here’s a practical example of how to use the system to build a feature from idea to commit.
 
-**You:**
-> The code looks good, but I don't see any rate limiting. That's a security risk. Please have a `security_analyst` review the code and then have the `builder` add rate limiting.
+1.  **You start with a plan.**
+    ```
+    /plan "I want a magic link login. Users enter an email, get a link, and click it to log in."
+    ```
+    The **Orchestrator** agent responds with a high-level plan (spec, architecture, implementation, testing).
 
-**Orchestrator Agent:**
-> Good catch. Security is paramount.
->
-> `/orchestrate /analyze "Review the magic link API for security issues, specifically rate limiting."`
->
-> *(The **Security Analyst** persona reviews the code and confirms the lack of rate limiting, suggesting a fix.)*
->
-> **Orchestrator Agent:**
-> The security review is complete. Instructing the builder to add rate limiting.
->
-> `/orchestrate /enhance "Add rate limiting to the magic link API endpoint."`
+2.  **You delegate the specification.**
+    ```
+    /orchestrate /spec "Magic link login feature as per our plan"
+    ```
+    The **Orchestrator** spawns a `planner` sub-agent, which creates a detailed specification document.
 
-### 6. Finalizing the Feature
+3.  **You delegate the implementation.**
+    ```
+    /orchestrate /build "Implement the API endpoint to request a magic link"
+    ```
+    The **Orchestrator** spawns a `builder` sub-agent, which writes the code and unit tests for the API endpoint.
 
-This cycle of **delegate -> review -> feedback** continues until all parts of the feature are built, tested, and secured.
+4.  **You review and provide feedback.**
+    ```
+    /orchestrate /enhance "Add rate limiting to the magic link API endpoint."
+    ```
+    The **Orchestrator** might first use a `security_analyst` to suggest a fix, then a `builder` to implement it. This iterative loop of delegating, reviewing, and providing feedback continues until the feature is complete.
 
-**You:**
-> `/test "the entire magic link feature"`
->
-> *(The **QA Engineer** persona writes and runs end-to-end tests.)*
+5.  **You commit the work.**
+    ```
+    /commit
+    ```
+    The agent analyzes the staged changes and generates a conventional commit message for your approval.
 
-**You:**
-> `/commit "feat(auth): implement magic link login"`
->
-> *(The agent analyzes the changes and creates a conventional commit message.)*
+## How Agents Understand Your Code
 
----
+The agents use a tool called **Repoprompt** to interact with your codebase efficiently. This allows them to:
 
-## 🤖 Key Personas at a Glance
+*   **View code structure (Codemaps)**: They can see the classes, functions, and imports in a file without reading the entire content, saving tokens and time.
+*   **Perform targeted searches**: They can find specific symbols or patterns across the repository instantly.
 
-You have a team of specialists at your command. Here are the main players:
-
-| Persona | Role | When to Use | Command Example |
-|---|---|---|---|
-| **Orchestrator** | **Project Manager** | (This is the default agent) Manages the workflow and delegates tasks. | `/orchestrate ...` |
-| **Planner** | **Product Manager** | For defining features, user stories, and acceptance criteria. | `/spec "..."` |
-| **Architect** | **System Designer** | For high-level design, choosing tech, and creating diagrams. | `/propose-solutions "..."` |
-| **Builder** | **Developer** | For writing code, implementing features, and fixing bugs. | `/build "..."` |
-| **QA Engineer** | **Tester** | For writing and running tests of all kinds. | `/test "..."` |
-| **Security Analyst**| **Security Expert** | For reviewing code for vulnerabilities and suggesting secure patterns. | `/analyze "..."` (with security context) |
-
-*For full details, see the persona files in `~/.claude/docs/personas/`.*
-
----
-
-## ⚡ Essential Commands Quick Reference
-
-- `/plan "<description>"`: Create a high-level plan for a new feature.
-- `/spec "<description>"`: Create a detailed technical specification.
-- `/build "<description>"`: Implement a feature based on a spec.
-- `/test "<component>"`: Generate a test suite for a component.
-- `/analyze [path]`: Analyze code for quality, security, or architecture.
-- `/enhance <input>`: Intelligently improve code or a query.
-- `/refactor [path]`: Restructure existing code without changing its behavior.
-- `/commit`: Generate a conventional commit message for staged changes.
-- `/orchestrate <command>`: Tell the orchestrator to delegate a command to a specialist.
-
----
-
-## 🚀 Under the Hood: Advanced Operations with Repoprompt
-
-While you interact with high-level commands like `/build` and `/plan`, the agents use a powerful underlying tool called **Repoprompt** to interact with your codebase with surgical precision. Repoprompt allows agents to be "code-aware" without consuming massive context windows.
-
-### Key Capabilities:
-
-*   **Codemaps**: Agents can view the structure of your files (classes, functions, imports) without reading the full content. This is like skimming a table of contents before reading a chapter, saving time and tokens.
-*   **Targeted Search**: Find specific code patterns, function calls, or symbols across the entire repository almost instantly.
-*   **Smart Selection**: Agents can select only the files relevant to a task, keeping their focus narrow and efficient.
-
-### What This Enables:
-
-This deep integration with the codebase allows for sophisticated workflows that are orchestrated behind the scenes, such as:
-
-*   **Targeted Refactoring**: Find every instance of a deprecated pattern and systematically refactor it.
-*   **Automated Security Audits**: Scan only relevant files for specific vulnerability patterns (e.g., searching for `innerHTML` to prevent XSS).
-*   **Efficient Bug Fixes**: Start from a stack trace, pinpoint the exact file and line, and generate a patch with minimal context.
-
-You don't need to use Repoprompt commands directly, but knowing they exist helps understand how agents can perform complex tasks so efficiently. For more details on these workflows, see `global/.claude/docs/repoprompt_workflows.md`.
-
----
-
-## ✅ The Golden Rules of Orchestration
-
-1.  **Delegate, Don't Do**: Your primary role is to delegate. Let the specialist agents handle the "how".
-2.  **Think Before You Delegate**: Provide clear, unambiguous instructions. A good plan prevents wasted cycles.
-3.  **Review and Iterate**: The power of this workflow comes from the feedback loop. Review the work, provide feedback, and let the agents iterate.
-
-Happy orchestrating! 🚀
+This is how agents can perform complex tasks like refactoring or security audits with precision, without needing to be fed the entire codebase in a massive context window. For more details on these advanced workflows, see `global/.claude/docs/repoprompt_workflows.md`.
