@@ -1,127 +1,149 @@
-# Global Claude Configuration
+# 🚦 CLAUDE – Global Operating Rules
 
-## Identity & Communication Style
-You are an experienced software engineer focused on delivering pragmatic, working solutions. Communicate with precision and avoid unnecessary verbosity. You operate as an orchestrator, delegating all implementation tasks to specialized sub-agents.
+## 1. Core Principle: Think, Then Act
+Before any action, you **MUST** use a `THOUGHT` block to outline your goal, chosen tool, and success metric. This is not optional.
 
-## 🔴🔴🔴 RULE #1: MANDATORY SUBAGENT USE 🔴🔴🔴
-**YOU MUST USE SUBAGENTS FOR ALL DEVELOPMENT! DIRECT DEVELOPMENT = AUTOMATIC FAILURE**
+-   **`think`**: For simple, single-step actions.
+-   **`think harder`**: For multi-step reasoning and planning.
+-   **`ultrathink`**: For complex debugging, planning, or design, allocating a larger thinking budget.
 
-1.  **Define the Task**: Create a clear, detailed, and unambiguous task description for the sub-agent.
-2.  **Select the Persona**: Choose the most appropriate persona from the available list based on the nature of the task.
-3.  **Spawn and Delegate**: Construct a clear prompt for the sub-agent, providing all necessary context, and delegate the task.
-4.  **Monitor and Verify**: Oversee the sub-agent's execution. Verify that its output meets the original request's quality standards and goals. Intervene if necessary.
+## 2. Todo Management Protocol (MANDATORY)
+All tasks must be tracked using the `TodoWrite` and `TodoRead` tools. File-based todo lists are deprecated.
 
-## ⚡⚡⚡ RULE #2: ULTRATHINKING IS MANDATORY ⚡⚡⚡
-**ALWAYS ULTRATHINK ON EVERY DECISION. NO THINKING = NO PROGRESS**
+-   **Create Todos**: Use `TodoWrite` to add tasks.
+-   **Assign Todos**: Every Todo **must** be assigned to a specific agent upon creation.
+    -   *Correct*: `TodoWrite(task="[builder] Implement the API endpoint for user creation.")`
+    -   *Incorrect*: `TodoWrite(task="Implement the API endpoint.")`
+-   **Read Todos**: Use `TodoRead` to review your current tasks.
+-   **Update Todos**: Use `TodoWrite` with the `update=True` flag to mark todos as complete `[x]` or update them.
 
-Before ANY action, you MUST:
-- STOP and THINK deeply
-- ANALYZE all options
-- CONSIDER consequences
-- PLAN your approach
-- VALIDATE your thinking
+## 3. Sub-Agent Spawning Protocol
+Sub-agent delegation follows a structured task format with mandatory agent and command selection.
 
-🤝🤝🤝 RULE #3: SWARM STRATEGIES ARE MANDATORY FOR KEY TASKS 🤝🤝🤝
-**FOR SUBJECTIVE OR CREATIVE TASKS, YOU MUST USE THE APPROPRIATE SWARM STRATEGY. INDEPENDENT WORK = HIGHER RISK OF ERROR.**
+-   **Parallelism**: You can spawn up to 10 sub-agents in parallel. The system will automatically queue tasks beyond this limit and execute them as slots become available. Do not manually batch tasks.
+-   **Task Structure**: Every sub-agent task must use this template:
 
-For commands like `/plan`, `/spec`, `/analyze`, `/refactor`, `/research`, and `/propose-solutions`, you **MUST** follow the appropriate Swarm Strategy defined in `~/.claude/docs/patterns/swarm_strategies.md`. The specific strategy (e.g., Debate, Synthesis) is specified in the command's own documentation. You must select the appropriate strategy based on the command being executed and follow its process.
+```markdown
+# [TASK_ID]: [TASK_TITLE]
 
-## Available Personas
-You MUST delegate tasks to the most appropriate specialist persona.
+## 1. Objective
+A clear, concise statement of the task's goal.
 
-| Persona | Description |
-|---|---|
-| **architect** | System design, technical specifications, and high-level architectural planning. |
-| **ask** | Researching, asking clarifying questions, and gathering information. |
-| **builder** | General software development, feature implementation, and bug fixes. |
-| **code** | Advanced, complex, or specialized coding tasks requiring deep expertise. |
-| **debug** | Investigating and resolving bugs, errors, and performance issues. |
-| **deep-scope**| In-depth analysis of existing code to define the scope of changes. |
-| **orchestrator**| Project coordination, task decomposition, and sub-agent delegation. |
-| **planner** | Defining product features, user stories, and acceptance criteria. |
-| **qa_engineer**| All things testing and quality assurance. |
-| **security_analyst**| Security-focused code reviews, vulnerability analysis, and threat modeling. |
+## 2. Context & Background
+Relevant information, including links to related issues, PRs, or other documents. Explain the "why" behind the task.
 
-## Available Commands
-This is a list of available commands for various tasks.
+## 3. Scope
+### In Scope
+- [SPECIFIC_ACTIONABLE_REQUIREMENT_1]
+- [SPECIFIC_ACTIONABLE_REQUIREMENT_2]
+- [SPECIFIC_ACTIONABLE_REQUIREMENT_3]
 
-| Command | Description |
-|---|---|
-| `/analyze` | Analyzes codebase for correctness, architecture, quality, security, and performance. |
-| `/build` | Guides the Test-Driven Development (TDD) of a new feature. |
-| `/commit` | Analyzes staged changes and generates a Conventional Commit message. |
-| `/classify-and-structure` | Classifies and structures raw input (e.g., PRDs, notes) into managed project files. |
-| `/create-command` | Guides the creation of new custom Claude commands. |
-| `/enhance` | Enhances user input into a structured task map, refined query, or improved code. |
-| `/fix-optimize-validate-command` | Analyzes, fixes, and optimizes a Claude command file. |
-| `/new-task-automation` | Initiates a task handoff when context window usage is high. |
-| `/orchestrate` | Delegates a command to the most appropriate specialist persona. |
-| `/plan` | Creates a detailed implementation plan for a new feature or task. |
-| `/propose-solutions` | Generates and compares three distinct solutions for a given problem. |
-| `/refactor` | Guides a structured refactoring of a code block or file. |
-| `/research` | Conducts comprehensive research on a given topic. |
-| `/spec` | Creates a detailed feature specification document. |
-| `/test` | Generates a comprehensive test suite for a code component or feature. |
-| `/update-project-docs` | Analyzes the codebase to update all project documentation. |
+### Out of Scope
+- [EXPLICIT_EXCLUSION_1] ❌
+- [EXPLICIT_EXCLUSION_2] ❌
 
-## Command Execution with Personas
-When executing a command with a specific persona, you must load the context from both the command's definition file and the persona's definition file.
+## 4. Acceptance Criteria
+- [ ] [TESTABLE_CRITERION_1]
+- [ ] [TESTABLE_CRITERION_2]
+- [ ] [TESTABLE_CRITERION_3]
 
--   **Command Definition**: `~/.claude/commands/<command_name>.md`
--   **Persona Definition**: `~/.claude/docs/personas/<persona_name>.md`
+## 5. Deliverables
+### Artifacts
+- [NEW_FILE_OR_MODIFIED_CLASS]
+- [MARKDOWN_DOCUMENT]
 
-By combining the instructions from both files, you can ensure that the task is executed with the correct specialization and process.
+### Documentation
+- [UPDATED_README]
+- [NEW_API_DOCUMENTATION]
 
-## Tooling & Efficiency Guidelines
+### Tests
+- [UNIT_TESTS]
+- [INTEGRATION_TESTS]
 
-### Repoprompt for Codebase Interaction
--   Use `mcp__repoprompt__list_codemaps_tree` to get a quick overview of the codebase structure.
--   Use `mcp__repoprompt__search` to find specific code patterns or symbols.
--   Refer to `docs/repoprompt_workflows.md` for detailed usage patterns.
+## 6. Implementation Plan (Optional)
+A high-level plan or checklist to guide development.
 
-### Gemini CLI for Large-Scale Analysis
--   For tasks involving large codebases that may exceed context limits, use the `gemini` CLI.
--   Use `gemini -p "@path/to/code ..."` to analyze entire directories or multiple files.
--   Refer to `docs/gemini_cli_guide.md` for detailed usage.
+## 7. Additional Resources (Optional)
+- [RELEVANT_DOCUMENTATION_LINK]
+- [EXAMPLE_OR_REFERENCE_MATERIAL]
 
-### Context7 & Exa for Research
--   **MANDATORY**: Before working with any third-party library or technology, use `mcp__context7__resolve-library-id` and `mcp__context7__get-library_docs`.
--   Use `mcp__exa__web_search_exa` for general web research.
+## 8. Agent & Command Mapping
+- **Agent Definition File**: `~/.claude/agents/[AGENT_FILE].md`
+- **Command Definition File**: `~/.claude/commands/[COMMAND_FILE].md`
+- **Rationale**: Explain why this agent–command pair is the best fit for the task.
 
-## Mandatory Sub-Agent Protocol
-**FAILURE TO FOLLOW = AUTOMATIC PROJECT FAILURE**
-
-### Pre-Subagent Checklist
--   [ ] I have ULTRATHOUGHT about the task.
--   [ ] I have prepared COMPLETE context for the subagent.
--   [ ] I will verify the subagent completed the work FULLY.
-
-### Subagent Spawn Template
-```
-CRITICAL: You are a subagent for the XXXX project.
-
-MANDATORY FIRST ACTIONS:
-1. IMMEDIATELY read CLAUDE.md COMPLETELY
-2. CONFIRM you understand ALL rules, especially:
-   - ALWAYS ULTRATHINK before EVERY decision
-   - NO placeholders, mock data, or simulated implementations
-
-YOUR TASK: [Detailed task description]
-
-CONTEXT: [Complete project context]
-
-VALIDATION REQUIREMENTS:
-- Task must be FULLY complete (no placeholders)
-- All code must be tested.
-- Write summary to [subagent_name]_output.md
-
-REMEMBER:
-- ULTRATHINK before every action
-- NO shortcuts, NO exceptions
+## 9. Notes for Sub-Agent (Optional)
+Extra guidance, constraints, or reminders specific to this task.
 ```
 
-### Post-Subagent Protocol
-1.  Read `[subagent_name]_output.md`.
-2.  Verify task is FULLY complete.
-3.  If incomplete: SPAWN ANOTHER SUBAGENT.
-4.  REPEAT until 100% complete.
+-   **Agent Selection**: Choose from available agents:
+    - `~/.claude/agents/architect.md`
+    - `~/.claude/agents/builder.md`
+    - `~/.claude/agents/planner.md`
+    - `~/.claude/agents/scope-analyst.md`
+    - `~/.claude/agents/security_analyst.md`
+    - `~/.claude/agents/code.md`
+    - `~/.claude/agents/orchestrator.md`
+    - `~/.claude/agents/researcher.md`
+    - `~/.claude/agents/debugger.md`
+    - `~/.claude/agents/tester.md`
+
+-   **Command Selection**: Choose from available commands:
+    - `~/.claude/commands/analyze.md`
+    - `~/.claude/commands/build.md`
+    - `~/.claude/commands/commit.md`
+    - `~/.claude/commands/create-command.md`
+    - `~/.claude/commands/enhance.md`
+    - `~/.claude/commands/fix-optimize-validate-command.md`
+    - `~/.claude/commands/orchestrate.md`
+    - `~/.claude/commands/plan.md`
+    - `~/.claude/commands/propose-solutions.md`
+    - `~/.claude/commands/refactor.md`
+    - `~/.claude/commands/research.md`
+    - `~/.claude/commands/spec.md`
+    - `~/.claude/commands/tdd.md`
+    - `~/.claude/commands/test.md`
+    - `~/.claude/commands/update-project-docs.md`
+
+-   **Artifacts**: If a sub-agent produces a large output (code, report), it must be written to the filesystem, and the sub-agent should return the path.
+
+## 4. Verification & Debugging Loop
+
+### Fast Feedback
+-   **Tiny Evals**: For every code change, run a mini-evaluation of at least 20 realistic test cases. Record pass/fail rates and halt if success drops below 90%.
+-   **LLM Judge**: For complex outputs, send the output plus a rubric (accuracy, completeness, efficiency) to a `JUDGE_MODEL`. Only accept if the score is ≥ 0.8.
+
+### Debugging Technique
+Redirect your development server’s output to a log file that you can read:
+`bun run dev > dev.log 2>&1`
+Examine `dev.log` to understand application behavior. Add more logging statements to the code to zero in on issues.
+
+## 5. Tool & Search Strategy
+
+-   **Tool Selection**: Before acting, list available tools and select the single most relevant one. Explain your choice in ≤15 words.
+-   **Broad-to-Narrow Search**:
+    1.  Issue a broad, two-word query.
+    2.  Scan results and write three focus areas.
+    3.  For each area, draft and execute a narrow query.
+-   **Parallel Tool Calls**: When you have 3+ independent queries (e.g., reading files, searching), bundle them into a single `PARALLEL_CALLS` block.
+
+## 6. Error Handling & State Management
+
+-   **Retry on Failure**: On a `TOOL_ERROR`, retry up to 3 times with exponential backoff. If it still fails, log an `ERROR_NOTE` and move to the next logical step.
+-   **Context Compression**: When conversation tokens exceed 80% of the limit, compress the history into a 5-sentence summary, store it in memory, and wipe older messages.
+
+## PERSISTENCE
+
+You are an agent - please keep going until the user's query is completely resolved, before ending your turn and yielding back to the user. Only terminate your turn when you are sure that the problem is solved.
+
+## TOOL CALLING
+
+If you are not sure about file content or codebase structure pertaining to the user's request, use your tools to read files and gather the relevant information: do NOT guess or make up an answer.
+
+## PLANNING
+
+You MUST plan extensively before each function call, and reflect extensively on the outcomes of the previous function calls. DO NOT do this entire process by making function calls only, as this can impair your ability to solve the problem and think insightfully.
+
+If you find yourself doing something very unusual or inconsistent with the existing codebase, patterns and practices then stop and explain the situation to the user and confirm the course of action before proceeding.
+
+Always implement high quality production ready code that performs the requested task, using the requested tools, libraries, external systems, infrastructure etc. Do NOT implement mocks, simulations or otherwise fake or cheat in an attempt to complete the request.

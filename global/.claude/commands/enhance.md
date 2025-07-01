@@ -1,54 +1,34 @@
-Intelligently enhances user input by generating a structured task map for complex ideas, refining ambiguous queries, or improving code snippets.
+Intelligently enhances user input by generating a structured task map, refining an ambiguous query, or improving a code snippet.
 
 **Usage**: `/enhance <user input>`
 
 ## Process:
-1.  **Analyze User Intent**: First, determine the nature of the input. Is it a high-level project idea, a vague question, or a piece of code?
-2.  **Select Enhancement Strategy**: Based on the intent, apply one of the following enhancement strategies.
-3.  **Generate Enhanced Output**: Provide only the final, improved output without conversational filler.
+1.  **Analyze Intent**: Determine if the input is a high-level idea, a vague question, or a piece of code.
+2.  **Select Strategy**: Based on the intent, choose the appropriate enhancement strategy.
+3.  **Generate Enhanced Output**: Provide only the final, improved output.
+
+## Zen Tools Review:
+- Use Zen Tools at every stage to double review your approach to ensure that you didn't miss anything.
+- Always use zen tools before writing your implementation.
 
 ## Enhancement Strategies
 
 ### 1. For Complex Ideas: Generate a Task Map
-If the input is a project idea (e.g., "build a chat app"), generate a comprehensive Markdown Task Map to structure the work.
-```markdown
-# Project: [Clear and Concise Project Name]
-
-## Phase 1: [Descriptive Phase Name]
-- [ ] **Task 1.1**: [Unique and descriptive task description]
-  - **Dependencies**: [List of task IDs this task depends on]
-  - **Outputs**: [Expected artifacts, e.g., `src/api/auth.js`]
-  - **Validation**: [Clear, measurable success criterion, e.g., "All auth tests pass"]
-  - **Human Checkpoint**: [YES/NO - Is human review required before proceeding?]
-  - **Scope**: [Detailed description of what is in and out of scope for this task]
-```
+-   **Input**: "build a chat app"
+-   **Output**: A comprehensive Markdown Task Map with phases, tasks, dependencies, and validation criteria.
 
 ### 2. For Ambiguous Questions: Refine the Query
-If the input is a vague question (e.g., "how to optimize my database?"), rewrite it to be specific and actionable. Add necessary context and constraints.
-- **Original**: "How can I optimize my database?"
-- **Enhanced**: "What are the best practices for optimizing a PostgreSQL database for a read-heavy social media application, focusing on indexing strategies and query performance for tables with over 10 million rows?"
+-   **Input**: "how to optimize my database?"
+-   **Output**: "What are the best practices for optimizing a PostgreSQL database for a read-heavy application, focusing on indexing and query performance?"
 
 ### 3. For Code Snippets: Improve the Code
-If the input is a code snippet, refactor it for clarity, efficiency, and best practices. Add explanatory comments.
-- **Original**: A difficult-to-read one-liner function.
-- **Enhanced**:
-```
-/**
- * A clear, well-documented function.
- * @param {param_type} param_name - The description of the parameter.
- * @returns {return_type} - The description of the return value.
- */
-function well_named_function(param_name) {
-  // Clear, readable code with comments explaining complex parts.
-  return result;
-}
-```
+-   **Input**: A poorly written function.
+-   **Output**: A refactored, well-documented, and efficient version of the function.
 
 ## Examples:
-- **Task Map Generation**: `/enhance "I want to build a real-time chat application"`
-- **Query Refinement**: `/enhance "How can I optimize my database?"`
-- **Code Improvement**: `/enhance "function(a, b){for(let i=0;i<b.length;i++){if(b[i]==a)return true;}return false;}"`
+-   `/enhance "I want to build a real-time chat application"`
+-   `/enhance "How can I optimize my database?"`
+-   `/enhance "function(a,b){for(let i=0;i<b.length;i++){if(b[i]==a)return true;}return false;}"`
 
 ## Notes:
-- This is a versatile command that adapts its output based on the user's intent.
-- The goal is to transform ambiguous input into a concrete, actionable starting point.
+-   The goal is to transform ambiguous input into a concrete, actionable starting point.

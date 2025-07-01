@@ -3,24 +3,23 @@ Analyzes the codebase for correctness, architecture, quality, security, and perf
 **Usage**: `/analyze [path]`
 
 ## Process:
-1.  **Scope Definition**: If a path is provided, focus the analysis on that specific file or directory. If no path is given, analyze the currently staged changes.
-    <!-- Agent Note: Use `mcp__repoprompt__search` or `gemini -p` to understand the scope and dependencies of the target path before analysis. -->
-2.  **Correctness Analysis**: Systematically check for logic errors, bugs, mishandled edge cases, and potential race conditions.
-3.  **Architectural Review**: Assess the code against established architectural patterns. Evaluate coupling, cohesion, and scalability.
-4.  **Code Quality Audit**: Review for adherence to coding conventions, readability, and maintainability. Identify and document technical debt.
-5.  **Security Vulnerability Scan**: Conduct a security review for common vulnerabilities, such as those listed in the OWASP Top 10 (e.g., injection flaws, broken authentication).
-6.  **Performance Profiling**: Analyze the code to identify performance bottlenecks, inefficient algorithms, or excessive resource consumption.
-7.  **Report Generation**: Synthesize findings into a prioritized list of issues. Each issue must include:
-    *   A clear description of the problem.
-    *   A severity level (Critical, Major, Minor).
-    *   A specific, actionable recommendation for a fix.
+1.  **Define Scope**: If a path is provided, focus on that file or directory. Otherwise, analyze staged changes.
+2.  **Estimate Complexity**: Classify the analysis task as SIMPLE, MODERATE, or COMPLEX to determine sub-agent allocation.
+3.  **Analyze Correctness**: Check for logic errors, bugs, and mishandled edge cases.
+4.  **Review Architecture**: Assess against established patterns, evaluating coupling, cohesion, and scalability.
+5.  **Audit Code Quality**: Review for convention adherence, readability, and technical debt.
+6.  **Scan for Security Vulnerabilities**: Check for common vulnerabilities (e.g., OWASP Top 10).
+7.  **Profile Performance**: Identify bottlenecks, inefficient algorithms, or resource leaks.
+8.  **Generate Report**: Synthesize findings into a prioritized list of issues. Each issue must include a description, severity (Critical, Major, Minor), and a specific, actionable recommendation.
 
-## Swarm Strategy: Debate
-<!-- Agent Note: This command MUST use the Debate strategy from `swarm_strategies.md`. -->
-1.  **Delegate**: Concurrently delegate the analysis to three specialist `architect` agents.
-2.  **Critique & Compare**: Each agent will present its findings. The group will then compare reports, challenge assumptions, and identify the most critical, agreed-upon issues.
-3.  **Final Report**: Synthesize a single, consolidated report that prioritizes findings based on the debate. High-confidence issues are those agreed upon by multiple agents.
+## Zen Tools Review:
+- Use Zen Tools at every stage to double review your approach to ensure that you didn't miss anything.
+- Always use zen tools before writing your implementation.
 
 ## Examples:
-- `/analyze src/core/auth.js`
-- `/analyze` (to analyze staged changes)
+-   `/analyze src/core/auth.js`
+-   `/analyze` (to analyze staged changes)
+
+## Notes:
+-   This command provides a holistic view of code health.
+-   The final report should be actionable for developers.

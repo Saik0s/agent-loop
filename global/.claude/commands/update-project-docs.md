@@ -3,20 +3,19 @@ Analyzes the codebase to update all project documentation, ensuring it accuratel
 **Usage**: `/update-project-docs`
 
 ## Process:
-1.  **Scan Codebase**: Systematically scan all source code and configuration files (e.g., `package.json`, `requirements.txt`, `docker-compose.yml`) to build an accurate picture of the current project. This includes:
-    *   Technology stack and dependencies.
-    *   Project structure and key directories.
-    *   Build, install, and run commands.
-    *   Environment variables.
-2.  **Audit Documentation**: Read all documentation files (e.g., `README.md`, `CONTRIBUTING.md`, files in `docs/`) and compare their contents against the actual state discovered in step 1.
-3.  **Identify and Correct Discrepancies**: Identify all outdated information. Propose specific changes to replace incorrect content with accurate, up-to-date information, while preserving the document's original structure and tone.
-4.  **Validate Commands and Snippets**: Ensure all shell commands, code examples, and file paths in the updated documentation are correct and functional.
+1.  **Scan Codebase**: Systematically scan source code and configuration files to build an accurate picture of the current project (tech stack, dependencies, build commands, etc.).
+2.  **Audit Documentation**: Read all documentation files (e.g., `README.md`, `CONTRIBUTING.md`) and compare their contents against the actual state.
+3.  **Identify and Correct Discrepancies**: Propose specific changes to replace outdated information with accurate, up-to-date information.
+4.  **Validate Commands and Snippets**: Ensure all shell commands, code examples, and file paths in the updated documentation are correct.
 5.  **Summarize Changes**: Output a summary of all proposed modifications for user review before applying them.
 
+## Zen Tools Review:
+- Use Zen Tools at every stage to double review your approach to ensure that you didn't miss anything.
+- Always use zen tools before writing your implementation.
+
 ## Examples:
-- Running `/update-project-docs` in a project that migrated from one framework to another would update the `README.md` to reflect the new stack and setup commands.
+-   `/update-project-docs`
 
 ## Notes:
-- This command focuses on factual accuracy (tech stack, commands, file paths) and preserves the existing organization of the documentation.
-- It should be run periodically or whenever the project's structure or dependencies change significantly.
-- For large projects, consider using the `gemini` CLI to ensure all files are analyzed.
+-   This command focuses on factual accuracy (tech stack, commands, file paths).
+-   It should be run periodically or whenever the project's structure or dependencies change significantly.
