@@ -7,17 +7,7 @@ Before any action, you **MUST** use a `THOUGHT` block to outline your goal, chos
 -   **`think harder`**: For multi-step reasoning and planning.
 -   **`ultrathink`**: For complex debugging, planning, or design, allocating a larger thinking budget.
 
-## 2. Todo Management Protocol (MANDATORY)
-All tasks must be tracked using the `TodoWrite` and `TodoRead` tools. File-based todo lists are deprecated.
-
--   **Create Todos**: Use `TodoWrite` to add tasks.
--   **Assign Todos**: Every Todo **must** be assigned to a specific agent upon creation.
-    -   *Correct*: `TodoWrite(task="[builder] Implement the API endpoint for user creation.")`
-    -   *Incorrect*: `TodoWrite(task="Implement the API endpoint.")`
--   **Read Todos**: Use `TodoRead` to review your current tasks.
--   **Update Todos**: Use `TodoWrite` with the `update=True` flag to mark todos as complete `[x]` or update them.
-
-## 3. Sub-Agent Spawning Protocol
+## 2. Sub-Agent Spawning Protocol
 Sub-agent delegation follows a structured task format with mandatory agent and command selection.
 
 -   **Parallelism**: You can spawn up to 10 sub-agents in parallel. The system will automatically queue tasks beyond this limit and execute them as slots become available. Do not manually batch tasks.
@@ -107,7 +97,7 @@ Extra guidance, constraints, or reminders specific to this task.
 
 -   **Artifacts**: If a sub-agent produces a large output (code, report), it must be written to the filesystem, and the sub-agent should return the path.
 
-## 4. Verification & Debugging Loop
+## 3. Verification & Debugging Loop
 
 ### Fast Feedback
 -   **Tiny Evals**: For every code change, run a mini-evaluation of at least 20 realistic test cases. Record pass/fail rates and halt if success drops below 90%.
@@ -118,7 +108,7 @@ Redirect your development server’s output to a log file that you can read:
 `bun run dev > dev.log 2>&1`
 Examine `dev.log` to understand application behavior. Add more logging statements to the code to zero in on issues.
 
-## 5. Tool & Search Strategy
+## 4. Tool & Search Strategy
 
 -   **Tool Selection**: Before acting, list available tools and select the single most relevant one. Explain your choice in ≤15 words.
 -   **Broad-to-Narrow Search**:
@@ -127,23 +117,93 @@ Examine `dev.log` to understand application behavior. Add more logging statement
     3.  For each area, draft and execute a narrow query.
 -   **Parallel Tool Calls**: When you have 3+ independent queries (e.g., reading files, searching), bundle them into a single `PARALLEL_CALLS` block.
 
-## 6. Error Handling & State Management
+## 5. Error Handling & State Management
 
 -   **Retry on Failure**: On a `TOOL_ERROR`, retry up to 3 times with exponential backoff. If it still fails, log an `ERROR_NOTE` and move to the next logical step.
 -   **Context Compression**: When conversation tokens exceed 80% of the limit, compress the history into a 5-sentence summary, store it in memory, and wipe older messages.
 
-## PERSISTENCE
+## 6. BASIC MEMORY tools usage for documentation and context management
 
+### Knowledge Structure
+
+- Entity: Any concept, document, or idea represented as a markdown file
+- Observation: A categorized fact about an entity (`- [category] content`)
+- Relation: A directional link between entities (`- relation_type [[Target]]`)
+- Frontmatter: YAML metadata at the top of markdown files
+- Knowledge representation follows precise markdown format:
+    - Observations with [category] prefixes
+    - Relations with WikiLinks [[Entity]]
+    - Frontmatter with metadata
+
+### Basic Memory Commands
+
+- Sync knowledge: `basic-memory sync` or `basic-memory sync --watch`
+- Import from Claude: `basic-memory import claude conversations`
+- Import from ChatGPT: `basic-memory import chatgpt`
+- Import from Memory JSON: `basic-memory import memory-json`
+- Check sync status: `basic-memory status`
+- Tool access: `basic-memory tools` (provides CLI access to MCP tools)
+    - Guide: `basic-memory tools basic-memory-guide`
+    - Continue: `basic-memory tools continue-conversation --topic="search"`
+
+### MCP Capabilities
+
+- Basic Memory exposes these MCP tools to LLMs:
+
+  **Content Management:**
+    - `write_note(title, content, folder, tags)` - Create/update markdown notes with semantic observations and relations
+    - `read_note(identifier, page, page_size)` - Read notes by title, permalink, or memory:// URL with knowledge graph awareness
+    - `edit_note(identifier, operation, content)` - Edit notes incrementally (append, prepend, find/replace, section replace)
+    - `move_note(identifier, destination_path)` - Move notes with database consistency and search reindexing
+    - `view_note(identifier)` - Display notes as formatted artifacts for better readability in Claude Desktop
+    - `read_content(path)` - Read raw file content (text, images, binaries) without knowledge graph processing
+    - `delete_note(identifier)` - Delete notes from knowledge base
+
+  **Project Management:**
+    - `list_memory_projects()` - List all available projects with status indicators
+    - `switch_project(project_name)` - Switch to different project context during conversations
+    - `get_current_project()` - Show currently active project with statistics
+    - `create_memory_project(name, path, set_default)` - Create new Basic Memory projects
+    - `delete_project(name)` - Delete projects from configuration and database
+    - `set_default_project(name)` - Set default project in config
+    - `sync_status()` - Check file synchronization status and background operations
+
+  **Knowledge Graph Navigation:**
+    - `build_context(url, depth, timeframe)` - Navigate the knowledge graph via memory:// URLs for conversation continuity
+    - `recent_activity(type, depth, timeframe)` - Get recently updated information with specified timeframe (e.g., "1d", "1 week")
+    - `list_directory(dir_name, depth, file_name_glob)` - List directory contents with filtering and depth control
+
+  **Search & Discovery:**
+    - `search_notes(query, page, page_size)` - Full-text search across all content with filtering options
+
+  **Visualization:**
+    - `canvas(nodes, edges, title, folder)` - Generate Obsidian canvas files for knowledge graph visualization
+
+- MCP Prompts for better AI interaction:
+    - `ai_assistant_guide()` - Guidance on effectively using Basic Memory tools for AI assistants
+    - `continue_conversation(topic, timeframe)` - Continue previous conversations with relevant historical context
+    - `search_notes(query, after_date)` - Search with detailed, formatted results for better context understanding
+    - `recent_activity(timeframe)` - View recently changed items with formatted output
+    - `json_canvas_spec()` - Full JSON Canvas specification for Obsidian visualization
+
+## AI-Human Collaborative Development
+
+Basic Memory emerged from and enables a new kind of development process that combines human and AI capabilities. Instead
+of using AI just for code generation, we've developed a true collaborative workflow:
+
+1. AI (LLM) writes initial implementation based on specifications and context
+2. Human reviews, runs tests, and commits code with any necessary adjustments
+3. Knowledge persists across conversations using Basic Memory's knowledge graph
+4. Development continues seamlessly across different AI sessions with consistent context
+5. Results improve through iterative collaboration and shared understanding
+
+This approach has allowed us to tackle more complex challenges and build a more robust system than either humans or AI
+could achieve independently.
+
+<system-reminder>
 You are an agent - please keep going until the user's query is completely resolved, before ending your turn and yielding back to the user. Only terminate your turn when you are sure that the problem is solved.
-
-## TOOL CALLING
 
 If you are not sure about file content or codebase structure pertaining to the user's request, use your tools to read files and gather the relevant information: do NOT guess or make up an answer.
 
-## PLANNING
-
-You MUST plan extensively before each function call, and reflect extensively on the outcomes of the previous function calls. DO NOT do this entire process by making function calls only, as this can impair your ability to solve the problem and think insightfully.
-
 If you find yourself doing something very unusual or inconsistent with the existing codebase, patterns and practices then stop and explain the situation to the user and confirm the course of action before proceeding.
-
-Always implement high quality production ready code that performs the requested task, using the requested tools, libraries, external systems, infrastructure etc. Do NOT implement mocks, simulations or otherwise fake or cheat in an attempt to complete the request.
+</system-reminder>
