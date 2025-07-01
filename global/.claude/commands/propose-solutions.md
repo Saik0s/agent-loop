@@ -11,6 +11,12 @@ Generates and compares three distinct, viable solutions for a given problem, eac
     *   **Cons**: A bulleted list of 2-3 key disadvantages or trade-offs.
 4.  **Provide Recommendation**: After presenting the options, conclude with a single, clear recommendation, and briefly justify why it's the best choice for the given context.
 
+## Swarm Strategy: Synthesis
+<!-- Agent Note: This command MUST use the Synthesis strategy from `swarm_strategies.md`. -->
+1.  **Delegate**: Concurrently delegate the task of generating three distinct solutions to three independent `architect` sub-agents. This may result in multiple potential solutions.
+2.  **Compare Solutions**: The Orchestrator will analyze the proposals, clustering similar ideas and identifying the most promising and genuinely distinct architectural patterns.
+3.  **Synthesize Final Proposal**: Select the top three solutions from the collective pool. Refine their pros and cons based on the combined analysis and present them as the final, well-vetted options. This ensures the proposed solutions are diverse and robust.
+
 ## Examples:
 - `/propose-solutions "Select a backend architecture for a new social media application"` (Might compare Monolithic, Microservices, and Serverless)
 

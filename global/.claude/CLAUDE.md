@@ -21,6 +21,11 @@ Before ANY action, you MUST:
 - PLAN your approach
 - VALIDATE your thinking
 
+🤝🤝🤝 RULE #3: SWARM STRATEGIES ARE MANDATORY FOR KEY TASKS 🤝🤝🤝
+**FOR SUBJECTIVE OR CREATIVE TASKS, YOU MUST USE THE APPROPRIATE SWARM STRATEGY. INDEPENDENT WORK = HIGHER RISK OF ERROR.**
+
+For commands like `/plan`, `/spec`, `/analyze`, `/refactor`, `/research`, and `/propose-solutions`, you **MUST** follow the appropriate Swarm Strategy defined in `~/.claude/docs/patterns/swarm_strategies.md`. The specific strategy (e.g., Debate, Synthesis) is specified in the command's own documentation. You must select the appropriate strategy based on the command being executed and follow its process.
+
 ## Available Personas
 You MUST delegate tasks to the most appropriate specialist persona.
 
@@ -45,6 +50,7 @@ This is a list of available commands for various tasks.
 | `/analyze` | Analyzes codebase for correctness, architecture, quality, security, and performance. |
 | `/build` | Guides the Test-Driven Development (TDD) of a new feature. |
 | `/commit` | Analyzes staged changes and generates a Conventional Commit message. |
+| `/classify-and-structure` | Classifies and structures raw input (e.g., PRDs, notes) into managed project files. |
 | `/create-command` | Guides the creation of new custom Claude commands. |
 | `/enhance` | Enhances user input into a structured task map, refined query, or improved code. |
 | `/fix-optimize-validate-command` | Analyzes, fixes, and optimizes a Claude command file. |
@@ -61,34 +67,34 @@ This is a list of available commands for various tasks.
 ## Command Execution with Personas
 When executing a command with a specific persona, you must load the context from both the command's definition file and the persona's definition file.
 
-- **Command Definition**: `~/.claude/commands/<command_name>.md`
-- **Persona Definition**: `~/.claude/docs/personas/<persona_name>.md`
+-   **Command Definition**: `~/.claude/commands/<command_name>.md`
+-   **Persona Definition**: `~/.claude/docs/personas/<persona_name>.md`
 
 By combining the instructions from both files, you can ensure that the task is executed with the correct specialization and process.
 
 ## Tooling & Efficiency Guidelines
 
 ### Repoprompt for Codebase Interaction
-- Use `mcp__repoprompt__list_codemaps_tree` to get a quick overview of the codebase structure.
-- Use `mcp__repoprompt__search` to find specific code patterns or symbols.
-- Refer to `docs/repoprompt_workflows.md` for detailed usage patterns.
+-   Use `mcp__repoprompt__list_codemaps_tree` to get a quick overview of the codebase structure.
+-   Use `mcp__repoprompt__search` to find specific code patterns or symbols.
+-   Refer to `docs/repoprompt_workflows.md` for detailed usage patterns.
 
 ### Gemini CLI for Large-Scale Analysis
-- For tasks involving large codebases that may exceed context limits, use the `gemini` CLI.
-- Use `gemini -p "@path/to/code ..."` to analyze entire directories or multiple files.
-- Refer to `docs/gemini_cli_guide.md` for detailed usage.
+-   For tasks involving large codebases that may exceed context limits, use the `gemini` CLI.
+-   Use `gemini -p "@path/to/code ..."` to analyze entire directories or multiple files.
+-   Refer to `docs/gemini_cli_guide.md` for detailed usage.
 
 ### Context7 & Exa for Research
-- **MANDATORY**: Before working with any third-party library or technology, use `mcp__context7__resolve-library-id` and `mcp__context7__get-library-docs`.
-- Use `mcp__exa__web_search_exa` for general web research.
+-   **MANDATORY**: Before working with any third-party library or technology, use `mcp__context7__resolve-library-id` and `mcp__context7__get-library_docs`.
+-   Use `mcp__exa__web_search_exa` for general web research.
 
 ## Mandatory Sub-Agent Protocol
 **FAILURE TO FOLLOW = AUTOMATIC PROJECT FAILURE**
 
 ### Pre-Subagent Checklist
-- [ ] I have ULTRATHOUGHT about the task.
-- [ ] I have prepared COMPLETE context for the subagent.
-- [ ] I will verify the subagent completed the work FULLY.
+-   [ ] I have ULTRATHOUGHT about the task.
+-   [ ] I have prepared COMPLETE context for the subagent.
+-   [ ] I will verify the subagent completed the work FULLY.
 
 ### Subagent Spawn Template
 ```
@@ -111,12 +117,11 @@ VALIDATION REQUIREMENTS:
 
 REMEMBER:
 - ULTRATHINK before every action
-- Keep spawning more agents if needed until FULLY complete
 - NO shortcuts, NO exceptions
 ```
 
 ### Post-Subagent Protocol
-1. Read `[subagent_name]_output.md`.
-2. Verify task is FULLY complete.
-3. If incomplete: SPAWN ANOTHER SUBAGENT.
-4. REPEAT until 100% complete.
+1.  Read `[subagent_name]_output.md`.
+2.  Verify task is FULLY complete.
+3.  If incomplete: SPAWN ANOTHER SUBAGENT.
+4.  REPEAT until 100% complete.

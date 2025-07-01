@@ -1,6 +1,6 @@
 Guides the Test-Driven Development (TDD) of a new feature, from requirements analysis and test creation to incremental implementation and validation.
 
-**Usage**: `/build "<feature description>"`
+**Usage**: `/tdd "<feature description>"`
 
 ## Process:
 1.  **Analyze Requirements**: Deconstruct the feature description into specific, testable user stories and acceptance criteria. Identify core logic, potential edge cases, and clear success criteria.
@@ -14,9 +14,9 @@ Guides the Test-Driven Development (TDD) of a new feature, from requirements ana
 6.  **Final Validation**: Once all requirements are implemented, run the entire test suite. Verify that all acceptance criteria are met and check for sufficient test coverage.
 
 ## Examples:
+- `/tdd "a user login page with two-factor authentication"`
 
 ## Notes:
 - This command enforces a strict TDD workflow to ensure high-quality, well-tested code.
 - The core principle is to let the tests drive the development process.
 - Each cycle of Red-Green-Refactor should be small and incremental.
-- For a strict Test-Driven Development workflow, please use the new /tdd command.

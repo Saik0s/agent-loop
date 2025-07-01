@@ -10,7 +10,7 @@ SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/global/.claude"
 DEST_DIR="$HOME/.claude"
 
 # Items to be replaced
-ITEMS=("commands" "docs" "CLAUDE.md")
+ITEMS=("commands" "docs" "agents" "CLAUDE.md")
 
 # Check if destination directory exists and prompt for backup
 if [ -d "$DEST_DIR" ]; then

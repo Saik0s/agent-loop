@@ -1,0 +1,82 @@
+[
+  {
+    "agentName": "architect",
+    "version": "1.0",
+    "description": "System design, technical specifications, and high-level architectural planning.",
+    "handlesCommands": ["/analyze", "/propose-solutions"],
+    "keywords": ["architecture", "design", "scalability", "systems", "planning"],
+    "definitionFile": "~/.claude/agents/architect.md"
+  },
+  {
+    "agentName": "researcher",
+    "version": "1.0",
+    "description": "Researching, asking clarifying questions, and gathering information.",
+    "handlesCommands": ["/research"],
+    "keywords": ["research", "information", "discovery", "ask", "questions"],
+    "definitionFile": "~/.claude/agents/researcher.md"
+  },
+  {
+    "agentName": "builder",
+    "version": "1.0",
+    "description": "General software development, feature implementation, and bug fixes.",
+    "handlesCommands": ["/build", "/refactor"],
+    "keywords": ["build", "implement", "code", "develop", "construct"],
+    "definitionFile": "~/.claude/agents/builder.md"
+  },
+  {
+    "agentName": "code",
+    "version": "1.0",
+    "description": "Advanced, complex, or specialized coding tasks requiring deep expertise.",
+    "handlesCommands": [],
+    "keywords": ["advanced coding", "algorithms", "optimization", "complex implementation"],
+    "definitionFile": "~/.claude/agents/code.md"
+  },
+  {
+    "agentName": "debugger",
+    "version": "1.0",
+    "description": "Investigating and resolving bugs, errors, and performance issues.",
+    "handlesCommands": [],
+    "keywords": ["debug", "fix", "error", "diagnostics", "issue"],
+    "definitionFile": "~/.claude/agents/debugger.md"
+  },
+  {
+    "agentName": "scope-analyst",
+    "version": "1.0",
+    "description": "In-depth analysis of existing code to define the scope of changes.",
+    "handlesCommands": [],
+    "keywords": ["scope", "analysis", "impact", "investigation", "issue analysis"],
+    "definitionFile": "~/.claude/agents/scope-analyst.md"
+  },
+  {
+    "agentName": "orchestrator",
+    "version": "1.0",
+    "description": "Project coordination, task decomposition, and sub-agent delegation.",
+    "handlesCommands": ["/orchestrate"],
+    "keywords": ["orchestrate", "delegate", "manage", "coordinate", "project manager"],
+    "definitionFile": "~/.claude/agents/orchestrator.md"
+  },
+  {
+    "agentName": "planner",
+    "version": "1.0",
+    "description": "Defining product features, user stories, and acceptance criteria.",
+    "handlesCommands": ["/plan", "/spec"],
+    "keywords": ["plan", "spec", "requirements", "user stories", "product"],
+    "definitionFile": "~/.claude/agents/planner.md"
+  },
+  {
+    "agentName": "tester",
+    "version": "1.0",
+    "description": "All things testing and quality assurance.",
+    "handlesCommands": ["/test"],
+    "keywords": ["test", "qa", "quality assurance", "validation", "automation"],
+    "definitionFile": "~/.claude/agents/tester.md"
+  },
+  {
+    "agentName": "security_analyst",
+    "version": "1.0",
+    "description": "Security-focused code reviews, vulnerability analysis, and threat modeling.",
+    "handlesCommands": [],
+    "keywords": ["security", "vulnerability", "audit", "threat modeling", "owasp"],
+    "definitionFile": "~/.claude/agents/security_analyst.md"
+  }
+]
