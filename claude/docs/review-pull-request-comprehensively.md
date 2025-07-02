@@ -1,66 +1,47 @@
 ---
-description: "Documentation for review-pull-request-comprehensively."
+description: "Comprehensive code review guidelines."
 ---
 
-# Pull Request Review
+# Code Review Guidelines
 
-Comprehensive pull request review from multiple perspectives.
+This document outlines a multi-perspective approach to ensure comprehensive code reviews.
 
-## Review Roles:
+## 1. The Reviewer's Mindset
+-   **Be Constructive**: The goal is to improve the code, not to criticize the author.
+-   **Be Specific**: Provide actionable feedback with concrete examples.
+-   **Ask Questions**: If you don't understand something, ask for clarification rather than making assumptions.
+-   **Automate Where Possible**: Rely on linters and formatters for style issues; focus your review on logic and architecture.
 
-### 1. Product Manager Review
-- **Business Value**: Does this deliver promised value?
-- **User Experience**: Will users benefit from this change?
-- **Strategic Alignment**: Does it align with product goals?
-- **Feature Completeness**: Are all requirements met?
-- **Action**: Provide directives for maximum impact
+## 2. The Multi-Perspective Review Checklist
 
-### 2. Developer Review
-- **Code Quality**: Is code clean and maintainable?
-- **Standards**: Does it follow coding conventions?
-- **Performance**: Are there efficiency concerns?
-- **Scalability**: Will it handle growth?
-- **Refactoring**: Any code that needs improvement?
-- **Action**: Suggest specific code improvements
+Review every change from each of these viewpoints.
 
-### 3. Quality Engineer Review
-- **Test Coverage**: Are all paths tested?
-- **Edge Cases**: Are boundary conditions handled?
-- **Regression Risk**: Could this break existing features?
-- **Test Quality**: Are tests comprehensive and clear?
-- **Action**: Identify missing tests and scenarios
+### 🏛️ The Architect
+-   [ ] **Design Patterns**: Does the code adhere to established architectural patterns in the project?
+-   [ ] **Scalability**: Will this code scale under increased load?
+-   [ ] **Dependencies**: Does it introduce new dependencies? Are they justified?
+-   [ ] **Modularity**: Is the code well-encapsulated? Does it have clear boundaries?
 
-### 4. Security Engineer Review
-- **Vulnerabilities**: Any security risks?
-- **Data Handling**: Is sensitive data protected?
-- **Authentication**: Are auth checks proper?
-- **Input Validation**: Is user input sanitized?
-- **Compliance**: Does it meet security standards?
-- **Action**: Flag security concerns immediately
+### 🧱 The Builder (Developer)
+-   [ ] **Readability**: Is the code clear and easy to understand?
+-   [ ] **Simplicity (KISS)**: Is this the simplest possible solution?
+-   [ ] **Duplication (DRY)**: Is there duplicated logic that could be abstracted?
+-   [ ] **Future-Proofing (YAGNI)**: Does the code solve the current problem without adding unnecessary features?
 
-### 5. DevOps Review
-- **CI/CD Integration**: Will builds succeed?
-- **Configuration**: Are configs properly managed?
-- **Infrastructure**: Any deployment concerns?
-- **Monitoring**: Are metrics and logs adequate?
-- **Rollback**: Can changes be safely reverted?
-- **Action**: Ensure smooth deployment
+### 🛡️ The Tester (QA Engineer)
+-   [ ] **Test Coverage**: Is the new logic adequately covered by tests?
+-   [ ] **Edge Cases**: Are edge cases and failure modes handled correctly?
+-   [ ] **Test Quality**: Are the tests readable, reliable, and maintainable?
+-   [ ] **Regressions**: Could this change break existing functionality?
 
-### 6. UI/UX Designer Review
-- **Visual Consistency**: Does it match design system?
-- **Usability**: Is it intuitive to use?
-- **Accessibility**: Is it accessible to all users?
-- **Responsive**: Does it work on all devices?
-- **Polish**: Any rough edges to smooth?
-- **Action**: Ensure delightful user experience
+### 🔐 The Security Analyst
+-   [ ] **Input Validation**: Is all external input sanitized and validated?
+-   [ ] **Authentication/Authorization**: Are permissions checked correctly?
+-   [ ] **Data Handling**: Is sensitive data handled securely (e.g., no logging of secrets)?
+-   [ ] **Common Vulnerabilities**: Is the code free from common vulnerabilities (e.g., OWASP Top 10)?
 
-## Review Process:
-1. Read PR description and linked issues
-2. Review code changes systematically
-3. Test functionality locally if applicable
-4. Consider each perspective above
-5. Leave constructive feedback
-6. Approve or request changes
-
-## Key Principle:
-**Improvements scheduled for "later" must be addressed NOW!**
+### 🚀 The DevOps Engineer
+-   [ ] **Configuration**: Are configuration values handled correctly (e.g., via environment variables)?
+-   [ ] **Observability**: Is there adequate logging and metrics to monitor this feature in production?
+-   [ ] **Performance**: Are there any obvious performance bottlenecks?
+-   [ ] **Rollback**: Can this change be safely rolled back if something goes wrong?

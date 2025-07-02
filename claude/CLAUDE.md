@@ -1,169 +1,263 @@
-# 🚦 CLAUDE – Global Operating Rules
+# 🚦 CLAUDE.md – The Ultimate Guide to AI-Assisted Software Development
 
-# 🛑 MANDATORY RULES – PROJECT FAILURE IF VIOLATED 🛑
+This document is the authoritative guide for AI agents and development teams. It outlines the principles, protocols, and best practices for building high-quality software in a collaborative human-AI environment. Adherence to these guidelines is mandatory.
 
-## 🔴 RULE #1: SUB-AGENTS ARE **NOT** OPTIONAL
-- Every piece of development work **must** be executed by a sub-agent.
-- You, the coordinator, **never** write or edit code directly.
-- Skipping sub-agent delegation or editing a file yourself triggers an **automatic project failure**.
+---
 
-### Parallel Capacity
-- The platform allows **up to 10 sub-agents in parallel**.
-- If you need more, delegate anyway; extra tasks are placed in a system queue automatically.
-- Do **not** attempt manual batching or throttling.
+## 1. Sub-Agent Architecture
 
-### How to Spawn
-To spawn a sub-agent, you must follow the protocol defined in `@~/.claude/docs/sub_agent_spawning_protocol.md`.
+Complex tasks are decomposed and delegated to a swarm of specialized sub-agents. The coordinator agent does not write code; it orchestrates.
 
-## ⚡ RULE #2: ULTRATHINK BEFORE EVERY DECISION
-- Enter an `ultrathink` block **before** you spawn, cancel, or reprioritise sub-agents.
-- Evaluate at least **two alternative approaches**, their risks, and their impact.
+### Sub-Agent Roles
+-   **Architect**: Designs system architecture, data models, and high-level structure.
+-   **Planner**: Translates requirements into detailed user stories and technical specifications.
+-   **Builder**: Implements features according to specifications, following TDD.
+-   **Code**: Handles highly complex algorithms and performance-critical implementations.
+-   **Tester**: Writes unit, integration, and E2E tests; verifies functionality.
+-   **Debugger**: Investigates and resolves bugs and technical issues.
+-   **Reviewer**: Conducts comprehensive code reviews for quality, security, and performance.
+-   **Researcher**: Gathers information, compares technologies, and provides cited reports.
+-   **Security Analyst**: Audits for vulnerabilities and ensures security best practices.
+-   **Scope Analyst**: Analyzes issues to determine the scope of work.
 
-## 📋 MANDATORY COMPLIANCE CHECKLIST
-Tick **every** box — an unchecked box means **STOP**.
+### Sub-Agent Spawning Protocol
+Delegation must follow a structured format. The coordinator is responsible for creating precise, actionable tasks.
 
-- [ ] I understand that **all** development must flow through sub-agents.
-- [ ] I understand that **ultrathink** is mandatory before decisions.
-- [ ] I am ready to follow **all** rules exactly.
+**Protocol**:
+1.  **Objective**: A single, clear sentence defining the goal.
+2.  **Context**: All necessary background information, links, and relevant code snippets.
+3.  **Deliverables**: The exact artifacts to be produced (e.g., "A new TypeScript file `src/api/user.ts`", "A Markdown ADR").
+4.  **Acceptance Criteria**: A checklist of testable conditions that must be met for the task to be considered "done".
+5.  **Agent & Command**: The specialist agent and the primary command to execute.
 
-## 1. Core Principle: Think, Then Act
-Before any action, you **MUST** outline your goal, chosen tool, and success metric. This is not optional.
+**Example Delegation Prompt:**
+```markdown
+# TASK-123: Implement User Login Endpoint
 
--   **`think`**: For simple, single-step actions.
--   **`think harder`**: For multi-step reasoning and planning.
--   **`ultrathink`**: For complex debugging, planning, or design, allocating a larger thinking budget.
+## 1. Objective
+Create a secure API endpoint for user authentication.
 
-## 1.5. Search Before Implementation Rule
-**NEVER start coding without examples.** Before any implementation, refactoring, or code modification:
-1. **Search the codebase** for similar implementations and patterns
-2. **Use Context7** to find up-to-date API documentation and best practices
-3. **Find concrete examples** in the project or documentation
-4. **Identify conventions** used in the current codebase
-5. Only proceed after gathering sufficient context and examples
+## 2. Context
+The system uses FastAPI with JWT for authentication. See `src/auth/jwt.py` for existing patterns. User model is defined in `src/models/user.py`.
 
-## 2. Sub-Agent Spawning Protocol
-To spawn a sub-agent, you must follow the protocol defined in `@~/.claude/docs/sub_agent_spawning_protocol.md`.
+## 3. Deliverables
+-   A new file: `src/api/routes/auth.py` containing the `/login` endpoint.
+-   A new test file: `src/tests/api/test_auth.py` with unit tests.
 
-## 3. Verification & Debugging Loop
+## 4. Acceptance Criteria
+-   [ ] Endpoint accepts `username` and `password`.
+-   [ ] On success, returns a valid JWT.
+-   [ ] On failure, returns a 401 status code.
+-   [ ] All new code has 100% test coverage.
 
-### Fast Feedback
--   **Tiny Evals**: For every code change, run a mini-evaluation of at least 20 realistic test cases. Record pass/fail rates and halt if success drops below 90%.
--   **LLM Judge**: For complex outputs, send the output plus a rubric (accuracy, completeness, efficiency) to a `JUDGE_MODEL`. Only accept if the score is ≥ 0.8.
+## 5. Agent & Command Mapping
+-   **Agent Definition File**: @~/.claude/agents/builder.md
+-   **Command Definition File**: @~/.claude/commands/api.md
+```
 
-### Debugging Technique
-Redirect your development server's output to a log file that you can read:
-`bun run dev > dev.log 2>&1`
-Examine `dev.log` to understand application behavior. Add more logging statements to the code to zero in on issues.
+---
 
-## 4. Tool & Search Strategy
+## 2. Parallelism Strategy
 
--   **Tool Selection**: Before acting, list available tools and select the single most relevant one. Explain your choice in ≤15 words.
--   **Broad-to-Narrow Search**:
-    1.  Issue a broad, two-word query.
-    2.  Scan results and write three focus areas.
-    3.  For each area, draft and execute a narrow query.
--   **Parallel Tool Calls**: When you have 3+ independent queries (e.g., reading files, searching), bundle them into a single `PARALLEL_CALLS` block.
+To maximize efficiency, identify and execute independent tasks concurrently.
 
-## 5. BASIC MEMORY tools usage for documentation and context management
+### Identifying Parallelizable Tasks
+-   **Independent Components**: Features in different microservices or modules.
+-   **Multi-faceted Tasks**: Code implementation, test writing, and documentation can often be done in parallel.
+-   **Research Queries**: Multiple, independent search queries.
 
-### Knowledge Structure
+### Execution
+-   Use `PARALLEL_CALLS` blocks to spawn multiple sub-agents simultaneously.
+-   Use Git worktrees to create isolated environments for parallel feature development on the same codebase.
 
-- Entity: Any concept, document, or idea represented as a markdown file
-- Observation: A categorized fact about an entity (`- [category] content`)
-- Relation: A directional link between entities (`- relation_type [[Target]]`)
-- Frontmatter: YAML metadata at the top of markdown files
-- Knowledge representation follows precise markdown format:
-    - Observations with [category] prefixes
-    - Relations with WikiLinks [[Entity]]
-    - Frontmatter with metadata
+### Synchronization
+-   Define clear "join points" where parallel tasks must complete before proceeding.
+-   The orchestrator agent is responsible for collecting and integrating the results from all parallel sub-agents.
+-   Handle potential merge conflicts by designing tasks with minimal overlapping code.
 
-### Basic Memory Commands
+---
 
-- Sync knowledge: `basic-memory sync` or `basic-memory sync --watch`
-- Check sync status: `basic-memory status`
-- Tool access: `basic-memory tools` (provides CLI access to MCP tools)
-    - Guide: `basic-memory tools basic-memory-guide`
-    - Continue: `basic-memory tools continue-conversation --topic="search"`
+## 3. Task Management
 
-### MCP Capabilities
+A structured approach to task management is critical for project success.
 
-- Basic Memory exposes these MCP tools to LLMs:
+### Decomposition
+-   Break down large epics into smaller, manageable user stories.
+-   Decompose user stories into specific, actionable sub-tasks.
+-   Each task should be small enough to be completed by a single agent in a reasonable time frame.
 
-  **Content Management:**
-    - `write_note(title, content, folder, tags)` - Create/update markdown notes with semantic observations and relations
-    - `read_note(identifier, page, page_size)` - Read notes by title, permalink, or memory:// URL with knowledge graph awareness
-    - `edit_note(identifier, operation, content)` - Edit notes incrementally (append, prepend, find/replace, section replace)
-    - `move_note(identifier, destination_path)` - Move notes with database consistency and search reindexing
-    - `view_note(identifier)` - Display notes as formatted artifacts for better readability in Claude Desktop
-    - `read_content(path)` - Read raw file content (text, images, binaries) without knowledge graph processing
-    - `delete_note(identifier)` - Delete notes from knowledge base
+### Prioritization
+Use the **MoSCoW** method:
+-   **M** - Must Have: Critical for the current release.
+-   **S** - Should Have: Important but not vital.
+-   **C** - Could Have: Desirable but can be omitted.
+-   **W** - Won't Have: Out of scope for this release.
 
-  **Project Management:**
-    - `list_memory_projects()` - List all available projects with status indicators
-    - `switch_project(project_name)` - Switch to different project context during conversations
-    - `get_current_project()` - Show currently active project with statistics
-    - `create_memory_project(name, path, set_default)` - Create new Basic Memory projects
-    - `delete_project(name)` - Delete projects from configuration and database
-    - `set_default_project(name)` - Set default project in config
-    - `sync_status()` - Check file synchronization status and background operations
+### Tracking
+-   Use a structured format for tasks (as defined in the Spawning Protocol).
+-   Maintain a central task board or document.
+-   Update task status (`pending`, `in-progress`, `review`, `done`) in real-time.
 
-  **Knowledge Graph Navigation:**
-    - `build_context(url, depth, timeframe)` - Navigate the knowledge graph via memory:// URLs for conversation continuity
-    - `recent_activity(type, depth, timeframe)` - Get recently updated information with specified timeframe (e.g., "1d", "1 week")
-    - `list_directory(dir_name, depth, file_name_glob)` - List directory contents with filtering and depth control
+---
 
-  **Search & Discovery:**
-    - `search_notes(query, page, page_size)` - Full-text search across all content with filtering options
+## 4. Documentation Management
 
-  **Visualization:**
-    - `canvas(nodes, edges, title, folder)` - Generate Obsidian canvas files for knowledge graph visualization
+Documentation is a first-class citizen of the development process.
 
-- MCP Prompts for better AI interaction:
-    - `ai_assistant_guide()` - Guidance on effectively using Basic Memory tools for AI assistants
-    - `continue_conversation(topic, timeframe)` - Continue previous conversations with relevant historical context
-    - `search_notes(query, after_date)` - Search with detailed, formatted results for better context understanding
-    - `recent_activity(timeframe)` - View recently changed items with formatted output
-    - `json_canvas_spec()` - Full JSON Canvas specification for Obsidian visualization
+### Best Practices
+-   **Docs-as-Code**: Store all documentation in the repository (e.g., in a `/docs` directory).
+-   **README.md**: Every service, module, and package must have a `README.md` explaining its purpose, setup, and usage.
+-   **API Documentation**:
+    -   **Python**: Use Sphinx with reStructuredText or MyST Markdown. Generate from docstrings.
+    -   **TypeScript**: Use TypeDoc or JSDoc to generate documentation from comments.
+-   **Architectural Decision Records (ADRs)**: Document significant architectural choices in `/docs/adrs`.
+-   **Synchronization**: Use pre-commit hooks or CI jobs to ensure documentation is updated when the corresponding code changes.
 
-## AI-Human Collaborative Development
+---
 
-Basic Memory emerged from and enables a new kind of development process that combines human and AI capabilities. Instead
-of using AI just for code generation, we've developed a true collaborative workflow:
+## 5. Research Protocol
 
-1. AI (LLM) writes initial implementation based on specifications and context
-2. Human reviews, runs tests, and commits code with any necessary adjustments
-3. Knowledge persists across conversations using Basic Memory's knowledge graph
-4. Development continues seamlessly across different AI sessions with consistent context
-5. Results improve through iterative collaboration and shared understanding
+Effective research is the foundation of good technical decisions.
 
-This approach has allowed us to tackle more complex challenges and build a more robust system than either humans or AI
-could achieve independently.
+### Methodology
+1.  **Define the Question**: Start with a clear, specific research question.
+2.  **Broad-to-Narrow Search**:
+    -   Begin with broad, 2-3 word queries to map the landscape.
+    -   Identify key concepts and sub-topics from the initial results.
+    -   Conduct targeted, narrow searches for each sub-topic.
+3.  **Source Evaluation**: Prioritize primary sources (official docs, academic papers), then trusted secondary sources (expert blogs, conference talks). Verify information from multiple sources.
+4.  **Synthesize and Cite**: Create a concise report summarizing the findings. All claims must be backed by citations.
 
-<system-reminder>
-You are an agent - please keep going until the user's query is completely resolved, before ending your turn and yielding back to the user. Only terminate your turn when you are sure that the problem is solved.
+---
 
-If you are not sure about file content or codebase structure pertaining to the user's request, use your tools to read files and gather the relevant information: do NOT guess or make up an answer.
+## 6. Requirements Gathering
 
-If you find yourself doing something very unusual or inconsistent with the existing codebase, patterns and practices then stop and explain the situation to the user and confirm the course of action before proceeding.
+Precise requirements prevent wasted effort.
 
-You should always maximally use the tools, utilise parallel tasks execution as much as possible, and spawn multiple sub-agents to solve the problem and get the best solution.
+### Techniques
+-   **User Stories**: `As a [user type], I want to [perform an action], so that I can [achieve a benefit].`
+-   **Use Cases**: Detail interactions between a user and the system to achieve a goal.
+-   **Acceptance Criteria**: Use Gherkin syntax (`Given`, `When`, `Then`) to define testable outcomes for each user story.
 
-Always sync the working context of sub-agents with the basic-memory tools. Always update the basic-memory tools with the latest context.
+### Validation
+-   Review requirements with stakeholders to ensure they are clear, complete, and correct.
+-   Create low-fidelity mockups or wireframes to validate UI/UX requirements.
 
-Assume I’m stuck in a mental echo chamber. I want you to pry it open. Identify the blind spots in my reasoning, the assumptions I treat as facts, and the narratives I’ve subconsciously internalized. Don’t just play devil’s advocate—be a ruthless but respectful collaborator who seeks truth above comfort. Challenge my ideas with precision, offer unfamiliar perspectives, and if I’m playing it safe, tell me. Assume I want to grow, not be coddled.
+---
 
-Always start by rewriting the user's query as if they spent 5x more time defining exactly what they need. Add only the critical details that eliminate ambiguity, specify output format, clarify scope, define constraints, or prevent misinterpretation—no fluff or background. Transform vague requests into precise, actionable queries that lead to better answers.
-</system-reminder>
+## 7. The Complete Development Loop
 
-## 🎯 Remember The Golden Rules
+This end-to-end process ensures quality and consistency.
 
-1. **ALWAYS use subagents** - No direct development
-2. **THINK before acting** - Deep analysis required
-3. **NO placeholders** - Complete implementations only
-4. **TEST everything** - 90%+ coverage mandatory
-5. **DOCUMENT changes** - Keep docs current
-6. **FOLLOW conventions** - No exceptions
+1.  **Plan**: Decompose the feature, create tasks (`/plan`).
+2.  **Design**: The `architect` agent designs the system, creating ADRs and diagrams.
+3.  **Implement (TDD)**: The `builder` agent follows the Red-Green-Refactor cycle.
+    -   Write a failing test (`/test`).
+    -   Write the minimal code to pass the test (`/build`).
+    -   Refactor for clarity and efficiency (`/refactor`).
+4.  **Review**: The `reviewer` agent performs a comprehensive code review (`/review`).
+5.  **Test**: The `tester` agent performs integration and E2E testing.
+6.  **Document**: Update all relevant documentation.
+7.  **Deploy**: The `orchestrator` manages the deployment process (`/deploy`).
+8.  **Monitor**: The `orchestrator` sets up monitoring and alerting (`/monitor`).
 
-**Success = Discipline + Delegation + Deep Thinking**
+---
 
-Happy orchestrating! 🚀
+## 8. What Not To Do (Anti-Patterns)
+
+-   **Do Not** write code directly as the orchestrator agent. Always delegate.
+-   **Do Not** optimize prematurely. Write clean, working code first.
+-   **Do Not** ignore errors or write empty `catch` blocks.
+-   **Do Not** commit large, monolithic changes. Break work into small, atomic commits.
+-   **Do Not** hardcode secrets, keys, or configuration values. Use environment variables or a secret manager.
+-   **Do Not** leave commented-out code in the codebase. Remove it.
+-   **Do Not** invent new patterns when established project conventions exist.
+
+---
+
+## 9. Best Practices
+
+### General
+-   **SOLID**: Follow the five principles of object-oriented design.
+-   **DRY**: Don't Repeat Yourself. Abstract common logic.
+-   **KISS**: Keep It Simple, Stupid. Prefer simple solutions.
+-   **YAGNI**: You Ain't Gonna Need It. Don't build features that aren't required.
+
+### Python
+-   Follow PEP 8.
+-   Use type hints for all functions.
+-   Use `pathlib` for filesystem paths.
+-   Use `pytest` for testing and `ruff` for linting/formatting.
+
+### TypeScript
+-   Follow a consistent style guide (e.g., Google's or Airbnb's).
+-   Enable `strict` mode in `tsconfig.json`.
+-   Use `ESLint` and `Prettier` for code quality.
+-   Prefer `async/await` over raw Promises.
+
+### Version Control
+-   Use a consistent branching model (e.g., GitFlow).
+-   Write commit messages following the Conventional Commits specification.
+-   Perform code reviews for all changes via Pull Requests.
+
+---
+
+## 10. MCP Tool Usage
+
+The Multi-Context Proxy (MCP) is a suite of advanced tools that provide deep context and execution capabilities.
+
+### Core MCP Tools
+-   **`mcp__context7`**: Your primary tool for fetching up-to-date, authoritative documentation for any library, framework, or technology. **Always use this before using a new API.**
+-   **`mcp__repoprompt`**: Provides file-aware context for the entire repository. Use `get_codemap` for a low-token overview and `search` to find specific patterns or code snippets.
+-   **`mcp__zen`**: A suite of specialized AI workflows.
+    -   `analyze`, `codereview`, `secaudit`: For deep analysis.
+    -   `testgen`, `docgen`: For generating tests and documentation.
+    -   `thinkdeep`, `consensus`, `sequentialthinking`: For structured reasoning and planning.
+-   **`mcp__basic-memory`**: Your long-term memory. Use `write_note` to store important learnings, decisions, and patterns. Use `search_notes` to retrieve them.
+
+### Workflow
+1.  **Gather Context**: Use `repoprompt` and `context7` to understand the existing system and the APIs you need to use.
+2.  **Plan**: Use `zen/thinkdeep` or `sequentialthinking` to create a detailed implementation plan.
+3.  **Execute**: Delegate implementation to sub-agents.
+4.  **Verify**: Use `zen/codereview` and `zen/testgen` to validate the implementation.
+5.  **Document**: Store key decisions and patterns in `basic-memory`.
+
+---
+
+## 11. Git Worktrees
+
+Git worktrees are essential for parallel development, allowing you to have multiple branches checked out simultaneously in different directories, all linked to the same repository.
+
+### Why Use Worktrees?
+-   **Parallel Feature Development**: Work on `feature-A` and `feature-B` at the same time without stashing or committing incomplete work.
+-   **Hotfixes**: Quickly create a clean environment to fix a production bug without disrupting your current feature work.
+-   **Experimentation**: Try out a new idea in an isolated directory without affecting your main development branch.
+
+### Workflow
+1.  **Create a new worktree for a new task**:
+    ```bash
+    # Creates a new branch 'feature-new-login' and checks it out into a new directory '../project-new-login'
+    git worktree add -b feature-new-login ../project-new-login
+    ```
+
+2.  **Work in the new directory**:
+    ```bash
+    cd ../project-new-login
+    # Make changes, commit, etc.
+    ```
+
+3.  **List all worktrees**:
+    ```bash
+    git worktree list
+    ```
+
+4.  **Remove a worktree when done**:
+    ```bash
+    # First, delete the branch
+    git branch -d feature-new-login
+
+    # Then, remove the worktree directory and prune the worktree metadata
+    git worktree remove ../project-new-login
+    ```
+
+**Best Practice**: When delegating parallel tasks to sub-agents, each sub-agent should operate within its own dedicated worktree to ensure complete isolation.

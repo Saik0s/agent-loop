@@ -2,40 +2,40 @@
 description: "The plan command."
 ---
 
-Creates a detailed implementation plan for a new feature or task.
+Creates a detailed, file-aware implementation plan for a new feature or task.
 
 **Usage**: `/plan "<feature or task description>"`
 
+## Thinking Process
+Before generating a plan, you **MUST** use an `ultrathink` block to:
+1.  **Clarify Requirements**: Deconstruct the request. If vague, use `/spec` first.
+2.  **Analyze Codebase**: Use `repoprompt` to understand existing structure.
+    -   `mcp__repoprompt__get_file_tree` → skim project layout.
+    -   `mcp__repoprompt__search` & `mcp__repoprompt__get_codemap` → discover relevant files.
+3.  **Decompose into Components**: Break down the system into logical modules (API, DB, UI).
+4.  **Create Task Breakdown**: Create a specific, ordered list of implementation tasks with dependencies.
+5.  **Define Validation Strategy**: Outline how the solution will be tested (Unit, Integration, E2E).
+
 ## Process:
-1.  **Clarify Requirements**: Deconstruct the request and list the core functional and non-functional requirements. If the request is vague, consider using `/spec` first.
-2.  **Decompose into Components**: Break down the system into logical modules (e.g., API, database, UI). Define their responsibilities and interfaces.
-3.  **Create Task Breakdown**: Create a specific, ordered list of implementation tasks. For each task, provide a description and dependencies.
-4.  **Identify Risks and Mitigation**: List potential technical challenges or dependencies and propose mitigation strategies for each.
-5.  **Define Validation Strategy**: Outline how the final solution will be tested, specifying test types (Unit, Integration, E2E) and success criteria.
-6.  **Generate Plan Document**: Assemble all sections into a structured Markdown document that serves as a roadmap for development.
+1.  **Delegate to Planner Agent**: Spawn a `planner` agent.
+2.  **Provide Context**: Give the agent the feature description and the results of your codebase analysis.
+3.  **Instruct Agent**: Task the agent to produce a structured Markdown document containing:
+    -   High-level approach.
+    -   File-by-file breakdown of changes.
+    -   API/Data model changes.
+    -   A list of potential risks and mitigations.
+    -   A testing plan.
+4.  **Review and Refine**: Review the generated plan for completeness and accuracy. Iterate with the `planner` agent if necessary.
 
 ## Mandatory Tool Usage:
-
-### Context7 (REQUIRED FIRST):
-- **ALWAYS** use `mcp__context7__resolve-library-id` and `mcp__context7__get-library-docs` before planning
-- Fetch documentation for all technologies mentioned in the feature
-- This ensures the plan uses correct APIs and best practices
-
-### Planning Tools:
-- `mcp__zen__thinkdeep` - Comprehensive investigation for complex planning
-- `mcp__zen__consensus` - Get consensus on architectural decisions
-- `mcp__sequential__sequentialthinking` - Break down planning systematically
-- `mcp__zen__analyze` - Analyze existing code before planning changes
-
-### Research & Context:
-- `mcp__perplexity__perplexity_ask` - Research best practices and patterns
-- `mcp__exa__web_search_exa` - Find implementation examples
-- `mcp__basic-memory__search_notes` - Find similar plans and patterns
-- `mcp__basic-memory__write_note` - Document the plan for future reference
+-   **`mcp__repoprompt`**: Essential for creating file-aware plans.
+-   **`mcp__context7`**: For researching best practices for the technologies involved.
+-   **`mcp__zen/thinkdeep`**: For deep analysis of complex feature requirements.
 
 ## Examples:
--   `/plan "Implement OAuth 2.0 with Google and GitHub for our web app"`
+-   `/plan "Implement magic-link authentication using SendGrid"`
 
 ## Notes:
--   The output is a comprehensive Markdown document.
--   This is a crucial first step for any non-trivial feature to ensure alignment.
+-   This command is the crucial first step for any non-trivial feature.
+-   The output should be a comprehensive roadmap for the `builder` agent.
+```
