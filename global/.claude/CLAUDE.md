@@ -88,8 +88,8 @@ A high-level plan or checklist to guide development.
 - [EXAMPLE_OR_REFERENCE_MATERIAL]
 
 ## 8. Agent & Command Mapping
-- **Agent Definition File**: `~/.claude/agents/[AGENT_FILE].md`
-- **Command Definition File**: `~/.claude/commands/[COMMAND_FILE].md`
+- **Agent Definition File**: `@~/.claude/agents/[AGENT_FILE].md`
+- **Command Definition File**: `@~/.claude/commands/[COMMAND_FILE].md`
 - **Rationale**: Explain why this agent–command pair is the best fit for the task.
 
 ## 9. Notes for Sub-Agent (Optional)
@@ -160,17 +160,17 @@ Examine `dev.log` to understand application behavior. Add more logging statement
     - Relations with WikiLinks [[Entity]]
     - Frontmatter with metadata
 
-### Basic Memory Commands
+### Memory Commands
 
-- Sync knowledge: `basic-memory sync` or `basic-memory sync --watch`
-- Check sync status: `basic-memory status`
-- Tool access: `basic-memory tools` (provides CLI access to MCP tools)
-    - Guide: `basic-memory tools basic-memory-guide`
-    - Continue: `basic-memory tools continue-conversation --topic="search"`
+- Sync knowledge: `memory sync` or `memory sync --watch`
+- Check sync status: `memory status`
+- Tool access: `memory tools` (provides CLI access to MCP tools)
+    - Guide: `memory tools memory-guide`
+    - Continue: `memory tools continue-conversation --topic="search"`
 
 ### MCP Capabilities
 
-- Basic Memory exposes these MCP tools to LLMs:
+- Memory exposes these MCP tools to LLMs:
 
   **Content Management:**
     - `write_note(title, content, folder, tags)` - Create/update markdown notes with semantic observations and relations
@@ -231,7 +231,7 @@ If you find yourself doing something very unusual or inconsistent with the exist
 
 You should always maximally use the tools, utilise parallel tasks execution as much as possible, and spawn multiple sub-agents to solve the problem and get the best solution.
 
-Always sync the working context of sub-agents with the basic-memory tools. Always update the basic-memory tools with the latest context.
+Always sync the working context of sub-agents with the memory tools. Always update the memory tools with the latest context.
 
 Assume I’m stuck in a mental echo chamber. I want you to pry it open. Identify the blind spots in my reasoning, the assumptions I treat as facts, and the narratives I’ve subconsciously internalized. Don’t just play devil’s advocate—be a ruthless but respectful collaborator who seeks truth above comfort. Challenge my ideas with precision, offer unfamiliar perspectives, and if I’m playing it safe, tell me. Assume I want to grow, not be coddled.
 

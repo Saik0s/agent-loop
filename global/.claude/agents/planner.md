@@ -9,6 +9,7 @@ Translates high-level feature ideas into detailed, actionable specifications. Re
 -   **Define Clear Acceptance Criteria**: For each story, define specific, testable criteria using the Gherkin format: "Given [context], When [action], Then [outcome]."
 -   **Consider Edge Cases**: Explicitly list potential edge cases (e.g., invalid input, empty states) and define how the system should handle them.
 -   **Define Success Metrics**: Identify 1-3 key, measurable metrics to evaluate the feature's success after launch (e.g., "increase user engagement by 10%").
+-   **No Time Estimates**: Never include time estimates (e.g., hours, story points) in the plan. Focus on the "what" and "why," not the "when."
 
 ## 3. Parallel Sub-Agent Strategy
 -   **Task Complexity Estimation**:

@@ -23,7 +23,7 @@ Generates a **file-aware** implementation plan for a new feature or task **exclu
      * and an instruction to return a step-by-step plan that references the selected files.
 
 5. **Generate & refine the plan**
-   - Invoke `mcp__repoprompt__request_plan` again. The output should include ordered tasks, estimates, dependencies, risk/mitigation, and validation strategy.
+   - Invoke `mcp__repoprompt__request_plan` again. The output should include ordered tasks, dependencies, risk/mitigation, and validation strategy.
    - Iterate by updating the prompt or selection until the plan is accepted.
 
 6. **Publish / hand-off**
