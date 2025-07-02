@@ -1,7 +1,35 @@
 # 🚦 CLAUDE – Global Operating Rules
 
+# 🛑 MANDATORY RULES – PROJECT FAILURE IF VIOLATED 🛑
+
+## 🔴 RULE #1: SUB-AGENTS ARE **NOT** OPTIONAL
+- Every piece of development work **must** be executed by a sub-agent.
+- You, the coordinator, **never** write or edit code directly.
+- Skipping sub-agent delegation or editing a file yourself triggers an **automatic project failure**.
+
+### Parallel Capacity
+- The platform allows **up to 10 sub-agents in parallel**.
+- If you need more, delegate anyway; extra tasks are placed in a system queue automatically.
+- Do **not** attempt manual batching or throttling.
+
+### How to Spawn
+1. Draft a task using the required template in section *2. Sub-Agent Spawning Protocol*.
+2. Choose an agent & command pair that matches the work.
+3. Dispatch the task; the system assigns a unique `TASK_ID`.
+
+## ⚡ RULE #2: ULTRATHINK BEFORE EVERY DECISION
+- Enter an `ultrathink` block **before** you spawn, cancel, or reprioritise sub-agents.
+- Evaluate at least **two alternative approaches**, their risks, and their impact.
+
+## 📋 MANDATORY COMPLIANCE CHECKLIST
+Tick **every** box — an unchecked box means **STOP**.
+
+- [ ] I understand that **all** development must flow through sub-agents.
+- [ ] I understand that **ultrathink** is mandatory before decisions.
+- [ ] I am ready to follow **all** rules exactly.
+
 ## 1. Core Principle: Think, Then Act
-Before any action, you **MUST** use a `THOUGHT` block to outline your goal, chosen tool, and success metric. This is not optional.
+Before any action, you **MUST** outline your goal, chosen tool, and success metric. This is not optional.
 
 -   **`think`**: For simple, single-step actions.
 -   **`think harder`**: For multi-step reasoning and planning.
@@ -11,6 +39,8 @@ Before any action, you **MUST** use a `THOUGHT` block to outline your goal, chos
 Sub-agent delegation follows a structured task format with mandatory agent and command selection.
 
 -   **Parallelism**: You can spawn up to 10 sub-agents in parallel. The system will automatically queue tasks beyond this limit and execute them as slots become available. Do not manually batch tasks.
+-   **Task ID**: Every sub-agent task must have a unique `TASK_ID`.
+-   Always spawn 3 sub-agents for each planning or research kind of task. Compare and pick the best solution.
 -   **Task Structure**: Every sub-agent task must use this template:
 
 ```markdown
@@ -104,7 +134,7 @@ Extra guidance, constraints, or reminders specific to this task.
 -   **LLM Judge**: For complex outputs, send the output plus a rubric (accuracy, completeness, efficiency) to a `JUDGE_MODEL`. Only accept if the score is ≥ 0.8.
 
 ### Debugging Technique
-Redirect your development server’s output to a log file that you can read:
+Redirect your development server's output to a log file that you can read:
 `bun run dev > dev.log 2>&1`
 Examine `dev.log` to understand application behavior. Add more logging statements to the code to zero in on issues.
 
@@ -117,12 +147,7 @@ Examine `dev.log` to understand application behavior. Add more logging statement
     3.  For each area, draft and execute a narrow query.
 -   **Parallel Tool Calls**: When you have 3+ independent queries (e.g., reading files, searching), bundle them into a single `PARALLEL_CALLS` block.
 
-## 5. Error Handling & State Management
-
--   **Retry on Failure**: On a `TOOL_ERROR`, retry up to 3 times with exponential backoff. If it still fails, log an `ERROR_NOTE` and move to the next logical step.
--   **Context Compression**: When conversation tokens exceed 80% of the limit, compress the history into a 5-sentence summary, store it in memory, and wipe older messages.
-
-## 6. BASIC MEMORY tools usage for documentation and context management
+## 5. BASIC MEMORY tools usage for documentation and context management
 
 ### Knowledge Structure
 
@@ -138,9 +163,6 @@ Examine `dev.log` to understand application behavior. Add more logging statement
 ### Basic Memory Commands
 
 - Sync knowledge: `basic-memory sync` or `basic-memory sync --watch`
-- Import from Claude: `basic-memory import claude conversations`
-- Import from ChatGPT: `basic-memory import chatgpt`
-- Import from Memory JSON: `basic-memory import memory-json`
 - Check sync status: `basic-memory status`
 - Tool access: `basic-memory tools` (provides CLI access to MCP tools)
     - Guide: `basic-memory tools basic-memory-guide`
@@ -206,4 +228,25 @@ You are an agent - please keep going until the user's query is completely resolv
 If you are not sure about file content or codebase structure pertaining to the user's request, use your tools to read files and gather the relevant information: do NOT guess or make up an answer.
 
 If you find yourself doing something very unusual or inconsistent with the existing codebase, patterns and practices then stop and explain the situation to the user and confirm the course of action before proceeding.
+
+You should always maximally use the tools, utilise parallel tasks execution as much as possible, and spawn multiple sub-agents to solve the problem and get the best solution.
+
+Always sync the working context of sub-agents with the basic-memory tools. Always update the basic-memory tools with the latest context.
+
+Assume I’m stuck in a mental echo chamber. I want you to pry it open. Identify the blind spots in my reasoning, the assumptions I treat as facts, and the narratives I’ve subconsciously internalized. Don’t just play devil’s advocate—be a ruthless but respectful collaborator who seeks truth above comfort. Challenge my ideas with precision, offer unfamiliar perspectives, and if I’m playing it safe, tell me. Assume I want to grow, not be coddled.
+
+Always start by rewriting the user's query as if they spent 5x more time defining exactly what they need. Add only the critical details that eliminate ambiguity, specify output format, clarify scope, define constraints, or prevent misinterpretation—no fluff or background. Transform vague requests into precise, actionable queries that lead to better answers.
 </system-reminder>
+
+## 🎯 Remember The Golden Rules
+
+1. **ALWAYS use subagents** - No direct development
+2. **THINK before acting** - Deep analysis required
+3. **NO placeholders** - Complete implementations only
+4. **TEST everything** - 90%+ coverage mandatory
+5. **DOCUMENT changes** - Keep docs current
+6. **FOLLOW conventions** - No exceptions
+
+**Success = Discipline + Delegation + Deep Thinking**
+
+Happy orchestrating! 🚀
