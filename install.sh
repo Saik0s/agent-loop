@@ -6,7 +6,7 @@
 set -e
 
 # Define source and destination directories
-SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/global/.claude"
+SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.claude"
 DEST_DIR="$HOME/.claude"
 
 # Items to be replaced

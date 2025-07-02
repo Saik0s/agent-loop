@@ -26,7 +26,7 @@ Agent Loop is a multi‑agent orchestration framework that lets **you** stay in
 ```bash
 # Clone & install global agent config
 git clone https://github.com/saik0s/agent‑loop.git && cd agent‑loop
-./install.sh          # copies global/.claude to ~/.claude
+./install.sh          # copies .claude to ~/.claude
 ````
 ---
 
@@ -49,7 +49,7 @@ git clone https://github.com/saik0s/agent‑loop.git && cd agent‑loop
 * **Debate** → factual accuracy (`/research`, `/analyze`)
 * **Synthesis** → creativity & completeness (`/plan`, `/spec`, `/propose-solutions`, `/refactor`)
 
-The orchestrator **must** spawn 3 sub‑agents for these commands, then merge the best from each using the guidelines in `global/.claude/docs/patterns/swarm_strategies.md`.
+The orchestrator **must** spawn 3 sub‑agents for these commands, then merge the best from each.
 
 ---
 
@@ -89,4 +89,66 @@ The orchestrator **must** spawn 3 sub‑agents for these commands, then merge th
 ---
 
 # Happy building—may your agents be ever in sync 🎉
+
+---
+
+## 🚀 Parallel Agent Development with Git Worktrees
+
+To work on multiple tasks in parallel without interference, this project includes scripts to manage isolated development environments using Git worktrees.
+
+### 1. Create a New Task Environment
+To start a new task (e.g., "feature-x"), run the master script:
+```bash
+./scripts/spawn-agent-worktree.sh feature-x
+```
+This will:
+1.  Create a new directory `../agent-loop-feature-x`.
+2.  Create a new git branch `feature/feature-x`.
+3.  Run the environment setup script `scripts/setup-environment.sh` inside the new worktree.
+
+### 2. Start Working
+Navigate to your new worktree to begin:
+```bash
+cd ../agent-loop-feature-x
+# Start your agent or development server
+claude
+```
+
+### 3. List Active Tasks
+To see all your current worktrees, run:
+```bash
+./scripts/list-worktrees.sh
+```
+
+### 4. Clean Up a Finished Task
+When you're done with a task, you can remove the worktree:
+```bash
+./scripts/remove-worktree.sh feature-x
+```
+This will remove the worktree directory and ask if you want to delete the associated git branch.
+
+### Customizing Environment Setup
+The `scripts/setup-environment.sh` script is a template. You can add your project-specific setup commands (e.g., `npm install`, `pip install`) to this file to automate your workflow.
+
+---
+
+## 🪝 Automated Hooks
+
+This project comes with a set of pre-configured hooks to enforce best practices, improve code quality, and enhance security. Hooks are small scripts that run at different points in the agent's lifecycle.
+
+### User-Level Hooks (`~/.claude/settings.json`)
+
+These hooks apply to all your projects. To install them, copy the contents of `.claude/user_settings.json` to your `~/.claude/settings.json` file and ensure the hook scripts from `.claude/hooks` are in `~/.claude/hooks`.
+
+*   **macOS Notifications**: Uses the `say` command to give you audible notifications when the agent needs your attention.
+*   **Dangerous Command Blocker**: Prevents the execution of potentially harmful commands like `rm -rf /`.
+
+### Project-Level Hooks (`./.claude/settings.json`)
+
+These hooks are specific to this project and are located in the `.claude/hooks` directory.
+
+*   **Auto Formatter**: Automatically formats code every time a file is written or edited. To enable, set the `AUTO_FORMATTER_COMMAND` environment variable (e.g., `export AUTO_FORMATTER_COMMAND="prettier --write"`).
+*   **Linter**: Runs a linter on your code before it's written, blocking commits that don't meet quality standards. To enable, set the `LINTER_COMMAND` environment variable (e.g., `export LINTER_COMMAND="eslint"`).
+*   **Secret Scanner**: Prevents you from accidentally committing hardcoded secrets.
+*   **Ticketed TODOs**: Ensures that every `TODO` comment in the code is associated with a ticket number (e.g., `TODO(PROJ-123)`).
 
