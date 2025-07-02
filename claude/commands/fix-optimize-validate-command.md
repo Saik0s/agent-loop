@@ -13,9 +13,21 @@ Analyzes and improves an existing Claude command file for clarity, correctness, 
 4.  **Apply Refinements**: Rewrite the command file with the approved improvements.
 5.  **Validate Final Command**: Ensure the final command is well-structured, easy to understand, and follows all best practices.
 
-## Zen Tools Review:
-- Use Zen Tools at every stage to double review your approach to ensure that you didn't miss anything.
-- Always use zen tools before writing your implementation.
+## Mandatory Tool Usage:
+
+### Analysis Tools:
+- `mcp__zen__analyze` - Analyze command structure and clarity
+- `mcp__zen__consensus` - Get consensus on command improvements
+- `mcp__sequential__sequentialthinking` - Think through command flow systematically
+
+### Knowledge Management:
+- `mcp__basic-memory__search_notes` - Search for command best practices
+- `mcp__basic-memory__read_note` - Read existing command patterns
+- `mcp__basic-memory__write_note` - Document command patterns
+
+### Validation:
+- `mcp__zen__challenge` - Critically evaluate the optimized command
+- `mcp__zen__chat` - Discuss command improvements
 
 ## Examples:
 -   `/fix-optimize-validate-command ~/.claude/commands/my-command.md`

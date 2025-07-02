@@ -6,6 +6,13 @@ Analyzes staged changes and generates a commit message that follows the Conventi
 
 **Usage**: `/commit`
 
+## Mandatory Tool Usage:
+
+### Analysis Tools:
+- `mcp__zen__precommit` - Comprehensive pre-commit validation
+- `mcp__basic-memory__recent_activity` - Check recent commits for style consistency
+- `mcp__basic-memory__search_notes` - Search for commit message conventions
+
 ## Thinking Process:
 Before generating a commit message, you **MUST** use a `think` block to:
 1.  **Analyze Staged Changes**: Use `git diff --staged` to understand the scope and intent of the changes.
@@ -24,6 +31,10 @@ After generating the message, but before presenting it to the user, use a `think
 -   "Does the message accurately reflect the changes?"
 -   "Does it follow the Conventional Commits specification correctly?"
 -   "Is the subject line clear, concise, and in the imperative mood?"
+
+## Validation Tools:
+- `mcp__zen__challenge` - Critically evaluate the commit message
+- `mcp__sequential__sequentialthinking` - Think through complex changes systematically
 
 ## Examples:
 -   `/commit` (after staging files with `git add`)

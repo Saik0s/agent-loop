@@ -17,9 +17,23 @@ Creates a detailed feature specification document.
 5.  **Define Success Metrics**: Identify 1-3 key metrics to measure the feature's success (e.g., adoption rate, performance targets).
 6.  **Generate Specification Document**: Compile all sections into a formal Markdown document.
 
-## Zen Tools Review:
-- Use Zen Tools at every stage to double review your approach to ensure that you didn't miss anything.
-- Always use zen tools before writing your implementation.
+## Mandatory Tool Usage:
+
+### Context7 (REQUIRED for technical specs):
+- **ALWAYS** use `mcp__context7__resolve-library-id` and `mcp__context7__get-library-docs` for any mentioned technologies
+- Ensure technical requirements align with framework capabilities
+
+### Specification Tools:
+- `mcp__zen__thinkdeep` - Deep analysis of requirements
+- `mcp__zen__consensus` - Get consensus on specifications
+- `mcp__sequential__sequentialthinking` - Think through spec systematically
+- `mcp__zen__analyze` - Analyze existing system before specifying changes
+
+### Research & Validation:
+- `mcp__perplexity__perplexity_ask` - Research industry standards
+- `mcp__basic-memory__search_notes` - Find similar specifications
+- `mcp__basic-memory__write_note` - Document spec for future reference
+- `mcp__zen__challenge` - Challenge assumptions in the spec
 
 ## Examples:
 -   `/spec "A user profile page where users can edit their display name and avatar"`

@@ -18,9 +18,27 @@ Conducts comprehensive research on a given topic and provides a structured repor
 5.  **Generate Final Report**: Assemble answers into a structured report with a summary, detailed findings, and a list of sources.
 6.  **Identify Gaps**: Conclude by listing open questions and recommending next steps.
 
-## Zen Tools Review:
-- Use Zen Tools at every stage to double review your approach to ensure that you didn't miss anything.
-- Always use zen tools before writing your implementation.
+## Mandatory Tool Usage:
+
+### Primary Research Tools:
+- `mcp__perplexity__perplexity_ask` - Advanced web search with citations
+- `mcp__exa__web_search_exa` - Real-time web search
+- `mcp__exa__crawling` - Extract content from specific URLs
+- `mcp__exa__github_search` - Search GitHub for code examples
+
+### Documentation & Technical Research:
+- `mcp__context7__resolve-library-id` - Find technical documentation
+- `mcp__context7__get-library-docs` - Get detailed library docs
+
+### Analysis & Synthesis:
+- `mcp__zen__thinkdeep` - Deep analysis of research findings
+- `mcp__zen__consensus` - Get consensus on conclusions
+- `mcp__sequential__sequentialthinking` - Systematic research approach
+
+### Knowledge Management:
+- `mcp__basic-memory__search_notes` - Find previous research
+- `mcp__basic-memory__write_note` - Document research findings
+- `mcp__basic-memory__canvas` - Create visual research maps
 
 ## Examples:
 -   `/research "Best practices for API security in 2024"`

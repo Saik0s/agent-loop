@@ -13,9 +13,21 @@ Delegates a given command to the most appropriate specialist agent for managed e
 4.  **Delegate with Precision**: Spawn a sub-agent with the chosen specialist role. Instruct it to execute the original command, providing all necessary context, objectives, and success criteria.
 5.  **Monitor and Verify**: Oversee the sub-agent's execution and verify that its output meets the original request's goals.
 
-## Zen Tools Review:
-- Use Zen Tools at every stage to double review your approach to ensure that you didn't miss anything.
-- Always use zen tools before writing your implementation.
+## Mandatory Tool Usage:
+
+### Orchestration Tools:
+- `mcp__zen__thinkdeep` - Deep analysis for complex orchestration
+- `mcp__zen__consensus` - Get consensus on delegation strategy
+- `mcp__sequential__sequentialthinking` - Plan orchestration steps
+
+### Context Management:
+- `mcp__basic-memory__write_note` - Document orchestration decisions
+- `mcp__basic-memory__build_context` - Build context for sub-agents
+- `mcp__basic-memory__search_notes` - Find similar orchestration patterns
+
+### Monitoring & Validation:
+- `mcp__zen__precommit` - Validate sub-agent outputs
+- `mcp__zen__challenge` - Critically evaluate results
 
 ## Examples:
 -   `/orchestrate /build "new login page"`

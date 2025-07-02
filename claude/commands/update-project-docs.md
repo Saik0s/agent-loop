@@ -13,9 +13,26 @@ Analyzes the codebase to update all project documentation, ensuring it accuratel
 4.  **Validate Commands and Snippets**: Ensure all shell commands, code examples, and file paths in the updated documentation are correct.
 5.  **Summarize Changes**: Output a summary of all proposed modifications for user review before applying them.
 
-## Zen Tools Review:
-- Use Zen Tools at every stage to double review your approach to ensure that you didn't miss anything.
-- Always use zen tools before writing your implementation.
+## Mandatory Tool Usage:
+
+### Analysis Tools:
+- `mcp__zen__analyze` - Analyze codebase structure
+- `mcp__zen__docgen` - Generate missing documentation
+- `mcp__sequential__sequentialthinking` - Systematically review docs
+
+### Context7 (for technical accuracy):
+- `mcp__context7__resolve-library-id` - Verify library documentation
+- `mcp__context7__get-library-docs` - Get accurate API references
+
+### Research & Validation:
+- `mcp__perplexity__perplexity_ask` - Research documentation standards
+- `mcp__exa__web_search_exa` - Find best practices
+- `mcp__basic-memory__search_notes` - Find documentation patterns
+- `mcp__basic-memory__write_note` - Document updates made
+
+### Quality Assurance:
+- `mcp__zen__consensus` - Get consensus on documentation changes
+- `mcp__zen__challenge` - Challenge documentation completeness
 
 ## Examples:
 -   `/update-project-docs`

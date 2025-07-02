@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# This script installs the global claude configuration.
+# This script installs the global cloud configuration.
 
 # Exit on error
 set -e
 
 # Define source and destination directories
-SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.claude"
+SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/claude"
 DEST_DIR="$HOME/.claude"
 
-# Items to be replaced
-ITEMS=("commands" "docs" "agents" "scripts" "CLAUDE.md")
+# Items to be copied
+ITEMS=("commands" "docs" "agents" "scripts")
 
 # Check if destination directory exists and prompt for backup
 if [ -d "$DEST_DIR" ]; then
@@ -28,7 +28,7 @@ fi
 # Create destination directory if it doesn't exist
 mkdir -p "$DEST_DIR"
 
-# Copy files
+# Copy directories
 for item in "${ITEMS[@]}"; do
     SOURCE_ITEM="$SOURCE_DIR/$item"
     DEST_ITEM="$DEST_DIR/$item"
@@ -42,5 +42,14 @@ for item in "${ITEMS[@]}"; do
     fi
 done
 
+# Copy global settings
+SOURCE_SETTINGS="$SOURCE_DIR/global_settings.json"
+DEST_SETTINGS="$DEST_DIR/settings.json"
+if [ -f "$SOURCE_SETTINGS" ]; then
+    echo "Installing global settings to $DEST_SETTINGS..."
+    cp "$SOURCE_SETTINGS" "$DEST_SETTINGS"
+else
+    echo "Warning: Global settings file not found at $SOURCE_SETTINGS. Skipping."
+fi
+
 echo "Installation complete."
-echo "To make the script executable, run: chmod +x install.sh"

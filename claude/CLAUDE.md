@@ -33,6 +33,14 @@ Before any action, you **MUST** outline your goal, chosen tool, and success metr
 -   **`think harder`**: For multi-step reasoning and planning.
 -   **`ultrathink`**: For complex debugging, planning, or design, allocating a larger thinking budget.
 
+## 1.5. Search Before Implementation Rule
+**NEVER start coding without examples.** Before any implementation, refactoring, or code modification:
+1. **Search the codebase** for similar implementations and patterns
+2. **Use Context7** to find up-to-date API documentation and best practices
+3. **Find concrete examples** in the project or documentation
+4. **Identify conventions** used in the current codebase
+5. Only proceed after gathering sufficient context and examples
+
 ## 2. Sub-Agent Spawning Protocol
 To spawn a sub-agent, you must follow the protocol defined in `@~/.claude/docs/sub_agent_spawning_protocol.md`.
 

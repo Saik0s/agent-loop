@@ -11,9 +11,23 @@ Intelligently enhances user input by generating a structured task map, refining 
 2.  **Select Strategy**: Based on the intent, choose the appropriate enhancement strategy.
 3.  **Generate Enhanced Output**: Provide only the final, improved output.
 
-## Zen Tools Review:
-- Use Zen Tools at every stage to double review your approach to ensure that you didn't miss anything.
-- Always use zen tools before writing your implementation.
+## Mandatory Tool Usage:
+
+### Context7 (REQUIRED for code enhancement):
+- **ALWAYS** use `mcp__context7__resolve-library-id` and `mcp__context7__get-library-docs` when enhancing code
+- Fetch documentation to ensure enhanced code follows best practices
+
+### Enhancement Tools:
+- `mcp__zen__thinkdeep` - Deep analysis for complex enhancements
+- `mcp__zen__refactor` - For code improvement and optimization
+- `mcp__zen__analyze` - Analyze code before enhancement
+- `mcp__sequential__sequentialthinking` - Break down complex enhancements
+
+### Research & Context:
+- `mcp__perplexity__perplexity_ask` - Research best practices
+- `mcp__exa__web_search_exa` - Find relevant examples and patterns
+- `mcp__basic-memory__search_notes` - Find similar enhancements
+- `mcp__basic-memory__write_note` - Document enhancement patterns
 
 ## Enhancement Strategies
 
@@ -28,6 +42,13 @@ Intelligently enhances user input by generating a structured task map, refining 
 ### 3. For Code Snippets: Improve the Code
 -   **Input**: A poorly written function.
 -   **Output**: A refactored, well-documented, and efficient version of the function.
+
+## Critical Rule for Code Enhancement:
+**NEVER enhance code without examples.** When enhancing code:
+1. Search for similar well-written code in the project
+2. Use Context7 to find best practices for the specific patterns
+3. Look for style guides or conventions in the codebase
+4. Only proceed after gathering concrete examples of good code
 
 ## Examples:
 -   `/enhance "I want to build a real-time chat application"`
