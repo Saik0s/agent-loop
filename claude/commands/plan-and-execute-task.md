@@ -1,56 +1,50 @@
-# Implement Task
+---
+description: "Approach task implementation methodically with careful planning, execution, and best practices."
+allowed-tools: []
+---
 
-Approach task implementation methodically with careful planning and execution.
+## Context
 
-## Process:
+- The user wants to implement a task or feature.
+- A methodical approach is needed to ensure quality and maintainability.
 
-### 1. Think Through Strategy
-- Understand the complete requirement
-- Identify key components needed
-- Consider dependencies and constraints
-- Plan the implementation approach
+## Your task
 
-### 2. Evaluate Approaches
-- List possible implementation strategies
-- Compare pros and cons of each
-- Consider:
-  - Performance implications
-  - Maintainability
-  - Scalability
-  - Code reusability
-  - Testing complexity
+Based on the user''s request, you will systematically plan and execute the implementation of a task.
 
-### 3. Consider Tradeoffs
-- Short-term vs long-term benefits
-- Complexity vs simplicity
-- Performance vs readability
-- Flexibility vs focused solution
-- Time to implement vs perfect solution
+## Process
 
-### 4. Implementation Steps
-1. Break down into subtasks
-2. Start with core functionality
-3. Implement incrementally
-4. Test each component
-5. Integrate components
-6. Add error handling
-7. Optimize if needed
-8. Document decisions
+1.  **Think Through Strategy**:
+    -   Understand the complete requirement.
+    -   Identify key components, dependencies, and constraints.
+    -   Plan the overall implementation approach.
+2.  **Evaluate Approaches**:
+    -   List possible implementation strategies.
+    -   Compare the pros and cons of each, considering performance, maintainability, scalability, and reusability.
+3.  **Consider Tradeoffs**:
+    -   Analyze tradeoffs between short-term vs. long-term benefits, complexity vs. simplicity, and performance vs. readability.
+4.  **Define Implementation Steps**:
+    -   Break the task down into smaller subtasks.
+    -   Implement incrementally, starting with core functionality.
+    -   Test each component as it''s built.
+    -   Integrate components and add error handling.
+    -   Optimize if necessary and document decisions.
 
-### 5. Best Practices
-- Write tests first (TDD approach)
-- Keep functions small and focused
-- Use meaningful names
-- Comment complex logic
-- Handle edge cases
-- Consider future maintenance
+## Examples
 
-## Checklist:
-- [ ] Requirements fully understood
-- [ ] Approach documented
-- [ ] Tests written
-- [ ] Code implemented
-- [ ] Edge cases handled
-- [ ] Documentation updated
-- [ ] Code reviewed
-- [ ] Performance acceptable
+-   `/implement-task "Create a service to process user uploads and store them in S3"`
+
+## Notes
+
+-   **Best Practices**:
+    -   Consider writing tests first (TDD).
+    -   Keep functions small and focused.
+    -   Use meaningful names and comment on complex logic.
+    -   Handle edge cases and consider future maintenance.
+-   **Checklist**:
+    -   [ ] Requirements fully understood?
+    -   [ ] Approach documented?
+    -   [ ] Tests written?
+    -   [ ] Code implemented and edge cases handled?
+    -   [ ] Documentation updated?
+    -   [ ] Performance acceptable?

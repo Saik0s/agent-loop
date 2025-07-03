@@ -1,18 +1,36 @@
-# Commit
+---
+description: "Create well-formatted commits with conventional commit messages and emojis, with pre-commit checks."
+allowed-tools: ["Bash(git add:*)", "Bash(git status:*)", "Bash(git commit:*)", "Bash(git diff HEAD:*)"]
+---
 
-Create well-formatted commits with conventional commit messages and emojis.
+## Context
 
-## Features:
-- Runs pre-commit checks by default (lint, build, generate docs)
-- Automatically stages files if none are staged
-- Uses conventional commit format with descriptive emojis
-- Suggests splitting commits for different concerns
+- The user wants to commit changes with pre-commit checks.
+- No files are staged, or the user wants to confirm the staged files.
 
-## Usage:
-- `/commit` - Standard commit with pre-commit checks
-- `/commit --no-verify` - Skip pre-commit checks
+## Your task
 
-## Commit Types:
+Create a well-formatted commit with a conventional commit message and emoji, running pre-commit checks by default.
+
+## Process
+
+1.  Check for staged changes (`git status`).
+2.  If no staged changes, review and stage appropriate files.
+3.  Run pre-commit checks (lint, build, generate docs), unless `--no-verify` is used.
+4.  Analyze changes to determine the commit type.
+5.  Generate a descriptive commit message.
+6.  Include scope if applicable: `type(scope): description`.
+7.  Add a body for complex changes explaining the "why".
+8.  Execute the commit.
+
+## Examples
+
+-   `/commit` - Standard commit with pre-commit checks.
+-   `/commit --no-verify` - Skip pre-commit checks.
+
+## Notes
+
+### Commit Types:
 - ✨ feat: New features
 - 🐛 fix: Bug fixes
 - 📝 docs: Documentation changes
@@ -26,19 +44,9 @@ Create well-formatted commits with conventional commit messages and emojis.
 - 🚑 hotfix: Critical fixes
 - 🔒 security: Security improvements
 
-## Process:
-1. Check for staged changes (`git status`)
-2. If no staged changes, review and stage appropriate files
-3. Run pre-commit checks (unless --no-verify)
-4. Analyze changes to determine commit type
-5. Generate descriptive commit message
-6. Include scope if applicable: `type(scope): description`
-7. Add body for complex changes explaining why
-8. Execute commit
-
-## Best Practices:
-- Keep commits atomic and focused
-- Write in imperative mood ("Add feature" not "Added feature")
-- Explain why, not just what
-- Reference issues/PRs when relevant
-- Split unrelated changes into separate commits
+### Best Practices:
+- Keep commits atomic and focused.
+- Write in the imperative mood ("Add feature" not "Added feature").
+- Explain the why, not just the what.
+- Reference issues/PRs when relevant.
+- Split unrelated changes into separate commits.

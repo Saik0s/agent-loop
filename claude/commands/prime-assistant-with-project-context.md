@@ -1,49 +1,38 @@
-# Context Prime
+---
+description: "Prime the assistant with comprehensive project understanding by analyzing key files and configurations."
+allowed-tools: ["Bash(git ls-files:*)"]
+---
 
-Prime Claude with comprehensive project understanding.
+## Context
 
-## Standard Context Loading:
-1. Read README.md for project overview
-2. Read CLAUDE.md for AI-specific instructions
-3. List project files excluding ignored paths
-4. Review key configuration files
-5. Understand project structure and conventions
+- The assistant is starting a new session or needs to gain a deep understanding of the current project.
 
-## Steps:
-1. **Project Overview**:
-   - Read README.md
-   - Identify project type and purpose
-   - Note key technologies and dependencies
+## Your task
 
-2. **AI Guidelines**:
-   - Read CLAUDE.md if present
-   - Load project-specific AI instructions
-   - Note coding standards and preferences
+Load and synthesize project context to establish a clear understanding of the project''s goals, architecture, and development workflow.
 
-3. **Repository Structure**:
-   - Run: `git ls-files | head -50` for initial structure
-   - Identify main directories and their purposes
-   - Note naming conventions
+## Process
 
-4. **Configuration Review**:
-   - Package manager files (package.json, Cargo.toml, etc.)
-   - Build configuration
-   - Environment setup
+1.  **Project Overview**:
+    -   Read `README.md` to identify the project''s purpose and key technologies.
+2.  **AI Guidelines**:
+    -   Read `CLAUDE.md` (if present) for project-specific AI instructions, coding standards, and preferences.
+3.  **Repository Structure**:
+    -   Run `git ls-files | head -50` to get an initial overview of the repository structure.
+    -   Identify main directories and their purposes.
+4.  **Configuration Review**:
+    -   Examine package manager files (`package.json`, `Cargo.toml`, etc.) and build configurations.
+5.  **Development Context**:
+    -   Identify the test framework, CI/CD configuration, and contribution guidelines.
+6.  **Synthesize Understanding**:
+    -   Form a mental model of the project''s goals, technical architecture, and development workflow.
 
-5. **Development Context**:
-   - Identify test framework
-   - Note CI/CD configuration
-   - Review contribution guidelines
+## Examples
 
-## Advanced Options:
-- Load specific subsystem context
-- Focus on particular technology stack
-- Include recent commit history
-- Load custom command definitions
+-   `/prime-context`
+-   `/prime-context --focus "frontend"`
 
-## Output:
-Establish clear understanding of:
-- Project goals and constraints
-- Technical architecture
-- Development workflow
-- Collaboration parameters
+## Notes
+
+-   **Advanced Options**: You can focus on a specific subsystem, technology stack, or include recent commit history for more targeted context.
+-   **Output**: The goal is to establish a clear understanding of project goals, constraints, architecture, and workflow to better assist the user.

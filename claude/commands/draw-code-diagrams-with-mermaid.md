@@ -1,29 +1,45 @@
-# Mermaid Diagram Generation
+---
+description: "Generate Mermaid diagrams for visualizing code structure and relationships."
+allowed-tools: ["Bash(npx -p @mermaid-js/mermaid-cli mmdc:*)"]
+---
 
-Generate Mermaid diagrams for visualizing code structure and relationships.
+## Context
 
-## Common Diagram Types:
+- The user wants to visualize code structure, data models, or process flows.
+- The user has provided source files (SQL, code, docs) or a description of the system.
 
-### 1. Entity Relationship Diagrams
-For database schemas and data models:
-```
+## Your task
+
+Generate a Mermaid diagram to visualize the provided information.
+
+## Process
+
+1.  Analyze source files (SQL, code, docs) or the user''s description.
+2.  Extract entities, relationships, and flows.
+3.  Generate the appropriate diagram type (e.g., Entity Relationship, Flow Chart, Sequence, Class).
+4.  Include relevant properties and methods in the diagram.
+5.  Validate the Mermaid syntax.
+6.  Save the diagram to a specified location or display it to the user.
+
+## Examples
+
+### Entity Relationship Diagram
+```mermaid
 erDiagram
     CUSTOMER ||--o{ ORDER : places
     ORDER ||--|{ LINE-ITEM : contains
 ```
 
-### 2. Flow Charts
-For process and logic flow:
-```
+### Flow Chart
+```mermaid
 flowchart TD
     A[Start] --> B{Decision}
     B -->|Yes| C[Process]
     B -->|No| D[End]
 ```
 
-### 3. Sequence Diagrams
-For interaction flows:
-```
+### Sequence Diagram
+```mermaid
 sequenceDiagram
     Client->>Server: Request
     Server->>Database: Query
@@ -31,9 +47,8 @@ sequenceDiagram
     Server-->>Client: Response
 ```
 
-### 4. Class Diagrams
-For object-oriented design:
-```
+### Class Diagram
+```mermaid
 classDiagram
     class Animal {
         +name: string
@@ -42,22 +57,11 @@ classDiagram
     }
 ```
 
-## Process:
-1. Analyze source files (SQL, code, docs)
-2. Extract entities and relationships
-3. Generate appropriate diagram type
-4. Include relevant properties/methods
-5. Validate syntax with mermaid compiler
-6. Save to specified location
+## Notes
 
-## Validation:
-Run `npx -p @mermaid-js/mermaid-cli mmdc -i <input>.md -o test.md`
-
-## Best Practices:
-- Keep diagrams focused and readable
-- Use consistent naming conventions
-- Group related entities
-- Add labels to relationships
-- Include cardinality where relevant
-- Use subgraphs for organization
-- Add styling for clarity
+-   **Validation**: Run `npx -p @mermaid-js/mermaid-cli mmdc -i <input>.md -o test.md` to validate.
+-   Keep diagrams focused and readable.
+-   Use consistent naming conventions.
+-   Group related entities.
+-   Add labels to relationships and include cardinality where relevant.
+-   Use subgraphs for organization and styling for clarity.

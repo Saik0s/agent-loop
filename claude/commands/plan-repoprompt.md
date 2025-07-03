@@ -13,7 +13,7 @@ Based on the user's high-level description, you will generate a file-aware imple
 
 ## Process
 
-1.  **Expand the task**: Run `mcp__repoprompt__request_plan` with the raw idea to explode it into bullet-level requirements and clarifying questions.
+1.  **Understand the complete requirement**: Break down the user's request to identify what needs to be built, clarify any ambiguous parts, and determine the scope of work.
 2.  **Locate relevant code**:
     -   `mcp__repoprompt__get_file_tree` → skim the project layout.
     -   Use targeted `mcp__repoprompt__search` queries (path or content) and `mcp__repoprompt__get_codemap` to discover files/modules that will be touched.
