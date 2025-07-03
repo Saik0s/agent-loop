@@ -1,142 +1,66 @@
-## VibeTunnel Terminal Title Management
+Always keep collaborators informed and protect the repository.
+Follow the rules below **exactly**.
 
-When working in VibeTunnel sessions, actively use the `vt title` command to communicate your current actions and progress:
+### 1. VibeTunnel Session Guidelines
+Use `vt title "<what you’re doing – context>"` whenever your visible focus changes.
 
-### Usage
+When to update
+1. Start a new task / sub-task
+2. Switch files, modules, or activities (code → test, etc.)
+3. Begin a long-running action (build, install, CI)
+4. Any moment a teammate might ask “what’s happening?”
+
+Good examples
 ```bash
-vt title "Current action - project context"
-```
-
-### Guidelines
-- **Update frequently**: Set the title whenever you start a new task, change focus, or make significant progress
-- **Be descriptive**: Use the title to explain what you're currently doing (e.g., "Analyzing test failures", "Refactoring auth module", "Writing documentation")
-- **Include context**: Add PR numbers, file names, or feature names when relevant
-- **Think of it as a status indicator**: The title helps users understand what you're working on at a glance
-- If `vt` command fails (only works inside VibeTunnel), simply ignore the error and continue
-
-### Examples
-```bash
-# When starting a task
-vt title "Setting up Git app integration"
-
-# When debugging
-vt title "Debugging CI failures - playwright tests"
-
-# When working on a PR
-vt title "Implementing unique session names - github.com/amantus-ai/vibetunnel/pull/456"
-
-# When analyzing code
+vt title "Debugging CI – playwright tests"
+vt title "Refactoring auth module (PR #456)"
 vt title "Analyzing session-manager.ts for race conditions"
-
-# When writing tests
-vt title "Adding tests for GitAppLauncher"
 ```
+`vt` only works inside VibeTunnel; ignore its errors elsewhere.
 
-### When to Update
-- At the start of each new task or subtask
-- When switching between different files or modules
-- When changing from coding to testing/debugging
-- When waiting for long-running operations (builds, tests)
-- Whenever the user might wonder "what is Claude doing right now?"
+### 2. Absolute Cardinal Rules
+**Violation = immediate failure**
 
-This helps users track your progress across multiple VibeTunnel sessions and understand your current focus.
+| # | Rule | Rationale |
+|---|---|---|
+| 1 | **Never create a branch without explicit user command** | Unapproved branches cause cleanup pain |
+| 2 | **Never commit/push before user tests** | Prevents broken code in remote |
+| 3 | **Never use `git rebase --skip`** | Risk of data loss |
+| 4 | **Do not create duplicate “_v2” files** | Keeps repo clean |
 
-## Critical Development Rules
+### 3. Git Workflow Cheatsheet
+1. `main → feature-branch → PR → merge → back to main`
+2. Always confirm current branch with `git branch`.
+3. To commit & push on approval use ONE command:
+   ```bash
+   git add -A && git commit -m "<msg>" && git push
+   ```
 
-### ABSOLUTE CARDINAL RULES - VIOLATION MEANS IMMEDIATE FAILURE
+### 4. Development Workflow
+1. Edit existing source files (no duplicates).
+2. Run format, lint, and type-check (in parallel if possible).
+3. Auto-fix issues where supported.
+4. **Never** run tests or build scripts unless asked.
 
-1. **NEVER, EVER, UNDER ANY CIRCUMSTANCES CREATE A NEW BRANCH WITHOUT EXPLICIT USER PERMISSION**
-   - If you are on a branch (not main), you MUST stay on that branch
-   - The user will tell you when to create a new branch with commands like "create a new branch" or "switch to a new branch"
-   - Creating branches without permission causes massive frustration and cleanup work
-   - Even if changes seem unrelated to the current branch, STAY ON THE CURRENT BRANCH
+### 5. Code References
+Use clickable format **exactly**:
+`relative/path/to/file.ext:123` or `path/file.ts:10-25`
 
-2. **NEVER commit and/or push before the user has tested your changes!**
-   - Always wait for user confirmation before committing
-   - The user needs to verify changes work correctly first
+### 6. spec.md Maintenance
+If spec.md looks stale, ask: “Regenerate spec.md?”
+If YES, then:
+1. Create TODO checklist.
+2. Parallel-analyze server, client, APIs, data formats, etc.
+3. Capture file locations + key lines, component roles, configs.
+4. Write concise navigation-oriented spec.md (token-efficient).
+5. Include “Key Files Quick Reference”.
 
-3. **ABSOLUTELY FORBIDDEN: NEVER USE `git rebase --skip` EVER**
-   - This command can cause data loss and repository corruption
-   - If you encounter rebase conflicts, ask the user for help
+### 7. Tooling Constraints
+• Read `spec.md` fully before any code work.
+• Use ripgrep, never grep.
+• Do **not** execute build commands; watcher already handles builds.
 
-4. **NEVER create duplicate files with version numbers or suffixes**
-   - When refactoring or improving code, directly modify the existing files
-   - DO NOT create new versions with different file names (e.g., file_v2.ts, file_new.ts)
-   - Users hate having to manually clean up duplicate files
+### 8. De-Lint & Refactor Philosophy
+Remove deprecated code immediately; prefer clean cuts over slow migrations.
 
-### Git Workflow Reminders
-- Our workflow: start from main → create branch → make PR → merge → return to main
-- PRs sometimes contain multiple different features and that's okay
-- Always check current branch with `git branch` before making changes
-- If unsure about branching, ASK THE USER FIRST
-
-## Updating spec.md
-As code changes, the spec.md might get outdated. If you detect outdated information, ask the user if they want to regenerate the spec.md file.
-
-### How to regenerate spec.md:
-1. Create a todo list to track the analysis tasks
-2. Use multiple parallel Task tool calls to analyze:
-   - Server architecture (backend components, authentication, session management)
-   - Client architecture (frontend components, services)
-   - Core application functionality
-   - API endpoints and protocols
-   - Data formats and communication protocols
-   - Distributed architecture patterns
-   - Activity tracking
-   - Anything else not covered above
-3. Focus on capturing:
-   - File locations with key line numbers for important functions
-   - Component responsibilities and data flow
-   - Protocol specifications and message formats
-   - Configuration options and CLI arguments
-4. Write a concise spec.md that serves as a navigation map, keeping descriptions brief to minimize token usage
-5. Include a "Key Files Quick Reference" section for fast lookup
-
-## Build Process
-- **Never run build commands** - the user has development processes running which handle automatic rebuilds
-- Changes to source files are automatically compiled and watched
-- Do not run build or compilation commands unless explicitly requested
-
-## Development Workflow
-- Make changes to source files
-- **ALWAYS run code quality checks before committing:**
-    - Run all checks (format, lint, typecheck) in parallel when available
-    - Use the project's preferred checking commands
-    - Run everything concurrently for maximum speed when possible
-- **If there are issues to fix:**
-    - Auto-fix formatting and linting issues when tools support it
-- **Individual commands as needed:**
-    - Format checking and fixing
-    - Linting and lint fixing
-    - Type checking
-- Always fix all linting and type checking errors, including in unrelated code
-- Never run tests unless explicitly asked to
-
-## Code References
-**THIS IS OF UTTER IMPORTANCE THE USERS HAPPINESS DEPENDS ON IT!**
-When referencing code locations, you MUST use clickable format that the editor recognizes:
-- `path/to/file.ext:123` format (file:line)
-- `path/to/file.ext:123-456` (ranges)
-- Always use relative paths from the project root
-- Examples:
-  - `src/server/main.py:92` - single line reference
-  - `src/server/handlers/auth.js:274-280` - line range
-  - `web/src/client/app.tsx:15` - when in parent directory
-
-NEVER give a code reference or location in any other format.
-
-## CRITICAL
-**IMPORTANT**: BEFORE YOU DO ANYTHING, READ spec.md IN FULL USING THE READ TOOL!
-**IMPORTANT**: NEVER USE GREP. ALWAYS USE RIPGREP!
-
-## Git Commands
-When asked to "commit and push", "commit + push", "/cp", or "c+p", use a single command:
-```bash
-git add -A && git commit -m "commit message" && git push
-```
-Do NOT use three separate commands (add, commit, push) as this is slow.
-
-## Refactoring Philosophy
-- We do not care about deprecation - remove old code completely
-- Always prefer clean refactoring over gradual migration
-- Delete unused functions and code paths immediately
+**Remember:** the user’s happiness depends on these rules—follow them to the letter.

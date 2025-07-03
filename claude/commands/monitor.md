@@ -1,44 +1,34 @@
 ---
+allowed-tools: []
 description: "Set up logging, metrics, alerts, and observability for applications."
 ---
 
-Set up logging, metrics, alerts, and observability for applications.
+## Context
 
-**Usage**: `/monitor [setup|check] [component]`
+- The user wants to set up or check the monitoring of an application.
 
-## Process:
-1. **Assess Needs**: Determine what needs monitoring (errors, performance, usage).
-2. **Implement Logging**: Add structured logging at key points.
-3. **Set Up Metrics**: Configure performance and business metrics.
-4. **Create Alerts**: Define thresholds and notification rules.
-5. **Build Dashboards**: Create visualizations for monitoring.
+## Your Task
 
-## Mandatory Tool Usage:
+Based on the user's request, you will set up or check the logging, metrics, alerts, and observability for the application.
 
-### Planning & Design:
-- `mcp__zen__thinkdeep` - Design monitoring strategy
-- `mcp__zen__analyze` - Analyze monitoring coverage
-- `mcp__perplexity__perplexity_ask` - Research monitoring best practices
-- `mcp__exa__web_search_exa` - Find monitoring guides
+## Process
 
-### Implementation:
-- `mcp__context7__resolve-library-id` - Get monitoring library docs
-- `mcp__context7__get-library-docs` - Understand logging patterns
+1.  **Assess Needs**: Determine what needs monitoring (errors, performance, usage).
+2.  **Implement Logging**: Add structured logging at key points.
+3.  **Set Up Metrics**: Configure performance and business metrics.
+4.  **Create Alerts**: Define thresholds and notification rules.
+5.  **Build Dashboards**: Create visualizations for monitoring.
 
+## Examples
 
-### Visualization:
+-   `/monitor setup application`
+-   `/monitor setup infrastructure`
+-   `/monitor check api-health`
+-   `/monitor alerts performance`
 
-- `mcp__zen__docgen` - Generate monitoring documentation
-- `mcp__sequential__sequentialthinking` - Plan alert strategies
+## Notes
 
-## Examples:
-- `/monitor setup application` - Set up application monitoring
-- `/monitor setup infrastructure` - Monitor servers/containers
-- `/monitor check api-health` - Verify API monitoring
-- `/monitor alerts performance` - Configure performance alerts
-
-## Notes:
-- Log at appropriate levels (ERROR, WARN, INFO)
-- Avoid logging sensitive data
-- Set meaningful alert thresholds
-- Include context in log messages
+-   Log at appropriate levels (ERROR, WARN, INFO).
+-   Avoid logging sensitive data.
+-   Set meaningful alert thresholds.
+-   Include context in log messages.

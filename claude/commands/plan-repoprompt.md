@@ -1,48 +1,36 @@
 ---
+allowed-tools: []
 description: "Generates a file-aware implementation plan for a new feature or task exclusively through Repoprompt."
 ---
 
-# plan-repoprompt
+## Context
 
-Generates a **file-aware** implementation plan for a new feature or task **exclusively through Repoprompt**.
+- The user wants to generate a file-aware implementation plan for a new feature or task.
 
-**Usage**: `/plan "<high-level feature or task description>"`
+## Your Task
 
-## Process (all steps use Repoprompt commands)
+Based on the user's high-level description, you will generate a file-aware implementation plan exclusively through Repoprompt.
 
-1. **Expand the task**
-   - Run `mcp__repoprompt__request_plan` with the raw idea to explode it into bullet-level requirements and clarifying questions.
+## Process
 
-2. **Locate relevant code**
-   - `mcp__repoprompt__get_file_tree` → skim the project layout.
-   - Use targeted `mcp__repoprompt__search` queries (path or content) and `mcp__repoprompt__get_codemap` to discover files/modules that will be touched.
+1.  **Expand the task**: Run `mcp__repoprompt__request_plan` with the raw idea to explode it into bullet-level requirements and clarifying questions.
+2.  **Locate relevant code**:
+    -   `mcp__repoprompt__get_file_tree` → skim the project layout.
+    -   Use targeted `mcp__repoprompt__search` queries (path or content) and `mcp__repoprompt__get_codemap` to discover files/modules that will be touched.
+3.  **Pre-select the files**: Pass the discovered paths to `mcp__repoprompt__set_selection` so the planning model has direct file context.
+4.  **Prime the planner**: Call `mcp__repoprompt__set_prompt_state` to combine:
+    *   the expanded requirements,
+    *   the selected file list,
+    *   and an instruction to return a step-by-step plan that references the selected files.
+5.  **Generate & refine the plan**: Invoke `mcp__repoprompt__request_plan` again. The output should include ordered tasks, dependencies, risk/mitigation, and a validation strategy.
+6.  **Publish / hand-off**: Save the final Markdown plan (e.g., commit it under `/docs/plans/` or paste it in a PR description).
 
-3. **Pre-select the files**
-   - Pass the discovered paths to `mcp__repoprompt__set_selection` so the planning model has direct file context.
+## Examples
 
-4. **Prime the planner**
-   - Call `mcp__repoprompt__set_prompt_state` to combine:
-     * the expanded requirements,
-     * the selected file list,
-     * and an instruction to return a step-by-step plan that references the selected files.
+-   `/plan "Add magic-link login"`
 
-5. **Generate & refine the plan**
-   - Invoke `mcp__repoprompt__request_plan` again. The output should include ordered tasks, dependencies, risk/mitigation, and validation strategy.
-   - Iterate by updating the prompt or selection until the plan is accepted.
+## Notes
 
-6. **Publish / hand-off**
-   - Save the final Markdown plan (e.g., commit it under `/docs/plans/` or paste in a PR description).
-
-## Validation checklist
-
-- Plan cites concrete file paths.
-- Risks and tests are listed.
-- Scope matches the original request—no extra work.
-
-## Example
-
-```bash
-/plan "Add magic-link login"
-```
-
-Running the command triggers the workflow above and produces a ready-to-execute plan linked to real files.
+-   The plan should cite concrete file paths.
+-   Risks and tests should be listed.
+-   The scope should match the original request—no extra work.

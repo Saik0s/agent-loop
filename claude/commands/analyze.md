@@ -29,19 +29,6 @@ Based on the user's request, you will analyze the codebase and provide a priorit
     -   "Are the recommendations specific and actionable?"
     -   "Have I missed any important issues?"
 
-## Mandatory Tool Usage
-
-- `mcp__context7__resolve-library-id`
-- `mcp__context7__get-library-docs`
-- `mcp__zen__analyze`
-- `mcp__zen__codereview`
-- `mcp__zen__secaudit`
-- `mcp__zen__debug`
-- `mcp__zen__refactor`
-- `mcp__zen__consensus`
-- `mcp__zen__challenge`
-- `mcp__sequential__sequentialthinking`
-
 ## Examples
 
 - `/analyze src/core/auth.js`

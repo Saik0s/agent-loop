@@ -1,12 +1,18 @@
 ---
+allowed-tools: []
 description: "Conducts comprehensive research on a given topic and provides a structured report."
 ---
 
-Conducts comprehensive research on a given topic and provides a structured report.
+## Context
 
-**Usage**: `/research "<topic>"`
+- The user wants to research a topic.
 
-## Process:
+## Your Task
+
+Based on the user's topic, you will conduct comprehensive research and provide a structured report.
+
+## Process
+
 1.  **Decompose Topic**: Break down the main topic into 3-5 specific, answerable sub-questions.
 2.  **Execute Search Strategy**: Use the "Broad-to-Narrow" search strategy.
     *   Start with broad, two-word queries.
@@ -18,25 +24,11 @@ Conducts comprehensive research on a given topic and provides a structured repor
 5.  **Generate Final Report**: Assemble answers into a structured report with a summary, detailed findings, and a list of sources.
 6.  **Identify Gaps**: Conclude by listing open questions and recommending next steps.
 
-## Mandatory Tool Usage:
+## Examples
 
-### Primary Research Tools:
-- `mcp__perplexity__perplexity_ask` - Advanced web search with citations
-- `mcp__exa__web_search_exa` - Real-time web search
-- `mcp__exa__crawling` - Extract content from specific URLs
-- `mcp__exa__github_search` - Search GitHub for code examples
-
-### Documentation & Technical Research:
-- `mcp__context7__resolve-library-id` - Find technical documentation
-- `mcp__context7__get-library-docs` - Get detailed library docs
-
-### Analysis & Synthesis:
-- `mcp__zen__thinkdeep` - Deep analysis of research findings
-- `mcp__zen__consensus` - Get consensus on conclusions
-- `mcp__sequential__sequentialthinking` - Systematic research approach
-
-
-
-## Examples:
 -   `/research "Best practices for API security in 2024"`
 -   `/research "A comparison of modern frontend frameworks: React vs. Vue vs. Svelte"`
+
+## Notes
+
+- The final report should be well-structured and easy to understand.

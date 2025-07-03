@@ -73,13 +73,6 @@ Based on the above changes, create a single git commit.
 2. Second step
 3. Third step
 
-## Mandatory Tool Usage:
-
-- `mcp__zen__debug` - Systematic root cause analysis workflow
-- `mcp__zen__tracer` - Trace code execution paths
-- `mcp__zen__analyze` - Analyze code for potential issues
-- `mcp__sequential__sequentialthinking` - Think through complex debugging scenarios
-
 ## Examples:
 
 - Example 1
@@ -93,9 +86,9 @@ Based on the above changes, create a single git commit.
 ```
 
 ## Best Practices:
--   Keep commands focused and single-purpose.
--   Provide clear, actionable steps in the "Process" section.
--   Include helpful error messages and handle edge cases.
--   Document expected inputs and outputs.
--   Place new project-specific commands in `.claude/commands/`.
--   Place new global commands in `~/.claude/commands/`.
+- Keep commands focused and single-purpose.
+- Provide clear, actionable steps in the "Process" section.
+- Include helpful error messages and handle edge cases.
+- Document expected inputs and outputs.
+- Place new project-specific commands in `.claude/commands/`.
+- Place new global commands in `~/.claude/commands/`.

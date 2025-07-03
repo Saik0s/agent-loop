@@ -1,12 +1,18 @@
 ---
+allowed-tools: []
 description: "Creates a detailed feature specification document."
 ---
 
-Creates a detailed feature specification document.
+## Context
 
-**Usage**: `/spec "<feature description>"`
+- The user wants to create a detailed specification for a new feature.
 
-## Process:
+## Your Task
+
+Based on the user's feature description, you will create a detailed feature specification document.
+
+## Process
+
 1.  **Define User Stories**: Capture requirements in the format: `As a [user type], I want [action], so that [benefit].`
 2.  **List Acceptance Criteria**: For each story, define testable conditions in the Gherkin format: `Given [context], When [action], Then [outcome].`
 3.  **Detail Technical Requirements**:
@@ -17,25 +23,10 @@ Creates a detailed feature specification document.
 5.  **Define Success Metrics**: Identify 1-3 key metrics to measure the feature's success (e.g., adoption rate, performance targets).
 6.  **Generate Specification Document**: Compile all sections into a formal Markdown document.
 
-## Mandatory Tool Usage:
+## Examples
 
-### Context7 (REQUIRED for technical specs):
-- **ALWAYS** use `mcp__context7__resolve-library-id` and `mcp__context7__get-library-docs` for any mentioned technologies
-- Ensure technical requirements align with framework capabilities
-
-### Specification Tools:
-- `mcp__zen__thinkdeep` - Deep analysis of requirements
-- `mcp__zen__consensus` - Get consensus on specifications
-- `mcp__sequential__sequentialthinking` - Think through spec systematically
-- `mcp__zen__analyze` - Analyze existing system before specifying changes
-
-### Research & Validation:
-- `mcp__perplexity__perplexity_ask` - Research industry standards
-
-- `mcp__zen__challenge` - Challenge assumptions in the spec
-
-## Examples:
 -   `/spec "A user profile page where users can edit their display name and avatar"`
 
-## Notes:
+## Notes
+
 -   The output should be a clear and complete guide for the development team.

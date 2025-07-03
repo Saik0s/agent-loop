@@ -27,20 +27,6 @@ Based on the user's description, you will build a new feature, creating the nece
     -   "Do the tests adequately cover the new functionality?"
     -   "Is the code clean, maintainable, and does it follow project conventions?"
 
-## Mandatory Tool Usage
-
-- `mcp__context7__resolve-library-id`
-- `mcp__context7__get-library-docs`
-- `mcp__zen__thinkdeep`
-- `mcp__zen__consensus`
-- `mcp__sequential__sequentialthinking`
-- `mcp__zen__testgen`
-- `mcp__zen__docgen`
-- `mcp__zen__codereview`
-- `mcp__zen__secaudit`
-- `mcp__zen__precommit`
-- `mcp__perplexity__perplexity_ask`
-
 ## Examples
 
 - `/build "an API endpoint to fetch user profiles"`

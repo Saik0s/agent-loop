@@ -1,39 +1,38 @@
 ---
+allowed-tools: ["Bash(git add:*)", "Bash(git status:*)", "Bash(git commit:*)", "Bash(git diff HEAD:*)", "Bash(git branch --show-current:*)", "Bash(git log --oneline -10:*)"]
 description: "Analyzes staged changes and generates a commit message that follows the Conventional Commits specification."
 ---
 
-Analyzes staged changes and generates a commit message that follows the Conventional Commits specification.
+## Context
 
-**Usage**: `/commit`
+- Current git status: !`git status`
+- Current git diff (staged and unstaged changes): !`git diff HEAD`
+- Current branch: !`git branch --show-current`
+- Recent commits: !`git log --oneline -10`
 
-## Mandatory Tool Usage:
+## Your Task
 
-### Analysis Tools:
-- `mcp__zen__precommit` - Comprehensive pre-commit validation
+Based on the above changes, create a single git commit.
 
+## Process
 
-## Thinking Process:
-Before generating a commit message, you **MUST** use a `think` block to:
-1.  **Analyze Staged Changes**: Use `git diff --staged` to understand the scope and intent of the changes.
+1.  **Analyze Staged Changes**: Use `git diff --staged` to understand the scope and intent of the a
 2.  **Determine Type and Scope**:
     *   **Type**: Select the appropriate commit type (e.g., `feat`, `fix`, `refactor`, `docs`, `test`, `chore`).
     *   **Scope**: Identify the part of the codebase affected (e.g., `api`, `auth`). This is optional.
 3.  **Draft Subject Line**: Craft a concise subject line (under 50 characters) in the imperative mood.
 4.  **Draft Body (if needed)**: If the change is complex, outline the key points for the commit message body, explaining the "what" and "why".
+5.  **Generate Commit Message**: Based on your thinking, generate a complete commit message following the Conventional Commits specification.
+6.  **Present to User**: Show the user the generated commit message and ask for approval before committing.
+7.  **Self-Correction**: After generating the message, but before presenting it to the user, use a `think` block to review it:
+    -   "Does the message accurately reflect the changes?"
+    -   "Does it follow the Conventional Commits specification correctly?"
+    -   "Is the subject line clear, concise, and in the imperative mood?"
 
-## Process:
-1.  **Generate Commit Message**: Based on your thinking, generate a complete commit message following the Conventional Commits specification.
-2.  **Present to User**: Show the user the generated commit message and ask for approval before committing.
+## Examples
 
-## Self-Correction:
-After generating the message, but before presenting it to the user, use a `think` block to review it:
--   "Does the message accurately reflect the changes?"
--   "Does it follow the Conventional Commits specification correctly?"
--   "Is the subject line clear, concise, and in the imperative mood?"
+- `/commit` (after staging files with `git add`)
 
-## Validation Tools:
-- `mcp__zen__challenge` - Critically evaluate the commit message
-- `mcp__sequential__sequentialthinking` - Think through complex changes systematically
+## Notes
 
-## Examples:
--   `/commit` (after staging files with `git add`)
+- This command requires files to be staged for commit.

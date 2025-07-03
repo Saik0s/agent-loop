@@ -1,51 +1,35 @@
 ---
+allowed-tools: []
 description: "Handle database schema changes and data migrations safely and reversibly."
 ---
 
-Handle database schema changes and data migrations safely and reversibly.
+## Context
 
-**Usage**: `/migration [create|run|rollback] [migration-name]`
+- The user wants to perform a database migration.
 
-## Critical Pre-Migration Rule:
-**NEVER migrate without backup.** Before migrating:
-1. Back up the database
-2. Test migration on a copy first
-3. Ensure rollback script exists
-4. Check for data dependencies
+## Your Task
 
-## Process:
-1. **Analyze Changes**: Understand what schema/data changes are needed.
-2. **Create Migration**: Write up and down migration scripts.
-3. **Test Migration**: Run on test database to verify.
-4. **Execute Migration**: Apply to target environment with monitoring.
-5. **Verify Results**: Check data integrity and application functionality.
+Based on the user's request, you will handle database schema changes and data migrations safely and reversibly.
 
-## Mandatory Tool Usage:
+## Process
 
-### Planning & Analysis:
-- `mcp__zen__thinkdeep` - Plan migration strategy
-- `mcp__zen__analyze` - Analyze data dependencies
-- `mcp__sequential__sequentialthinking` - Think through migration steps
+1.  **Analyze Changes**: Understand what schema/data changes are needed.
+2.  **Create Migration**: Write up and down migration scripts.
+3.  **Test Migration**: Run on a test database to verify.
+4.  **Execute Migration**: Apply to the target environment with monitoring.
+5.  **Verify Results**: Check data integrity and application functionality.
 
+## Examples
 
-### Implementation:
-- `mcp__context7__resolve-library-id` - Get ORM/database docs
-- `mcp__context7__get-library-docs` - Understand migration patterns
-- `mcp__zen__testgen` - Generate migration tests
+-   `/migration create add-user-roles`
+-   `/migration run`
+-   `/migration rollback 2`
+-   `/migration status`
 
-### Verification:
-- `mcp__zen__debug` - Debug migration issues
+## Notes
 
-- `mcp__perplexity__perplexity_ask` - Research migration best practices
-
-## Examples:
-- `/migration create add-user-roles` - Create new migration
-- `/migration run` - Run pending migrations
-- `/migration rollback 2` - Rollback last 2 migrations
-- `/migration status` - Check migration status
-
-## Notes:
-- Always include rollback scripts
-- Test with production-like data
-- Consider zero-downtime strategies
-- Document breaking changes
+-   **NEVER migrate without a backup.** Before migrating, back up the database, test the migration on a copy first, ensure a rollback script exists, and check for data dependencies.
+-   Always include rollback scripts.
+-   Test with production-like data.
+-   Consider zero-downtime strategies.
+-   Document breaking changes.

@@ -19,18 +19,6 @@ Based on the user's request, you will create or test an API endpoint, ensuring i
 4.  **Document API**: Create OpenAPI/Swagger documentation.
 5.  **Test Manually**: Verify with actual HTTP requests.
 
-## Mandatory Tool Usage
-
-- `mcp__context7__resolve-library-id`
-- `mcp__context7__get-library-docs`
-- `mcp__zen__thinkdeep`
-- `mcp__sequential__sequentialthinking`
-- `mcp__zen__testgen`
-- `mcp__zen__analyze`
-- `mcp__zen__secaudit`
-- `mcp__zen__docgen`
-- `mcp__perplexity__perplexity_ask`
-
 ## Examples
 
 -   `/api create /users GET`
