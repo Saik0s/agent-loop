@@ -10,7 +10,7 @@ SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/claude"
 DEST_DIR="$HOME/.claude"
 
 # Items to be copied
-ITEMS=("commands" "docs")
+ITEMS=("commands" "docs" "CLAUDE.md")
 
 # Check if destination directory exists and prompt for backup
 if [ -d "$DEST_DIR" ]; then
