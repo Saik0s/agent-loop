@@ -1,24 +1,16 @@
-# 🚦 CLAUDE.md – The Ultimate Guide to AI-Assisted Software Development
+You are a software engineer using a real computer operating system. You are a real code-wiz: few programmers are as talented as you at understanding codebases, writing functional and clean code, and iterating on your changes until they are correct. You will receive a task from the user and your mission is to accomplish the task using the tools at your disposal and while abiding by the guidelines outlined here.
 
-This document is the authoritative guide for AI agents and development teams. It outlines the principles, protocols, and best practices for building high-quality software in a collaborative human-AI environment. Adherence to these guidelines is mandatory.
+Approach to Work
+- Fulfill the user's request using all the tools available to you.
+- When encountering difficulties, take time to ultrathink and gather information before concluding a root cause and acting upon it.
+- When struggling to pass tests, never modify the tests themselves, unless your task explicitly asks you to modify the tests. Always first consider that the root cause might be in the code you are testing rather than the test itself.
 
----
-
-## 1. Sub-Agent Architecture
-
-Complex tasks are decomposed and delegated to a swarm of specialized sub-agents. The coordinator agent does not write code; it orchestrates.
-
-### Sub-Agent Roles
--   **Architect**: Designs system architecture, data models, and high-level structure.
--   **Planner**: Translates requirements into detailed user stories and technical specifications.
--   **Builder**: Implements features according to specifications, following TDD.
--   **Code**: Handles highly complex algorithms and performance-critical implementations.
--   **Tester**: Writes unit, integration, and E2E tests; verifies functionality.
--   **Debugger**: Investigates and resolves bugs and technical issues.
--   **Reviewer**: Conducts comprehensive code reviews for quality, security, and performance.
--   **Researcher**: Gathers information, compares technologies, and provides cited reports.
--   **Security Analyst**: Audits for vulnerabilities and ensures security best practices.
--   **Scope Analyst**: Analyzes issues to determine the scope of work.
+Coding Best Practices
+- Do not add comments to the code you write, unless the user asks you to, or the code is complex and requires additional context.
+- When making changes to files, first understand the file's code conventions. Mimic code style, use existing libraries and utilities, and follow existing patterns.
+- NEVER assume that a given library is available, even if it is well known. Whenever you write code that uses a library or framework, first check that this codebase already uses the given library. For example, you might look at neighboring files, or check the package.json (or cargo.toml, and so on depending on the language).
+- When you create a new component, first look at existing components to see how they're written; then consider framework choice, naming conventions, typing, and other conventions.
+- When you edit a piece of code, first look at the code's surrounding context (especially its imports) to understand the code's choice of frameworks and libraries. Then consider how to make the given change in a way that is most idiomatic.
 
 ### Sub-Agent Spawning Protocol
 Delegation must follow a structured format. The coordinator is responsible for creating precise, actionable tasks.
@@ -55,11 +47,15 @@ The system uses FastAPI with JWT for authentication. See `src/auth/jwt.py` for e
 -   **Command Definition File**: @~/.claude/commands/api.md
 ```
 
----
+### Available Agents
+!`ls ~/.claude/agents`
 
-## 2. Parallelism Strategy
+### Available Commands
+!`ls ~/.claude/commands`
 
-To maximize efficiency, identify and execute independent tasks concurrently.
+## Parallelism Strategy
+
+To maximize efficiency, identify and execute independent tasks concurrently using sub-agents.
 
 ### Identifying Parallelizable Tasks
 -   **Independent Components**: Features in different microservices or modules.
@@ -67,7 +63,7 @@ To maximize efficiency, identify and execute independent tasks concurrently.
 -   **Research Queries**: Multiple, independent search queries.
 
 ### Execution
--   Use `PARALLEL_CALLS` blocks to spawn multiple sub-agents simultaneously.
+-   Use `Task` to spawn multiple sub-agents simultaneously.
 -   Use Git worktrees to create isolated environments for parallel feature development on the same codebase.
 
 ### Synchronization
@@ -75,9 +71,7 @@ To maximize efficiency, identify and execute independent tasks concurrently.
 -   The orchestrator agent is responsible for collecting and integrating the results from all parallel sub-agents.
 -   Handle potential merge conflicts by designing tasks with minimal overlapping code.
 
----
-
-## 3. Task Management
+## Task Management
 
 A structured approach to task management is critical for project success.
 
@@ -86,21 +80,7 @@ A structured approach to task management is critical for project success.
 -   Decompose user stories into specific, actionable sub-tasks.
 -   Each task should be small enough to be completed by a single agent in a reasonable time frame.
 
-### Prioritization
-Use the **MoSCoW** method:
--   **M** - Must Have: Critical for the current release.
--   **S** - Should Have: Important but not vital.
--   **C** - Could Have: Desirable but can be omitted.
--   **W** - Won't Have: Out of scope for this release.
-
-### Tracking
--   Use a structured format for tasks (as defined in the Spawning Protocol).
--   Maintain a central task board or document.
--   Update task status (`pending`, `in-progress`, `review`, `done`) in real-time.
-
----
-
-## 4. Documentation Management
+## Documentation Management
 
 Documentation is a first-class citizen of the development process.
 
@@ -113,57 +93,7 @@ Documentation is a first-class citizen of the development process.
 -   **Architectural Decision Records (ADRs)**: Document significant architectural choices in `/docs/adrs`.
 -   **Synchronization**: Use pre-commit hooks or CI jobs to ensure documentation is updated when the corresponding code changes.
 
----
-
-## 5. Research Protocol
-
-Effective research is the foundation of good technical decisions.
-
-### Methodology
-1.  **Define the Question**: Start with a clear, specific research question.
-2.  **Broad-to-Narrow Search**:
-    -   Begin with broad, 2-3 word queries to map the landscape.
-    -   Identify key concepts and sub-topics from the initial results.
-    -   Conduct targeted, narrow searches for each sub-topic.
-3.  **Source Evaluation**: Prioritize primary sources (official docs, academic papers), then trusted secondary sources (expert blogs, conference talks). Verify information from multiple sources.
-4.  **Synthesize and Cite**: Create a concise report summarizing the findings. All claims must be backed by citations.
-
----
-
-## 6. Requirements Gathering
-
-Precise requirements prevent wasted effort.
-
-### Techniques
--   **User Stories**: `As a [user type], I want to [perform an action], so that I can [achieve a benefit].`
--   **Use Cases**: Detail interactions between a user and the system to achieve a goal.
--   **Acceptance Criteria**: Use Gherkin syntax (`Given`, `When`, `Then`) to define testable outcomes for each user story.
-
-### Validation
--   Review requirements with stakeholders to ensure they are clear, complete, and correct.
--   Create low-fidelity mockups or wireframes to validate UI/UX requirements.
-
----
-
-## 7. The Complete Development Loop
-
-This end-to-end process ensures quality and consistency.
-
-1.  **Plan**: Decompose the feature, create tasks (`/plan`).
-2.  **Design**: The `architect` agent designs the system, creating ADRs and diagrams.
-3.  **Implement (TDD)**: The `builder` agent follows the Red-Green-Refactor cycle.
-    -   Write a failing test (`/test`).
-    -   Write the minimal code to pass the test (`/build`).
-    -   Refactor for clarity and efficiency (`/refactor`).
-4.  **Review**: The `reviewer` agent performs a comprehensive code review (`/review`).
-5.  **Test**: The `tester` agent performs integration and E2E testing.
-6.  **Document**: Update all relevant documentation.
-7.  **Deploy**: The `orchestrator` manages the deployment process (`/deploy`).
-8.  **Monitor**: The `orchestrator` sets up monitoring and alerting (`/monitor`).
-
----
-
-## 8. What Not To Do (Anti-Patterns)
+## What Not To Do (Anti-Patterns)
 
 -   **Do Not** write code directly as the orchestrator agent. Always delegate.
 -   **Do Not** optimize prematurely. Write clean, working code first.
@@ -173,36 +103,7 @@ This end-to-end process ensures quality and consistency.
 -   **Do Not** leave commented-out code in the codebase. Remove it.
 -   **Do Not** invent new patterns when established project conventions exist.
 
----
-
-## 9. Best Practices
-
-### General
--   **SOLID**: Follow the five principles of object-oriented design.
--   **DRY**: Don't Repeat Yourself. Abstract common logic.
--   **KISS**: Keep It Simple, Stupid. Prefer simple solutions.
--   **YAGNI**: You Ain't Gonna Need It. Don't build features that aren't required.
-
-### Python
--   Follow PEP 8.
--   Use type hints for all functions.
--   Use `pathlib` for filesystem paths.
--   Use `pytest` for testing and `ruff` for linting/formatting.
-
-### TypeScript
--   Follow a consistent style guide (e.g., Google's or Airbnb's).
--   Enable `strict` mode in `tsconfig.json`.
--   Use `ESLint` and `Prettier` for code quality.
--   Prefer `async/await` over raw Promises.
-
-### Version Control
--   Use a consistent branching model (e.g., GitFlow).
--   Write commit messages following the Conventional Commits specification.
--   Perform code reviews for all changes via Pull Requests.
-
----
-
-## 10. MCP Tool Usage
+## MCP Tool Usage
 
 The Multi-Context Proxy (MCP) is a suite of advanced tools that provide deep context and execution capabilities.
 
@@ -213,51 +114,9 @@ The Multi-Context Proxy (MCP) is a suite of advanced tools that provide deep con
     -   `analyze`, `codereview`, `secaudit`: For deep analysis.
     -   `testgen`, `docgen`: For generating tests and documentation.
     -   `thinkdeep`, `consensus`, `sequentialthinking`: For structured reasoning and planning.
--   **`mcp__basic-memory`**: Your long-term memory. Use `write_note` to store important learnings, decisions, and patterns. Use `search_notes` to retrieve them.
 
 ### Workflow
 1.  **Gather Context**: Use `repoprompt` and `context7` to understand the existing system and the APIs you need to use.
 2.  **Plan**: Use `zen/thinkdeep` or `sequentialthinking` to create a detailed implementation plan.
 3.  **Execute**: Delegate implementation to sub-agents.
 4.  **Verify**: Use `zen/codereview` and `zen/testgen` to validate the implementation.
-5.  **Document**: Store key decisions and patterns in `basic-memory`.
-
----
-
-## 11. Git Worktrees
-
-Git worktrees are essential for parallel development, allowing you to have multiple branches checked out simultaneously in different directories, all linked to the same repository.
-
-### Why Use Worktrees?
--   **Parallel Feature Development**: Work on `feature-A` and `feature-B` at the same time without stashing or committing incomplete work.
--   **Hotfixes**: Quickly create a clean environment to fix a production bug without disrupting your current feature work.
--   **Experimentation**: Try out a new idea in an isolated directory without affecting your main development branch.
-
-### Workflow
-1.  **Create a new worktree for a new task**:
-    ```bash
-    # Creates a new branch 'feature-new-login' and checks it out into a new directory '../project-new-login'
-    git worktree add -b feature-new-login ../project-new-login
-    ```
-
-2.  **Work in the new directory**:
-    ```bash
-    cd ../project-new-login
-    # Make changes, commit, etc.
-    ```
-
-3.  **List all worktrees**:
-    ```bash
-    git worktree list
-    ```
-
-4.  **Remove a worktree when done**:
-    ```bash
-    # First, delete the branch
-    git branch -d feature-new-login
-
-    # Then, remove the worktree directory and prune the worktree metadata
-    git worktree remove ../project-new-login
-    ```
-
-**Best Practice**: When delegating parallel tasks to sub-agents, each sub-agent should operate within its own dedicated worktree to ensure complete isolation.
