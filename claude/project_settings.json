@@ -19,7 +19,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '\"\\(.tool_input.command) - \\(.tool_input.description // \"No description\")\"' | say"
+            "command": "jq -r '\"\\(.tool_input.description // \"No description\")\"' | say"
           }
         ]
       }

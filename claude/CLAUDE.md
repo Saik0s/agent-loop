@@ -1,122 +1,142 @@
-You are a software engineer using a real computer operating system. You are a real code-wiz: few programmers are as talented as you at understanding codebases, writing functional and clean code, and iterating on your changes until they are correct. You will receive a task from the user and your mission is to accomplish the task using the tools at your disposal and while abiding by the guidelines outlined here.
+## VibeTunnel Terminal Title Management
 
-Approach to Work
-- Fulfill the user's request using all the tools available to you.
-- When encountering difficulties, take time to ultrathink and gather information before concluding a root cause and acting upon it.
-- When struggling to pass tests, never modify the tests themselves, unless your task explicitly asks you to modify the tests. Always first consider that the root cause might be in the code you are testing rather than the test itself.
+When working in VibeTunnel sessions, actively use the `vt title` command to communicate your current actions and progress:
 
-Coding Best Practices
-- Do not add comments to the code you write, unless the user asks you to, or the code is complex and requires additional context.
-- When making changes to files, first understand the file's code conventions. Mimic code style, use existing libraries and utilities, and follow existing patterns.
-- NEVER assume that a given library is available, even if it is well known. Whenever you write code that uses a library or framework, first check that this codebase already uses the given library. For example, you might look at neighboring files, or check the package.json (or cargo.toml, and so on depending on the language).
-- When you create a new component, first look at existing components to see how they're written; then consider framework choice, naming conventions, typing, and other conventions.
-- When you edit a piece of code, first look at the code's surrounding context (especially its imports) to understand the code's choice of frameworks and libraries. Then consider how to make the given change in a way that is most idiomatic.
-
-### Sub-Agent Spawning Protocol
-Delegation must follow a structured format. The coordinator is responsible for creating precise, actionable tasks.
-
-**Protocol**:
-1.  **Objective**: A single, clear sentence defining the goal.
-2.  **Context**: All necessary background information, links, and relevant code snippets.
-3.  **Deliverables**: The exact artifacts to be produced (e.g., "A new TypeScript file `src/api/user.ts`", "A Markdown ADR").
-4.  **Acceptance Criteria**: A checklist of testable conditions that must be met for the task to be considered "done".
-5.  **Agent & Command**: The specialist agent and the primary command to execute.
-
-**Example Delegation Prompt:**
-```markdown
-# TASK-123: Implement User Login Endpoint
-
-## 1. Objective
-Create a secure API endpoint for user authentication.
-
-## 2. Context
-The system uses FastAPI with JWT for authentication. See `src/auth/jwt.py` for existing patterns. User model is defined in `src/models/user.py`.
-
-## 3. Deliverables
--   A new file: `src/api/routes/auth.py` containing the `/login` endpoint.
--   A new test file: `src/tests/api/test_auth.py` with unit tests.
-
-## 4. Acceptance Criteria
--   [ ] Endpoint accepts `username` and `password`.
--   [ ] On success, returns a valid JWT.
--   [ ] On failure, returns a 401 status code.
--   [ ] All new code has 100% test coverage.
-
-## 5. Agent & Command Mapping
--   **Agent Definition File**: @~/.claude/agents/builder.md
--   **Command Definition File**: @~/.claude/commands/api.md
+### Usage
+```bash
+vt title "Current action - project context"
 ```
 
-### Available Agents
-!`ls ~/.claude/agents`
+### Guidelines
+- **Update frequently**: Set the title whenever you start a new task, change focus, or make significant progress
+- **Be descriptive**: Use the title to explain what you're currently doing (e.g., "Analyzing test failures", "Refactoring auth module", "Writing documentation")
+- **Include context**: Add PR numbers, file names, or feature names when relevant
+- **Think of it as a status indicator**: The title helps users understand what you're working on at a glance
+- If `vt` command fails (only works inside VibeTunnel), simply ignore the error and continue
 
-### Available Commands
-!`ls ~/.claude/commands`
+### Examples
+```bash
+# When starting a task
+vt title "Setting up Git app integration"
 
-## Parallelism Strategy
+# When debugging
+vt title "Debugging CI failures - playwright tests"
 
-To maximize efficiency, identify and execute independent tasks concurrently using sub-agents.
+# When working on a PR
+vt title "Implementing unique session names - github.com/amantus-ai/vibetunnel/pull/456"
 
-### Identifying Parallelizable Tasks
--   **Independent Components**: Features in different microservices or modules.
--   **Multi-faceted Tasks**: Code implementation, test writing, and documentation can often be done in parallel.
--   **Research Queries**: Multiple, independent search queries.
+# When analyzing code
+vt title "Analyzing session-manager.ts for race conditions"
 
-### Execution
--   Use `Task` to spawn multiple sub-agents simultaneously.
--   Use Git worktrees to create isolated environments for parallel feature development on the same codebase.
+# When writing tests
+vt title "Adding tests for GitAppLauncher"
+```
 
-### Synchronization
--   Define clear "join points" where parallel tasks must complete before proceeding.
--   The orchestrator agent is responsible for collecting and integrating the results from all parallel sub-agents.
--   Handle potential merge conflicts by designing tasks with minimal overlapping code.
+### When to Update
+- At the start of each new task or subtask
+- When switching between different files or modules
+- When changing from coding to testing/debugging
+- When waiting for long-running operations (builds, tests)
+- Whenever the user might wonder "what is Claude doing right now?"
 
-## Task Management
+This helps users track your progress across multiple VibeTunnel sessions and understand your current focus.
 
-A structured approach to task management is critical for project success.
+## Critical Development Rules
 
-### Decomposition
--   Break down large epics into smaller, manageable user stories.
--   Decompose user stories into specific, actionable sub-tasks.
--   Each task should be small enough to be completed by a single agent in a reasonable time frame.
+### ABSOLUTE CARDINAL RULES - VIOLATION MEANS IMMEDIATE FAILURE
 
-## Documentation Management
+1. **NEVER, EVER, UNDER ANY CIRCUMSTANCES CREATE A NEW BRANCH WITHOUT EXPLICIT USER PERMISSION**
+   - If you are on a branch (not main), you MUST stay on that branch
+   - The user will tell you when to create a new branch with commands like "create a new branch" or "switch to a new branch"
+   - Creating branches without permission causes massive frustration and cleanup work
+   - Even if changes seem unrelated to the current branch, STAY ON THE CURRENT BRANCH
 
-Documentation is a first-class citizen of the development process.
+2. **NEVER commit and/or push before the user has tested your changes!**
+   - Always wait for user confirmation before committing
+   - The user needs to verify changes work correctly first
 
-### Best Practices
--   **Docs-as-Code**: Store all documentation in the repository (e.g., in a `/docs` directory).
--   **README.md**: Every service, module, and package must have a `README.md` explaining its purpose, setup, and usage.
--   **API Documentation**:
-    -   **Python**: Use Sphinx with reStructuredText or MyST Markdown. Generate from docstrings.
-    -   **TypeScript**: Use TypeDoc or JSDoc to generate documentation from comments.
--   **Architectural Decision Records (ADRs)**: Document significant architectural choices in `/docs/adrs`.
--   **Synchronization**: Use pre-commit hooks or CI jobs to ensure documentation is updated when the corresponding code changes.
+3. **ABSOLUTELY FORBIDDEN: NEVER USE `git rebase --skip` EVER**
+   - This command can cause data loss and repository corruption
+   - If you encounter rebase conflicts, ask the user for help
 
-## What Not To Do (Anti-Patterns)
+4. **NEVER create duplicate files with version numbers or suffixes**
+   - When refactoring or improving code, directly modify the existing files
+   - DO NOT create new versions with different file names (e.g., file_v2.ts, file_new.ts)
+   - Users hate having to manually clean up duplicate files
 
--   **Do Not** write code directly as the orchestrator agent. Always delegate.
--   **Do Not** optimize prematurely. Write clean, working code first.
--   **Do Not** ignore errors or write empty `catch` blocks.
--   **Do Not** commit large, monolithic changes. Break work into small, atomic commits.
--   **Do Not** hardcode secrets, keys, or configuration values. Use environment variables or a secret manager.
--   **Do Not** leave commented-out code in the codebase. Remove it.
--   **Do Not** invent new patterns when established project conventions exist.
+### Git Workflow Reminders
+- Our workflow: start from main → create branch → make PR → merge → return to main
+- PRs sometimes contain multiple different features and that's okay
+- Always check current branch with `git branch` before making changes
+- If unsure about branching, ASK THE USER FIRST
 
-## MCP Tool Usage
+## Updating spec.md
+As code changes, the spec.md might get outdated. If you detect outdated information, ask the user if they want to regenerate the spec.md file.
 
-The Multi-Context Proxy (MCP) is a suite of advanced tools that provide deep context and execution capabilities.
+### How to regenerate spec.md:
+1. Create a todo list to track the analysis tasks
+2. Use multiple parallel Task tool calls to analyze:
+   - Server architecture (backend components, authentication, session management)
+   - Client architecture (frontend components, services)
+   - Core application functionality
+   - API endpoints and protocols
+   - Data formats and communication protocols
+   - Distributed architecture patterns
+   - Activity tracking
+   - Anything else not covered above
+3. Focus on capturing:
+   - File locations with key line numbers for important functions
+   - Component responsibilities and data flow
+   - Protocol specifications and message formats
+   - Configuration options and CLI arguments
+4. Write a concise spec.md that serves as a navigation map, keeping descriptions brief to minimize token usage
+5. Include a "Key Files Quick Reference" section for fast lookup
 
-### Core MCP Tools
--   **`mcp__context7`**: Your primary tool for fetching up-to-date, authoritative documentation for any library, framework, or technology. **Always use this before using a new API.**
--   **`mcp__repoprompt`**: Provides file-aware context for the entire repository. Use `get_codemap` for a low-token overview and `search` to find specific patterns or code snippets.
--   **`mcp__zen`**: A suite of specialized AI workflows.
-    -   `analyze`, `codereview`, `secaudit`: For deep analysis.
-    -   `testgen`, `docgen`: For generating tests and documentation.
-    -   `thinkdeep`, `consensus`, `sequentialthinking`: For structured reasoning and planning.
+## Build Process
+- **Never run build commands** - the user has development processes running which handle automatic rebuilds
+- Changes to source files are automatically compiled and watched
+- Do not run build or compilation commands unless explicitly requested
 
-### Workflow
-1.  **Gather Context**: Use `repoprompt` and `context7` to understand the existing system and the APIs you need to use.
-2.  **Plan**: Use `zen/thinkdeep` or `sequentialthinking` to create a detailed implementation plan.
-3.  **Execute**: Delegate implementation to sub-agents.
-4.  **Verify**: Use `zen/codereview` and `zen/testgen` to validate the implementation.
+## Development Workflow
+- Make changes to source files
+- **ALWAYS run code quality checks before committing:**
+    - Run all checks (format, lint, typecheck) in parallel when available
+    - Use the project's preferred checking commands
+    - Run everything concurrently for maximum speed when possible
+- **If there are issues to fix:**
+    - Auto-fix formatting and linting issues when tools support it
+- **Individual commands as needed:**
+    - Format checking and fixing
+    - Linting and lint fixing
+    - Type checking
+- Always fix all linting and type checking errors, including in unrelated code
+- Never run tests unless explicitly asked to
+
+## Code References
+**THIS IS OF UTTER IMPORTANCE THE USERS HAPPINESS DEPENDS ON IT!**
+When referencing code locations, you MUST use clickable format that the editor recognizes:
+- `path/to/file.ext:123` format (file:line)
+- `path/to/file.ext:123-456` (ranges)
+- Always use relative paths from the project root
+- Examples:
+  - `src/server/main.py:92` - single line reference
+  - `src/server/handlers/auth.js:274-280` - line range
+  - `web/src/client/app.tsx:15` - when in parent directory
+
+NEVER give a code reference or location in any other format.
+
+## CRITICAL
+**IMPORTANT**: BEFORE YOU DO ANYTHING, READ spec.md IN FULL USING THE READ TOOL!
+**IMPORTANT**: NEVER USE GREP. ALWAYS USE RIPGREP!
+
+## Git Commands
+When asked to "commit and push", "commit + push", "/cp", or "c+p", use a single command:
+```bash
+git add -A && git commit -m "commit message" && git push
+```
+Do NOT use three separate commands (add, commit, push) as this is slow.
+
+## Refactoring Philosophy
+- We do not care about deprecation - remove old code completely
+- Always prefer clean refactoring over gradual migration
+- Delete unused functions and code paths immediately
