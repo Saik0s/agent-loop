@@ -1,5 +1,5 @@
 ---
-description: "The fix command."
+description: "Quick bug fixes for specific issues without full feature development."
 ---
 
 Quick bug fixes for specific issues without full feature development.
@@ -35,7 +35,7 @@ Quick bug fixes for specific issues without full feature development.
 ### Verification:
 - `mcp__zen__testgen` - Generate tests for the fix
 - `mcp__zen__precommit` - Validate fix before committing
-- `mcp__basic-memory__write_note` - Document the bug and fix
+
 
 ## Examples:
 - `/fix "Login button not responding on mobile"`

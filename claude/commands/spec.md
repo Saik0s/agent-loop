@@ -1,5 +1,5 @@
 ---
-description: "The spec command."
+description: "Creates a detailed feature specification document."
 ---
 
 Creates a detailed feature specification document.
@@ -31,8 +31,7 @@ Creates a detailed feature specification document.
 
 ### Research & Validation:
 - `mcp__perplexity__perplexity_ask` - Research industry standards
-- `mcp__basic-memory__search_notes` - Find similar specifications
-- `mcp__basic-memory__write_note` - Document spec for future reference
+
 - `mcp__zen__challenge` - Challenge assumptions in the spec
 
 ## Examples:

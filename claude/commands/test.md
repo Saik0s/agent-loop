@@ -1,5 +1,5 @@
 ---
-description: "The test command."
+description: "Generates a comprehensive test suite (unit, integration, and E2E) for a given code component, function, or feature."
 ---
 
 Generates a comprehensive test suite (unit, integration, and E2E) for a given code component, function, or feature.
@@ -36,7 +36,7 @@ Generates a comprehensive test suite (unit, integration, and E2E) for a given co
 ### Test Quality:
 - `mcp__zen__codereview` - Review generated tests
 - `mcp__zen__consensus` - Get consensus on test coverage
-- `mcp__basic-memory__search_notes` - Find test patterns
+
 - `mcp__perplexity__perplexity_ask` - Research testing best practices
 
 ## Examples:

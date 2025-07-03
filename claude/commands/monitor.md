@@ -1,5 +1,5 @@
 ---
-description: "The monitor command."
+description: "Set up logging, metrics, alerts, and observability for applications."
 ---
 
 Set up logging, metrics, alerts, and observability for applications.
@@ -24,11 +24,10 @@ Set up logging, metrics, alerts, and observability for applications.
 ### Implementation:
 - `mcp__context7__resolve-library-id` - Get monitoring library docs
 - `mcp__context7__get-library-docs` - Understand logging patterns
-- `mcp__basic-memory__search_notes` - Find existing monitoring setup
-- `mcp__basic-memory__write_note` - Document monitoring decisions
+
 
 ### Visualization:
-- `mcp__basic-memory__canvas` - Create monitoring architecture diagrams
+
 - `mcp__zen__docgen` - Generate monitoring documentation
 - `mcp__sequential__sequentialthinking` - Plan alert strategies
 

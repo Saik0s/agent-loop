@@ -1,5 +1,5 @@
 ---
-description: "The research command."
+description: "Conducts comprehensive research on a given topic and provides a structured report."
 ---
 
 Conducts comprehensive research on a given topic and provides a structured report.
@@ -35,10 +35,7 @@ Conducts comprehensive research on a given topic and provides a structured repor
 - `mcp__zen__consensus` - Get consensus on conclusions
 - `mcp__sequential__sequentialthinking` - Systematic research approach
 
-### Knowledge Management:
-- `mcp__basic-memory__search_notes` - Find previous research
-- `mcp__basic-memory__write_note` - Document research findings
-- `mcp__basic-memory__canvas` - Create visual research maps
+
 
 ## Examples:
 -   `/research "Best practices for API security in 2024"`

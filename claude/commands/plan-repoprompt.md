@@ -1,5 +1,5 @@
 ---
-description: "The plan-repoprompt command."
+description: "Generates a file-aware implementation plan for a new feature or task exclusively through Repoprompt."
 ---
 
 # plan-repoprompt

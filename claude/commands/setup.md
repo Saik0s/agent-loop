@@ -1,5 +1,5 @@
 ---
-description: "The setup command."
+description: "Initialize new projects or configure development environments with best practices."
 ---
 
 Initialize new projects or configure development environments with best practices.
@@ -23,8 +23,7 @@ Initialize new projects or configure development environments with best practice
 
 ### Implementation:
 - `mcp__context7__get-library-docs` - Follow official setup docs
-- `mcp__basic-memory__search_notes` - Find previous setups
-- `mcp__basic-memory__write_note` - Document setup decisions
+
 - `mcp__sequential__sequentialthinking` - Think through configuration
 
 ### Verification:

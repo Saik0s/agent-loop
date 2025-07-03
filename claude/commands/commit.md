@@ -1,5 +1,5 @@
 ---
-description: "The commit command."
+description: "Analyzes staged changes and generates a commit message that follows the Conventional Commits specification."
 ---
 
 Analyzes staged changes and generates a commit message that follows the Conventional Commits specification.
@@ -10,8 +10,7 @@ Analyzes staged changes and generates a commit message that follows the Conventi
 
 ### Analysis Tools:
 - `mcp__zen__precommit` - Comprehensive pre-commit validation
-- `mcp__basic-memory__recent_activity` - Check recent commits for style consistency
-- `mcp__basic-memory__search_notes` - Search for commit message conventions
+
 
 ## Thinking Process:
 Before generating a commit message, you **MUST** use a `think` block to:

@@ -1,5 +1,5 @@
 ---
-description: "The review command."
+description: "Conduct comprehensive code reviews for pull requests, changes, or entire codebases."
 ---
 
 Conduct comprehensive code reviews for pull requests, changes, or entire codebases.
@@ -31,11 +31,11 @@ Conduct comprehensive code reviews for pull requests, changes, or entire codebas
 ### Context & Standards:
 - `mcp__context7__resolve-library-id` - Check library best practices
 - `mcp__context7__get-library-docs` - Verify correct API usage
-- `mcp__basic-memory__search_notes` - Find coding standards
+
 - `mcp__perplexity__perplexity_ask` - Research best practices
 
 ### Documentation:
-- `mcp__basic-memory__write_note` - Document review feedback
+
 - `mcp__zen__challenge` - Challenge design decisions
 
 ## Examples:

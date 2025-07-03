@@ -1,5 +1,5 @@
 ---
-description: "The build command."
+description: "Builds a new feature based on a description, creating the necessary code and tests."
 ---
 
 Builds a new feature based on a description, creating the necessary code and tests.
@@ -24,12 +24,12 @@ Before starting to build, you **MUST** use a `think` block to:
 - `mcp__zen__thinkdeep` - Comprehensive investigation for complex features
 - `mcp__zen__consensus` - Get consensus on architectural decisions
 - `mcp__sequential__sequentialthinking` - Break down complex features step-by-step
-- `mcp__basic-memory__search_notes` - Search for similar implementations
+
 
 ### Implementation Tools:
 - `mcp__zen__testgen` - Generate comprehensive test suites
 - `mcp__zen__docgen` - Generate documentation for new code
-- `mcp__basic-memory__write_note` - Document design decisions and patterns
+
 
 ## Critical Pre-Implementation Rule:
 **NEVER start implementation without searching for code examples.** Before writing any code:

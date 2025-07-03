@@ -1,5 +1,5 @@
 ---
-description: "The api command."
+description: "Create and test API endpoints quickly with proper structure and documentation."
 ---
 
 Create and test API endpoints quickly with proper structure and documentation.
@@ -35,7 +35,7 @@ Create and test API endpoints quickly with proper structure and documentation.
 
 ### Documentation:
 - `mcp__zen__docgen` - Generate API documentation
-- `mcp__basic-memory__write_note` - Document API decisions
+
 - `mcp__perplexity__perplexity_ask` - Research REST best practices
 
 ## Examples:

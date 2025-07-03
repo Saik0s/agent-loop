@@ -1,5 +1,5 @@
 ---
-description: "The analyze command."
+description: "Analyzes the codebase for correctness, architecture, quality, security, and performance, providing a prioritized list of actionable issues."
 ---
 
 Analyzes the codebase for correctness, architecture, quality, security, and performance, providing a prioritized list of actionable issues.
@@ -26,10 +26,7 @@ Before starting the analysis, you **MUST** use a `think` block to:
 - `mcp__zen__debug` - Root cause analysis for issues
 - `mcp__zen__refactor` - Identify refactoring opportunities
 
-### Knowledge Management:
-- `mcp__basic-memory__search_notes` - Search for previous analysis patterns
-- `mcp__basic-memory__write_note` - Document analysis findings
-- `mcp__basic-memory__build_context` - Build context from previous analyses
+
 
 ## Critical Pre-Analysis Rule:
 **NEVER analyze without context.** Before analyzing code:

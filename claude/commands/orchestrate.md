@@ -1,5 +1,5 @@
 ---
-description: "The orchestrate command."
+description: "Delegates a given command to the most appropriate specialist agent for managed execution."
 ---
 
 Delegates a given command to the most appropriate specialist agent for managed execution.
@@ -20,10 +20,7 @@ Delegates a given command to the most appropriate specialist agent for managed e
 - `mcp__zen__consensus` - Get consensus on delegation strategy
 - `mcp__sequential__sequentialthinking` - Plan orchestration steps
 
-### Context Management:
-- `mcp__basic-memory__write_note` - Document orchestration decisions
-- `mcp__basic-memory__build_context` - Build context for sub-agents
-- `mcp__basic-memory__search_notes` - Find similar orchestration patterns
+
 
 ### Monitoring & Validation:
 - `mcp__zen__precommit` - Validate sub-agent outputs

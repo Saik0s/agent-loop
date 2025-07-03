@@ -1,5 +1,5 @@
 ---
-description: "The refactor command."
+description: "Guides a structured refactoring of a given code block or file."
 ---
 
 Guides a structured refactoring of a given code block or file.
@@ -37,7 +37,7 @@ Guides a structured refactoring of a given code block or file.
 - `mcp__sequential__sequentialthinking` - Plan refactoring steps
 - `mcp__zen__consensus` - Get consensus on refactoring approach
 - `mcp__zen__precommit` - Validate refactored code
-- `mcp__basic-memory__write_note` - Document refactoring patterns
+
 
 ## Examples:
 -   `/refactor path/to/some_file.ext`

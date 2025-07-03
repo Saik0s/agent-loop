@@ -1,5 +1,5 @@
 ---
-description: "The propose-solutions command."
+description: "Generates and compares distinct, viable solutions for a given problem, each with pros and cons, and provides a final recommendation."
 ---
 
 Generates and compares distinct, viable solutions for a given problem, each with pros and cons, and provides a final recommendation.
@@ -31,7 +31,7 @@ Generates and compares distinct, viable solutions for a given problem, each with
 - `mcp__perplexity__perplexity_ask` - Research industry best practices
 - `mcp__exa__web_search_exa` - Find case studies and examples
 - `mcp__exa__github_search` - Find open source implementations
-- `mcp__basic-memory__search_notes` - Find previous solution patterns
+
 
 ## Examples:
 -   `/propose-solutions "Select a backend architecture for a new social media application"`

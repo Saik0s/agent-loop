@@ -1,5 +1,5 @@
 ---
-description: "The tdd command."
+description: "Guides the Test-Driven Development (TDD) of a new feature using the Red-Green-Refactor cycle."
 ---
 
 Guides the Test-Driven Development (TDD) of a new feature using the Red-Green-Refactor cycle.
@@ -37,7 +37,7 @@ Guides the Test-Driven Development (TDD) of a new feature using the Red-Green-Re
 ### Code Quality:
 - `mcp__zen__codereview` - Review code after each cycle
 - `mcp__zen__analyze` - Analyze code coverage and quality
-- `mcp__basic-memory__write_note` - Document TDD patterns
+
 - `mcp__zen__precommit` - Validate before moving to next cycle
 
 ## Examples:

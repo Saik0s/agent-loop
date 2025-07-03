@@ -1,5 +1,5 @@
 ---
-description: "The migration command."
+description: "Handle database schema changes and data migrations safely and reversibly."
 ---
 
 Handle database schema changes and data migrations safely and reversibly.
@@ -26,7 +26,7 @@ Handle database schema changes and data migrations safely and reversibly.
 - `mcp__zen__thinkdeep` - Plan migration strategy
 - `mcp__zen__analyze` - Analyze data dependencies
 - `mcp__sequential__sequentialthinking` - Think through migration steps
-- `mcp__basic-memory__search_notes` - Find previous migrations
+
 
 ### Implementation:
 - `mcp__context7__resolve-library-id` - Get ORM/database docs
@@ -35,7 +35,7 @@ Handle database schema changes and data migrations safely and reversibly.
 
 ### Verification:
 - `mcp__zen__debug` - Debug migration issues
-- `mcp__basic-memory__write_note` - Document migration details
+
 - `mcp__perplexity__perplexity_ask` - Research migration best practices
 
 ## Examples:

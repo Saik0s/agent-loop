@@ -1,5 +1,5 @@
 ---
-description: "The dependencies command."
+description: "Manage project dependencies including updates, security audits, and conflict resolution."
 ---
 
 Manage project dependencies including updates, security audits, and conflict resolution.
@@ -24,8 +24,7 @@ Manage project dependencies including updates, security audits, and conflict res
 ### Documentation & Planning:
 - `mcp__context7__resolve-library-id` - Get latest package docs
 - `mcp__context7__get-library-docs` - Understand breaking changes
-- `mcp__basic-memory__search_notes` - Find previous update notes
-- `mcp__basic-memory__write_note` - Document update decisions
+
 
 ### Verification:
 - `mcp__zen__testgen` - Generate tests for affected code

@@ -1,5 +1,5 @@
 ---
-description: "The enhance command."
+description: "Intelligently enhances user input by generating a structured task map, refining an ambiguous query, or improving a code snippet."
 ---
 
 Intelligently enhances user input by generating a structured task map, refining an ambiguous query, or improving a code snippet.
@@ -26,8 +26,7 @@ Intelligently enhances user input by generating a structured task map, refining 
 ### Research & Context:
 - `mcp__perplexity__perplexity_ask` - Research best practices
 - `mcp__exa__web_search_exa` - Find relevant examples and patterns
-- `mcp__basic-memory__search_notes` - Find similar enhancements
-- `mcp__basic-memory__write_note` - Document enhancement patterns
+
 
 ## Enhancement Strategies
 

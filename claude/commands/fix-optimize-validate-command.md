@@ -1,5 +1,5 @@
 ---
-description: "The fix-optimize-validate-command command."
+description: "Analyzes and improves an existing Claude command file for clarity, correctness, and adherence to best practices."
 ---
 
 Analyzes and improves an existing Claude command file for clarity, correctness, and adherence to best practices.
@@ -20,10 +20,7 @@ Analyzes and improves an existing Claude command file for clarity, correctness, 
 - `mcp__zen__consensus` - Get consensus on command improvements
 - `mcp__sequential__sequentialthinking` - Think through command flow systematically
 
-### Knowledge Management:
-- `mcp__basic-memory__search_notes` - Search for command best practices
-- `mcp__basic-memory__read_note` - Read existing command patterns
-- `mcp__basic-memory__write_note` - Document command patterns
+
 
 ### Validation:
 - `mcp__zen__challenge` - Critically evaluate the optimized command

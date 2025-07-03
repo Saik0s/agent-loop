@@ -1,5 +1,5 @@
 ---
-description: "The deploy command."
+description: "Handle deployments, releases, and rollbacks with safety checks and documentation."
 ---
 
 Handle deployments, releases, and rollbacks with safety checks and documentation.
@@ -24,8 +24,7 @@ Handle deployments, releases, and rollbacks with safety checks and documentation
 
 ### Deployment Tools:
 - `mcp__zen__precommit` - Pre-deployment validation
-- `mcp__basic-memory__search_notes` - Find deployment procedures
-- `mcp__basic-memory__write_note` - Document deployment details
+
 
 ### Verification Tools:
 - `mcp__zen__analyze` - Analyze deployment readiness
@@ -33,8 +32,7 @@ Handle deployments, releases, and rollbacks with safety checks and documentation
 - `mcp__exa__web_search_exa` - Find deployment guides
 
 ### Documentation:
-- `mcp__basic-memory__recent_activity` - Check recent deployments
-- `mcp__basic-memory__canvas` - Create deployment flow diagrams
+
 
 ## Examples:
 - `/deploy production v2.3.1`

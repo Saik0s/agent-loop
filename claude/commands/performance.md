@@ -1,5 +1,5 @@
 ---
-description: "The performance command."
+description: "Profile code, identify bottlenecks, and optimize for better performance."
 ---
 
 Profile code, identify bottlenecks, and optimize for better performance.
@@ -34,10 +34,7 @@ Profile code, identify bottlenecks, and optimize for better performance.
 - `mcp__perplexity__perplexity_ask` - Research performance patterns
 - `mcp__exa__web_search_exa` - Find optimization guides
 
-### Documentation:
-- `mcp__basic-memory__write_note` - Document performance findings
-- `mcp__basic-memory__search_notes` - Find previous optimizations
-- `mcp__zen__consensus` - Get consensus on trade-offs
+
 
 ## Examples:
 - `/performance analyze api/users` - Profile user API endpoint

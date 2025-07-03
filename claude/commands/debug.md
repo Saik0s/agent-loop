@@ -1,5 +1,5 @@
 ---
-description: "The debug command."
+description: "Troubleshoot issues by analyzing errors, logs, and execution paths to identify root causes."
 ---
 
 Troubleshoot issues by analyzing errors, logs, and execution paths to identify root causes.
@@ -34,9 +34,7 @@ Troubleshoot issues by analyzing errors, logs, and execution paths to identify r
 - `mcp__perplexity__perplexity_ask` - Search for similar issues and solutions
 - `mcp__exa__web_search_exa` - Find bug reports and fixes
 
-### Knowledge Management:
-- `mcp__basic-memory__search_notes` - Find previous debugging sessions
-- `mcp__basic-memory__write_note` - Document the issue and solution
+
 
 ## Examples:
 - `/debug "TypeError: Cannot read property 'id' of undefined in UserService"`

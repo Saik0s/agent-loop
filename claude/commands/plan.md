@@ -1,5 +1,5 @@
 ---
-description: "The plan command."
+description: "Creates a detailed, file-aware implementation plan for a new feature or task."
 ---
 
 Creates a detailed, file-aware implementation plan for a new feature or task.

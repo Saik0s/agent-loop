@@ -1,5 +1,5 @@
 ---
-description: "The update-project-docs command."
+description: "You will generate LLM-optimized documentation with concrete file references and flexible formatting."
 ---
 
 You will generate LLM-optimized documentation with concrete file references and flexible formatting.
