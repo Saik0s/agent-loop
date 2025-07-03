@@ -1,154 +1,107 @@
-# Agent Loop 🚀 — End‑to‑End AI‑Driven Software Delivery
+# Agent Loop 🚀 — AI-Powered Software Development
 
-Agent Loop is a multi‑agent orchestration framework that lets **you** stay in the driver’s seat while specialist AI personas handle the heavy lifting—from scribbling an idea on a napkin all the way to production deployment and long‑term maintenance.
+Agent Loop is a framework for AI-driven software development. It uses a team of specialist AI agents, managed by an orchestrator, to handle tasks from planning and architecture to coding, testing, and deployment. You guide the process using simple commands.
 
----
+## Core Concepts
 
-## ⚡ Quick‑Start: Idea ➜ Production in 10 Concrete Steps
+The framework is built on three key components:
 
-| # | Phase | Command(s) ➜ Persona(s) | Real‑World Example |
-|---|-------|-------------------------|--------------------|
-| 1 | **Ideation** | `/enhance "I want a climate‑impact tracker app"` | Generates a task map, highlighting epics like *data ingestion*, *footprint calculator*, *reporting dashboard*. |
-| 2 | **Early Research** | `/research "open APIs for CO₂ data"` | Researcher agents debate, returning vetted API options with citations. |
-| 3 | **High‑Level Plan** | `/plan "Climate‑impact tracker MVP"` | Orchestrator spawns **3 planner** agents → synthesised roadmap with phases, risks, validation strategy. |
-| 4 | **Architecture Decision** | `/propose-solutions "Select backend architecture"` | **architect** swarm compares *monolith*, *micro‑services*, *serverless* → recommends serverless on AWS Lambda for fastest time‑to‑market. |
-| 5 | **Specification & Env Setup** | `/spec "User uploads grocery receipts to compute footprint"` | Generates user stories, acceptance criteria, API contract, **plus** sample `.env` & `docker-compose.yml` skeleton. |
-| 6 | **Implementation (TDD)** | `/build "Receipt OCR ingestion service"` | Builder writes failing tests ➜ minimal code ➜ refactor; QA ensures coverage > 85 %. |
-| 7 | **Expanding Test Coverage** | `/test "src/services/ocr.py"` | Tester auto‑generates unit & integration tests for new edge cases. |
-| 8 | **Security / Quality Gate** | `/analyze src/` | 3 architects debate on code correctness, OWASP issues, performance; output is a prioritised fix list. |
-| 9 | **Bug Repro & Hot‑Fix** | `/orchestrate /analyze logs/error.log` then `/orchestrate /build "fix null‑reference in footprint calc"` | Debugger isolates root cause; Builder patches; Tester writes regression test. |
-|10 | **Docs & Commit** | `/update-project-docs` → `/commit` | Updates README, ADRs, Docker notes; generates Conventional Commit message ready for push. |
+*   **Orchestrator**: The project manager AI. You give it a high-level goal, and it breaks it down, delegating tasks to the right specialist.
+*   **Specialist Agents**: AIs with specific roles (like `Architect`, `Builder`, `Tester`). They execute tasks given to them by the Orchestrator, following strict guidelines.
+*   **Commands**: Your interface to the system. You use commands like `/plan`, `/build`, and `/test` to initiate workflows.
 
----
+### How it Works
+The typical workflow is a clear chain of delegation:
 
-### One‑liner bootstrap
+1.  **You**: Issue a command (e.g., `/build "a login API endpoint"`).
+2.  **Orchestrator**: Receives the command, creates a detailed plan, and selects the right agent (e.g., the `Builder` agent).
+3.  **Specialist Agent**: Executes the task, following best practices like TDD and adhering to project conventions.
+4.  **Result**: The agent delivers the finished work, such as new code and passing tests, for your review.
+
+## Available Specialist Agents
+
+Each agent is a specialist in a specific domain of software engineering.
+
+| Agent | Role |
+| :--- | :--- |
+| **`Architect`** | Designs system architecture and makes high-level technical decisions. |
+| **`Builder`** | Implements features with a focus on Test-Driven Development (TDD) and clean code. |
+| **`Code`** | Handles highly complex coding tasks, algorithms, and performance optimizations. |
+| **`Debugger`** | Investigates and resolves bugs and technical issues. |
+| **`Orchestrator`** | Manages the overall workflow, delegating tasks to other agents. |
+| **`Planner`** | Translates ideas into detailed specifications, user stories, and acceptance criteria. |
+| **`Researcher`** | Gathers information, compares technologies, and provides cited reports. |
+| **`Reviewer`** | Conducts code reviews to ensure quality, security, and adherence to standards. |
+| **`Scope Analyst`** | Analyzes issues to determine the scope of work and impacted codebase areas. |
+| **`Security Analyst`** | Identifies and mitigates security vulnerabilities. |
+| **`Tester`** | Creates and runs tests to ensure software quality. |
+
+## Key Commands
+
+This is a cheat-sheet of common commands to drive your project.
+
+### Planning & Design
+*   `/plan "<feature>"`: Creates a detailed, file-aware implementation plan.
+    *   *Example:* `/plan "Implement magic-link authentication"`
+*   `/spec "<feature>"`: Generates a formal feature specification with user stories and acceptance criteria.
+    *   *Example:* `/spec "User profile page with avatar upload"`
+*   `/propose-solutions "<problem>"`: Compares multiple technical solutions with pros and cons.
+    *   *Example:* `/propose-solutions "Choose a database: SQL vs. NoSQL"`
+
+### Development & Implementation
+*   `/build "<feature>"`: Builds a feature with code and tests, following TDD.
+    *   *Example:* `/build "an API endpoint to fetch user profiles"`
+*   `/tdd "<feature>"`: Strictly follows the Red-Green-Refactor TDD cycle for a feature.
+    *   *Example:* `/tdd "a user login function with two-factor auth"`
+*   `/fix "<bug>"`: Implements a focused fix for a specific bug.
+    *   *Example:* `/fix "Login button not responding on mobile"`
+*   `/refactor <file or code>`: Improves the structure of existing code without changing its behavior.
+    *   *Example:* `/refactor src/utils/helpers.js`
+
+### Quality & Verification
+*   `/test "<component>"`: Generates a full suite of tests (unit, integration) for a component.
+    *   *Example:* `/test "the user authentication service"`
+*   `/analyze [path]`: Analyzes code for quality, security, and architectural issues.
+    *   *Example:* `/analyze src/core/auth.js`
+*   `/review <PR URL or path>`: Conducts a comprehensive code review.
+    *   *Example:* `/review https://github.com/org/repo/pull/123`
+
+### Project Management
+*   `/commit`: Generates a Conventional Commit message for your staged changes.
+*   `/update-project-docs`: Scans the codebase and updates all documentation to be current.
+*   `/research "<topic>"`: Conducts research and provides a structured report.
+    *   *Example:* `/research "Best practices for API security in 2024"`
+
+## Core Principles (How the Agents Think)
+
+The agents' behavior is governed by a set of core principles defined in `CLAUDE.md`.
+
+*   **Delegate, Don't Do**: The `Orchestrator` always delegates tasks to specialists. It never writes code itself.
+*   **Think, Then Act**: Agents use a structured thinking process (`think`, `think harder`, `ultrathink`) to plan their work before executing.
+*   **Context is King**: Agents **must** search for existing patterns, conventions, and documentation within the project before writing or changing code. This ensures all changes are idiomatic.
+*   **Tests First**: Development is driven by tests (`TDD`). A failing test is always written before the implementation code.
+*   **Cite Your Sources**: The `Researcher` agent provides citations for its findings to ensure information is verifiable.
+
+## Example End-to-End Workflow
+
+Here is how you might use Agent Loop to build a new feature from scratch:
 
 ```bash
-# Clone & install global agent config
-git clone https://github.com/saik0s/agent‑loop.git && cd agent‑loop
-./install.sh          # copies .claude to ~/.claude
-````
----
+# 1. Turn an idea into a concrete plan
+/plan "Weekly carbon email reports for users"
 
-## 🗺️ Workflow Cheat‑Sheet by Role
+# 2. Generate the formal specification, including user stories and acceptance criteria
+/spec "Email report generator as per the plan"
 
-| Practitioner Need                     | Command                                               | Behind the scenes                              |
-| ------------------------------------- | ----------------------------------------------------- | ---------------------------------------------- |
-| **Product Owner** wants ROI estimates | `/plan "add premium tier"`                            | Planner trio drafts effort vs. revenue matrix  |
-| **Tech Lead** needs ADR               | `/propose-solutions "event‑driven vs. cron batching"` | Architect swarm + pros/cons                    |
-| **Developer** adds feature            | `/build "export data to CSV"`                         | Builder in strict TDD                          |
-| **QA** increases coverage             | `/test "payment flow"`                                | Tester generates Cypress E2E                   |
-| **Security** scans                    | `/analyze --security src/`                            | Security\_analyst outputs Severity × Fix table |
-| **Ops** updates docs                  | `/update-project-docs`                                | Syncs README, k8s manifests                    |
-| **Anyone** improves unclear idea      | `/enhance "<raw thought>"`                            | Produces structured task map                   |
+# 3. Build the feature using Test-Driven Development
+/build "Implement the email report batch job"
 
----
-
-## 🧬 Swarm Strategies in Practice
-
-* **Debate** → factual accuracy (`/research`, `/analyze`)
-* **Synthesis** → creativity & completeness (`/plan`, `/spec`, `/propose-solutions`, `/refactor`)
-
-The orchestrator **must** spawn 3 sub‑agents for these commands, then merge the best from each.
-
----
-
-## 🪄 Context Hygiene Tips
-
-* Keep context window < 40 %—large tasks trigger the **new‑task automation** hand‑off.
-* Use **Repoprompt codemaps** before loading whole files.
-* Delegate, don’t do: Orchestrator **never** writes code directly.
-
----
-
-## 📦 Example End‑to‑End Session (Copy & Paste)
-
-```bash
-# 1. Turn an idea into tasks
-/enhance "I wish we could email weekly carbon reports to users"
-
-# 2. Plan the feature
-/orchestrate /plan "Weekly carbon email reports MVP"
-
-# 3. Nail the spec
-/orchestrate /spec "Email report generator per plan phase 1"
-
-# 4. Pick the best architecture pattern
-/orchestrate /propose-solutions "Batch job vs. event trigger for report gen"
-
-# 5. Build incrementally with TDD
-/orchestrate /build "Implement batch job skeleton"
-
-# 6. Extend tests
+# 4. Ensure full test coverage for the new module
 /test "src/jobs/report_batch.py"
 
-# 7. Commit when green
-/commit
+# 5. Analyze the new code for any quality or security issues
+/analyze src/jobs/report_batch.py
+
+# 6. Update the project's README to include the new feature
+/update-project-docs
 ```
-
----
-
-# Happy building—may your agents be ever in sync 🎉
-
----
-
-## 🚀 Parallel Agent Development with Git Worktrees
-
-To work on multiple tasks in parallel without interference, this project includes scripts to manage isolated development environments using Git worktrees.
-
-### 1. Create a New Task Environment
-To start a new task (e.g., "feature-x"), run the master script:
-```bash
-./scripts/spawn-agent-worktree.sh feature-x
-```
-This will:
-1.  Create a new directory `../agent-loop-feature-x`.
-2.  Create a new git branch `feature/feature-x`.
-3.  Run the environment setup script `scripts/setup-environment.sh` inside the new worktree.
-
-### 2. Start Working
-Navigate to your new worktree to begin:
-```bash
-cd ../agent-loop-feature-x
-# Start your agent or development server
-claude
-```
-
-### 3. List Active Tasks
-To see all your current worktrees, run:
-```bash
-./scripts/list-worktrees.sh
-```
-
-### 4. Clean Up a Finished Task
-When you're done with a task, you can remove the worktree:
-```bash
-./scripts/remove-worktree.sh feature-x
-```
-This will remove the worktree directory and ask if you want to delete the associated git branch.
-
-### Customizing Environment Setup
-The `scripts/setup-environment.sh` script is a template. You can add your project-specific setup commands (e.g., `npm install`, `pip install`) to this file to automate your workflow.
-
----
-
-## 🪝 Automated Hooks
-
-This project comes with a set of pre-configured hooks to enforce best practices, improve code quality, and enhance security. Hooks are small scripts that run at different points in the agent's lifecycle.
-
-### User-Level Hooks (`~/.claude/settings.json`)
-
-These hooks apply to all your projects. To install them, copy the contents of `.claude/user_settings.json` to your `~/.claude/settings.json` file and ensure the hook scripts from `.claude/hooks` are in `~/.claude/hooks`.
-
-*   **macOS Notifications**: Uses the `say` command to give you audible notifications when the agent needs your attention.
-*   **Dangerous Command Blocker**: Prevents the execution of potentially harmful commands like `rm -rf /`.
-
-### Project-Level Hooks (`./.claude/settings.json`)
-
-These hooks are specific to this project and are located in the `.claude/hooks` directory.
-
-*   **Auto Formatter**: Automatically formats code every time a file is written or edited. To enable, set the `AUTO_FORMATTER_COMMAND` environment variable (e.g., `export AUTO_FORMATTER_COMMAND="prettier --write"`).
-*   **Linter**: Runs a linter on your code before it's written, blocking commits that don't meet quality standards. To enable, set the `LINTER_COMMAND` environment variable (e.g., `export LINTER_COMMAND="eslint"`).
-*   **Secret Scanner**: Prevents you from accidentally committing hardcoded secrets.
-*   **Ticketed TODOs**: Ensures that every `TODO` comment in the code is associated with a ticket number (e.g., `TODO(PROJ-123)`).
-
